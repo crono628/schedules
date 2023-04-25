@@ -9,7 +9,7 @@ const data = [
   },
   {
     doctor: 'Dr yellow',
-    today: ['08:00', '08:00', '10:00', '11:00', '13:30', '14:00', '15:00']
+    today: ['08:00', '08:30', '10:00', '11:00', '13:30', '14:00', '15:00']
   },
   {
     doctor: 'Dr green',
@@ -34,9 +34,15 @@ const data = [
 ]
 
 function createSchedule(schedules, offices = 3) {
-  let sortedAppointments
-  sortedAppointments = schedules.sort((a, b) => b.today.length - a.today.length)
+  let sortedAppointments = sortIt(schedules)
   let rooms = createRooms(offices)
+  for (const appt of sortedAppointments) {
+    let destArray = 1
+    if (destArray > offices) {
+      destArray = 1
+    }
+    let temp
+  }
   return { appointments: sortedAppointments, rooms: rooms }
 }
 
@@ -48,6 +54,10 @@ function createRooms(num) {
   return arr
 }
 
-const schedule = createSchedule(data, 4)
-console.table(schedule.appointments)
-console.log(schedule.rooms)
+function sortIt(arr) {
+  return arr.slice().sort((a, b) => b.today.length - a.today.length)
+}
+
+const schedule = createSchedule(data, 3)
+// console.log(schedule);
+//console.log(schedule.rooms)
