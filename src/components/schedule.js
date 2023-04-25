@@ -36,7 +36,8 @@ const data = [
 function createSchedule(schedules, offices = 3) {
   let sortedAppointments = sortIt(schedules)
   let rooms = createRooms(offices)
-  let destinationArray = Math.floor(Math.random() * 3) + 1
+  // let destinationArray = Math.floor(Math.random() * offices) + 1
+  let destinationArray = 1
   for (const appt of sortedAppointments) {
     let { today, doctor } = appt
     if (destinationArray > offices) {
@@ -46,7 +47,8 @@ function createSchedule(schedules, offices = 3) {
     let { appts, doctors, totalAppts, duplicates } = currentRoom
     appts.push(today)
     doctors.push(doctor)
-    // console.log(currentRoom.appts)
+    currentRoom.totalAppts = totalAppts += today.length
+    // console.log(totalAppts)
     destinationArray++
   }
   return { appointments: sortedAppointments, rooms: rooms }
@@ -64,6 +66,6 @@ function sortIt(arr) {
   return arr.slice().sort((a, b) => b.today.length - a.today.length)
 }
 
-const schedule = createSchedule(data, 3)
+const schedule = createSchedule(data, 4)
 console.dir(schedule.rooms, { depth: null })
 // console.log(schedule.rooms)
