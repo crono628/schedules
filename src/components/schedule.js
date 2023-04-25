@@ -36,12 +36,18 @@ const data = [
 function createSchedule(schedules, offices = 3) {
   let sortedAppointments = sortIt(schedules)
   let rooms = createRooms(offices)
+  let destinationArray = Math.floor(Math.random() * 3) + 1
   for (const appt of sortedAppointments) {
-    let destArray = 1
-    if (destArray > offices) {
-      destArray = 1
+    let { today, doctor } = appt
+    if (destinationArray > offices) {
+      destinationArray = 1
     }
-    let temp
+    let currentRoom = rooms.find((obj) => obj.room === destinationArray)
+    let { appts, doctors, totalAppts, duplicates } = currentRoom
+    appts.push(today)
+    doctors.push(doctor)
+    // console.log(currentRoom.appts)
+    destinationArray++
   }
   return { appointments: sortedAppointments, rooms: rooms }
 }
@@ -49,7 +55,7 @@ function createSchedule(schedules, offices = 3) {
 function createRooms(num) {
   const arr = []
   for (let i = 1; i <= num; i++) {
-    arr.push({ room: `${i}`, appts: [], doctors: [] })
+    arr.push({ room: i, appts: [], doctors: [], totalAppts: 0, duplicates: [] })
   }
   return arr
 }
@@ -59,5 +65,5 @@ function sortIt(arr) {
 }
 
 const schedule = createSchedule(data, 3)
-// console.log(schedule);
-//console.log(schedule.rooms)
+console.dir(schedule.rooms, { depth: null })
+// console.log(schedule.rooms)
