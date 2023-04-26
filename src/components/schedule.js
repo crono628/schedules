@@ -33,7 +33,7 @@ const data = [
   }
 ]
 
-function createSchedule(schedules, offices = 3) {
+export function createSchedule(schedules, offices = 3) {
   let sortedAppointments = sortIt(schedules)
   let rooms = createRooms(offices)
   let destinationArray = Math.floor(Math.random() * offices) + 1
@@ -84,5 +84,36 @@ function findDuplicates(arrays) {
 }
 
 const schedule = createSchedule(data, 2)
-console.dir(schedule.rooms, { depth: null })
+// console.dir(schedule, { depth: null })
 // console.log(schedule.rooms)
+
+export const TEAMS = [
+  'red',
+  'orange',
+  'yellow',
+  'green',
+  'blue',
+  'indigo',
+  'violet',
+  'white'
+]
+
+export const TIMES = [
+  '07:30',
+  '08:00',
+  '08:30',
+  '09:00',
+  '09:30',
+  '10:00',
+  '10:30',
+  '11:00',
+  '11:30',
+  '12:00',
+  '12:30',
+  '01:00',
+  '01:30',
+  '02:00',
+  '02:30',
+  '03:00',
+  '03:30'
+]
