@@ -36,21 +36,25 @@ const data = [
 function createSchedule(schedules, offices = 3) {
   let sortedAppointments = sortIt(schedules)
   let rooms = createRooms(offices)
-  // let destinationArray = Math.floor(Math.random() * offices) + 1
-  let destinationArray = 1
+  let destinationArray = Math.floor(Math.random() * offices) + 1
+  // let destinationArray = 1
   for (const appt of sortedAppointments) {
     let { today, doctor } = appt
     if (destinationArray > offices) {
       destinationArray = 1
     }
     let currentRoom = rooms.find((obj) => obj.room === destinationArray)
-    let { appts, doctors, totalAppts, duplicates } = currentRoom
+    let { appts, doctors, totalAppts } = currentRoom
     appts.push(today)
     doctors.push(doctor)
     currentRoom.totalAppts = totalAppts += today.length
-    // console.log(totalAppts)
     destinationArray++
   }
+
+  for (let i = 0; i < offices; i++) {
+    rooms[i].duplicates = findDuplicates(rooms[i].appts)
+  }
+
   return { appointments: sortedAppointments, rooms: rooms }
 }
 
@@ -66,6 +70,19 @@ function sortIt(arr) {
   return arr.slice().sort((a, b) => b.today.length - a.today.length)
 }
 
-const schedule = createSchedule(data, 4)
+function findDuplicates(arrays) {
+  const flattened = arrays.flat()
+  const duplicates = []
+  for (let i = 0; i < flattened.length; i++) {
+    for (let j = i + 1; j < flattened.length; j++) {
+      if (flattened[i] === flattened[j] && !duplicates.includes(flattened[i])) {
+        duplicates.push(flattened[i])
+      }
+    }
+  }
+  return duplicates
+}
+
+const schedule = createSchedule(data, 2)
 console.dir(schedule.rooms, { depth: null })
 // console.log(schedule.rooms)
