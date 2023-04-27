@@ -23,30 +23,28 @@ function App() {
   }
 
   return (
-    <>
+    <div className="wrapper">
+      <Team handleSubmit={handleSchedule} />
+      <label htmlFor="rooms" />
+      Rooms
+      <input
+        type="number"
+        name="rooms"
+        value={rooms}
+        min={0}
+        max={10}
+        onChange={(e) => setRooms(e.target.value)}
+      />
       <div>
-        <Team handleSubmit={handleSchedule} />
-        <label htmlFor="rooms" />
-        Rooms
-        <input
-          type="number"
-          name="rooms"
-          value={rooms}
-          min={0}
-          max={10}
-          onChange={(e) => setRooms(e.target.value)}
-        />
-        <div>
-          <button
-            disabled={rooms < 1 || data.length < 1}
-            onClick={displaySchedule}
-          >
-            display
-          </button>
-        </div>
-        <Daily dailyArr={daily} />
+        <button
+          disabled={rooms < 1 || data.length < 1}
+          onClick={displaySchedule}
+        >
+          display
+        </button>
       </div>
-    </>
+      <Daily dailyArr={daily} />
+    </div>
   )
 }
 
