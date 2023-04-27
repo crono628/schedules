@@ -26,7 +26,9 @@ const Team = ({ handleSubmit }) => {
     }
     handleSubmit({ doctor: selectedTeam, today: selectedTimes })
     setSelectedTimes([])
+    setSelectedTeam('')
   }
+
   return (
     <div>
       <div>
@@ -45,19 +47,21 @@ const Team = ({ handleSubmit }) => {
         </select>
       </div>
       <div>
-        {TIMES.map((time) => (
-          <div key={time}>
-            <input
-              type="checkbox"
-              id={time}
-              name={time}
-              value={time}
-              onChange={handleTimeChange}
-              checked={selectedTimes.includes(time)}
-            />
-            <label htmlFor={time}>{time}</label>
-          </div>
-        ))}
+        <div className="checkbox-div">
+          {TIMES.map((time) => (
+            <div key={time}>
+              <input
+                type="checkbox"
+                id={time}
+                name={time}
+                value={time}
+                onChange={handleTimeChange}
+                checked={selectedTimes.includes(time)}
+              />
+              <label htmlFor={time}>{time}</label>
+            </div>
+          ))}
+        </div>
         <button onClick={handleClick}>submit</button>
       </div>
     </div>
