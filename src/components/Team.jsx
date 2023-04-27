@@ -62,7 +62,12 @@ const Team = ({ handleSubmit }) => {
             </div>
           ))}
         </div>
-        <button onClick={handleClick}>submit</button>
+        <button
+          disabled={selectedTeam === '' || selectedTimes.length < 1}
+          onClick={handleClick}
+        >
+          submit
+        </button>
       </div>
     </div>
   )

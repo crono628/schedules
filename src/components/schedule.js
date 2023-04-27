@@ -1,4 +1,4 @@
-const data = [
+export const data = [
   { doctor: 'NEW PACT 1 FLOAT PROVIDER', today: ['09:30', '10:30'] },
   {
     doctor: 'NEW PACT 2 COBALT MD WH',
@@ -59,7 +59,6 @@ const data = [
 export function createSchedule(schedules, offices) {
   let sortedAppointments = sortIt(schedules)
   let rooms = createRooms(offices)
-  // let destinationArray = Math.floor(Math.random() * offices) + 1;
   let dailyTotalAppointments = sortedAppointments.reduce(
     (acc, arr) => acc + arr.today.length,
     0
@@ -141,20 +140,20 @@ function resetIfGreater(reset, num) {
   return reset
 }
 
-const schedule = createSchedule(data, 2)
+export const schedule = createSchedule(data, 2)
 // console.log(schedule)
 
-console.log(schedule.rooms)
+// console.log(schedule.rooms)
 
 export const TEAMS = [
-  'red',
-  'orange',
-  'yellow',
-  'green',
-  'blue',
-  'indigo',
-  'violet',
-  'white'
+  'RED',
+  'ORANGE',
+  'YELLOW',
+  'GREEN',
+  'BLUE',
+  'INDIGO',
+  'VIOLET',
+  'WHITE'
 ]
 
 export const TIMES = [

@@ -14,3 +14,18 @@
   max-width: 500px;
   background-color: lightgray;
 }
+
+.room-div {
+  margin: 20px;
+}
+
+.provider-div {
+  display: flex;
+  flex-direction: column;
+}
+
+.total-appts-div {
+  border-bottom: black solid 2px;
+  max-width: fit-content;
+  margin-bottom: 10px;
+}
