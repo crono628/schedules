@@ -4,17 +4,19 @@ import { data as testData, createSchedule } from './components/schedule'
 import Daily from './components/Daily'
 
 function App() {
-  const [data, setData] = useState(testData)
-  const [rooms, setRooms] = useState(0)
+  const [data, setData] = useState([])
+  const [rooms, setRooms] = useState(1)
   const [daily, setDaily] = useState([])
 
-  // useEffect(() => {
-  //   console.log(data)
-  // }, [data])
+  useEffect(() => {
+    displaySchedule()
+  }, [rooms, data])
 
   const handleSchedule = (newState) => {
     setData((prev) => [...prev, newState])
   }
+
+  const handleTestData = () => setData(testData)
 
   const displaySchedule = () => {
     if (data.length > 0 && rooms > 0) {
@@ -22,28 +24,27 @@ function App() {
     }
   }
 
+  const incrementRooms = () => {
+    if (rooms < 9) {
+      setRooms(rooms + 1)
+    }
+  }
+
+  const decrementRooms = () => {
+    if (rooms > 1) {
+      setRooms(rooms - 1)
+    }
+  }
+
   return (
     <div className="wrapper">
-      <Team handleSubmit={handleSchedule} />
-      <label htmlFor="rooms" />
-      Rooms
-      <input
-        type="number"
-        name="rooms"
-        value={rooms}
-        min={0}
-        max={10}
-        onChange={(e) => setRooms(e.target.value)}
-      />
-      <div>
-        <button
-          disabled={rooms < 1 || data.length < 1}
-          onClick={displaySchedule}
-        >
-          display
-        </button>
+      <Team handleSubmit={handleSchedule} handleTestData={handleTestData} />
+      <div className="room-btns">
+        Rooms<button onClick={incrementRooms}> + </button>
+        {rooms}
+        <button onClick={decrementRooms}> - </button>
       </div>
-      <Daily dailyArr={daily} />
+      <Daily dailyArr={daily} obj={data} />
     </div>
   )
 }

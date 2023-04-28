@@ -1,4 +1,5 @@
-const Daily = ({ dailyArr }) => {
+import CollapsibleSchedule from './CollapsibleSchedule'
+const Daily = ({ dailyArr, obj }) => {
   return (
     <div>
       {dailyArr?.rooms?.map((item, index) => {
@@ -9,8 +10,12 @@ const Daily = ({ dailyArr }) => {
               Total appointments {item.totalAppts}
             </div>
             <div className="provider-div">
-              {item.doctors.map((item, index) => (
-                <div key={index}>{item}</div>
+              {item?.providers.map((item, index) => (
+                <div key={index}>
+                  <CollapsibleSchedule
+                    obj={obj.find((p) => p.provider === item)}
+                  />
+                </div>
               ))}
             </div>
           </div>

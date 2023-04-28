@@ -1,11 +1,11 @@
 export const data = [
-  { doctor: 'NEW PACT 1 FLOAT PROVIDER', today: ['09:30', '10:30'] },
+  { provider: 'FLOAT PROVIDER', today: ['09:30', '10:30', '11:30'] },
   {
-    doctor: 'NEW PACT 2 COBALT MD WH',
+    provider: 'COBALT',
     today: ['09:00', '10:00', '10:30', '11:00', '02:30', '03:00']
   },
   {
-    doctor: 'NEW PACT 2 CYAN APRN WH',
+    provider: 'CYAN',
     today: [
       '08:00',
       '08:30',
@@ -19,7 +19,7 @@ export const data = [
     ]
   },
   {
-    doctor: 'NEW PACT 2 SAPPHIRE MD',
+    provider: 'SAPPHIRE',
     today: [
       '07:00',
       '08:00',
@@ -34,24 +34,24 @@ export const data = [
     ]
   },
   {
-    doctor: 'NEW PACT 2 SLATE MD WH',
+    provider: 'SLATE',
     today: ['07:30', '08:30', '10:00', '10:30', '11:30', '12:00', '01:00']
   },
-  { doctor: 'NEW PACT 2 STEEL MD WH', today: ['09:00', '10:00', '11:00'] },
+  { provider: 'STEEL', today: ['09:00', '10:00', '11:00'] },
   {
-    doctor: 'NEW PACT 2 STEEL RESIDENT 1 WH',
+    provider: 'STEEL RESIDENT 1',
     today: ['01:30', '02:00', '02:30', '3:00']
   },
   {
-    doctor: 'NEW PACT 2 STEEL RESIDENT 2 WH',
+    provider: 'STEEL RESIDENT 2',
     today: ['01:30', '02:00', '02:30', '3:00']
   },
   {
-    doctor: 'NEW PACT 2 STEEL RESIDENT 3 WH',
+    provider: 'STEEL RESIDENT 3',
     today: ['01:30', '02:00', '02:30', '3:00']
   },
   {
-    doctor: 'NEW PACT 2.NAVY MD WH',
+    provider: 'NAVY',
     today: ['07:30', '09:00', '10:00', '10:30', '11:30']
   }
 ]
@@ -68,7 +68,7 @@ export function createSchedule(schedules, offices) {
   let destinationOffice = 1
   let fullOffices = 0
   for (const appt of sortedAppointments) {
-    let { today, doctor } = appt
+    let { today, provider } = appt
     destinationOffice = resetIfGreater(destinationOffice, offices)
     let currentRoom = rooms.find((obj) => obj.room === destinationOffice)
 
@@ -86,7 +86,7 @@ export function createSchedule(schedules, offices) {
     }
 
     currentRoom.appts.push(today)
-    currentRoom.doctors.push(doctor)
+    currentRoom.providers.push(provider)
     currentRoom.totalAppts = currentRoom.totalAppts += today.length
     destinationOffice++
   }
@@ -108,7 +108,7 @@ function createRooms(num) {
     arr.push({
       room: i,
       appts: [],
-      doctors: [],
+      providers: [],
       totalAppts: 0,
       duplicates: []
     })
@@ -153,7 +153,7 @@ export const TEAMS = [
   'BLUE',
   'INDIGO',
   'VIOLET',
-  'WHITE'
+  'ITE'
 ]
 
 export const TIMES = [

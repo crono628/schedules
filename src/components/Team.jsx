@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { TEAMS, TIMES } from './schedule'
 
-const Team = ({ handleSubmit }) => {
+const Team = ({ handleSubmit, handleTestData }) => {
   const [selectedTimes, setSelectedTimes] = useState([])
   const [selectedTeam, setSelectedTeam] = useState('')
 
@@ -24,27 +24,37 @@ const Team = ({ handleSubmit }) => {
     if (selectedTimes.length === 0 || selectedTeam === '') {
       return
     }
-    handleSubmit({ doctor: selectedTeam, today: selectedTimes })
+    handleSubmit({ provider: selectedTeam, today: selectedTimes })
     setSelectedTimes([])
     setSelectedTeam('')
   }
 
   return (
     <div>
-      <div>
-        <label htmlFor="color-dropdown">Select a team: </label>
+      <div className="team-submit-container">
+        <label htmlFor="color-dropdown">Team: </label>
         <select
           id="color-dropdown"
           value={selectedTeam}
           onChange={handleTeamChange}
         >
-          <option value="">Choose a team</option>
+          <option value=""></option>
           {TEAMS.map((team) => (
             <option key={team} value={team}>
               {team}
             </option>
           ))}
         </select>
+        <button
+          className="submit-btn"
+          disabled={selectedTeam === '' || selectedTimes.length < 1}
+          onClick={handleClick}
+        >
+          submit
+        </button>
+        <button onClick={handleTestData} className="test-btn">
+          test data
+        </button>
       </div>
       <div>
         <div className="checkbox-div">
@@ -62,12 +72,6 @@ const Team = ({ handleSubmit }) => {
             </div>
           ))}
         </div>
-        <button
-          disabled={selectedTeam === '' || selectedTimes.length < 1}
-          onClick={handleClick}
-        >
-          submit
-        </button>
       </div>
     </div>
   )

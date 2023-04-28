@@ -9,9 +9,26 @@
   font-family: 'Roboto', sans-serif;
   font-size: 20px;
 }
+body {
+  display: flex;
+  justify-content: center;
+  background-color: lightgrey;
+}
 
 .wrapper {
   padding: 10px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  border: #112e51 solid 15px;
+  width: 100vw;
+  max-width: 1024px;
+  height: 100vh;
+  background-color: white;
+}
+
+.team-submit-container > * {
+  font-size: 0.7rem;
 }
 
 .checkbox-div {
@@ -43,4 +60,46 @@
   border-bottom: black solid 2px;
   max-width: fit-content;
   margin-bottom: 10px;
+}
+
+.current-schedule div {
+  font-size: 15px;
+}
+
+.schedule-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.collapsible {
+  cursor: pointer;
+  display: flex;
+  transition: background-color 0.2s ease;
+  padding: 5px;
+  width: max-content;
+  border-radius: 20px;
+}
+
+.collapsible:hover {
+  background-color: #112e51;
+  color: white;
+  border-radius: 15px;
+}
+
+/* .submit-btn {
+} */
+
+.test-btn {
+  font-size: 0.4rem;
+  float: right;
+}
+
+.room-btns button {
+  width: 30px;
+  border: none;
+  background-color: #112e51;
+  color: white;
+  margin: 0 10px 0 10px;
+  border-radius: 10px;
 }
