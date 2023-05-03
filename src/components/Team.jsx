@@ -14,7 +14,7 @@ const Team = ({ handleSubmit, handleTestData }) => {
     const isChecked = event.target.checked
 
     if (isChecked) {
-      setSelectedTimes([...selectedTimes, time])
+      setSelectedTimes([...selectedTimes, time].sort())
     } else {
       setSelectedTimes(selectedTimes.filter((t) => t !== time))
     }

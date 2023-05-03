@@ -16,7 +16,9 @@ function App() {
     setData((prev) => [...prev, newState])
   }
 
-  const handleTestData = () => setData(testData)
+  const handleTestData = () => {
+    setData((prev) => [...prev, ...testData])
+  }
 
   const displaySchedule = () => {
     if (data.length > 0 && rooms > 0) {
