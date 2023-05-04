@@ -10,7 +10,6 @@ function App() {
 
   useEffect(() => {
     displaySchedule()
-    console.log(daily)
   }, [rooms, data])
 
   const handleSchedule = (newState) => {
