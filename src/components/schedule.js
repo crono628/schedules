@@ -92,7 +92,7 @@ export function createSchedule(schedules, offices) {
   }
 
   for (let i = 0; i < offices; i++) {
-    rooms[i].duplicates = findDuplicates(rooms[i].appts)
+    rooms[i].duplicates = findMultipleAppt(rooms[i].appts)
   }
 
   return {
@@ -120,17 +120,23 @@ function sortIt(arr) {
   return arr.slice().sort((a, b) => b.today.length - a.today.length)
 }
 
-function findDuplicates(arrays) {
-  const flattened = arrays.flat()
-  const duplicates = []
-  for (let i = 0; i < flattened.length; i++) {
-    for (let j = i + 1; j < flattened.length; j++) {
-      if (flattened[i] === flattened[j] && !duplicates.includes(flattened[i])) {
-        duplicates.push(flattened[i])
-      }
-    }
-  }
-  return duplicates
+function findMultipleAppt(arr, num = 1) {
+  const flattened = arr.flat()
+  const counts = {}
+  flattened.forEach((obj) => {
+    const key = JSON.stringify(obj)
+    counts[key] = counts[key] ? counts[key] + 1 : 1
+  })
+  const result = []
+  Object.entries(counts).forEach(([key, count]) => {
+    const obj = JSON.parse(key)
+    result.push({ count, repeats: obj })
+  })
+  return result
+    .filter((item) => item.count > num)
+    .sort((a, b) =>
+      a.repeats > b.repeats ? 1 : a.repeats < b.repeats ? -1 : 0
+    )
 }
 
 function resetIfGreater(reset, num) {
@@ -141,9 +147,6 @@ function resetIfGreater(reset, num) {
 }
 
 export const schedule = createSchedule(data, 2)
-// console.log(schedule)
-
-// console.log(schedule.rooms)
 
 export const TEAMS = [
   'AIR FORCE',
@@ -158,7 +161,8 @@ export const TEAMS = [
   'SAPPHIRE',
   'SKY',
   'SLATE',
-  'STEEL'
+  'STEEL',
+  'TURQUOISE'
 ]
 
 export const TIMES = [

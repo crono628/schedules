@@ -9,7 +9,16 @@ const Daily = ({ dailyArr, obj }) => {
             <div className="total-appts-div">
               Total appointments {item.totalAppts}
               <div className="busy-times">
-                Busy times: {item.duplicates.slice().sort().join(', ')}
+                Busy times:{' '}
+                {item.duplicates
+                  .sort((a, b) =>
+                    b.value < a.value ? 1 : b.value > a.value ? -1 : 0
+                  )
+                  .map((dup, index) => (
+                    <>
+                      {dup.value} ({dup.count}){', '}
+                    </>
+                  ))}
               </div>
             </div>
             <div className="provider-div">
