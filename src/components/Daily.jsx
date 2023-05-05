@@ -9,15 +9,16 @@ const Daily = ({ dailyArr, obj }) => {
             <div className="total-appts-div">
               Total appointments {item.totalAppts}
               <div className="busy-times">
-                Busy times:{' '}
+                Busy times: {console.log(item)}
                 {item.duplicates
                   .sort((a, b) =>
                     b.value < a.value ? 1 : b.value > a.value ? -1 : 0
                   )
                   .map((dup, index) => (
-                    <>
-                      {dup.value} ({dup.count}){', '}
-                    </>
+                    <span key={index}>
+                      {dup.repeats} ({dup.count})
+                      {index < item.duplicates.length - 1 ? ', ' : ''}
+                    </span>
                   ))}
               </div>
             </div>

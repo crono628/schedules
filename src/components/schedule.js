@@ -77,7 +77,8 @@ export function createSchedule(schedules, offices) {
       idealApptsPerRoom
     ) {
       fullOffices++
-      if (fullOffices > offices) {
+      if (fullOffices >= offices) {
+        //if statement adjusts which room goes next
         break
       }
       destinationOffice += 1
@@ -120,7 +121,7 @@ function sortIt(arr) {
   return arr.slice().sort((a, b) => b.today.length - a.today.length)
 }
 
-function findMultipleAppt(arr, num = 1) {
+function findMultipleAppt(arr, num = 2) {
   const flattened = arr.flat()
   const counts = {}
   flattened.forEach((obj) => {

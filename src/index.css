@@ -37,8 +37,10 @@ body {
   align-items: center;
   flex-wrap: wrap;
   flex-direction: column;
-  height: 25vh;
+  height: 20vh;
+  width: 60%;
   gap: 10px;
+  margin: 20px 0px 20px 0px;
 }
 
 .checkbox-div > div {
@@ -68,6 +70,7 @@ body {
   margin-bottom: 10px;
 }
 
+.busy-times *,
 .busy-times {
   font-size: 14px;
 }
