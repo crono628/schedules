@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Team from './components/Team'
 import { data as testData, createSchedule } from './components/schedule'
 import Daily from './components/Daily'

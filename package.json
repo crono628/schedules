@@ -9,7 +9,7 @@
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "github-deploy": "git subtree push --prefix dist origin gh-pages",
-    "firebase-deploy": "firebase deploy --only hosting:pactplanner"
+    "deploy": "firebase deploy --only hosting:pactplanner"
   },
   "dependencies": {
     "firebase": "^9.21.0",
