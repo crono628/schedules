@@ -6,8 +6,9 @@ import Daily from './components/Daily'
 function App() {
   const [data, setData] = useState([])
   const [rooms, setRooms] = useState(1)
-  const [algo, setAlgo] = useState(0)
+  const [algo, setAlgo] = useState(1)
   const [daily, setDaily] = useState([])
+  const [busy, setBusy] = useState([2])
 
   useEffect(() => {
     displaySchedule()
@@ -52,25 +53,21 @@ function App() {
         <div className="room-btns">
           Rooms
           <button data-button="plus room" onClick={handleRoomsButton}>
-            {' '}
-            +{' '}
+            +
           </button>
           {rooms}
           <button data-button="minus room" onClick={handleRoomsButton}>
-            {' '}
-            -{' '}
+            -
           </button>
         </div>
         <div className="algo-btns">
           Algorithm
           <button data-button="plus algo" onClick={handleAlgoButton}>
-            {' '}
-            +{' '}
+            +
           </button>
           {algo}
           <button data-button="minus algo" onClick={handleAlgoButton}>
-            {' '}
-            -{' '}
+            -
           </button>
         </div>
       </div>

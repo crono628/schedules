@@ -1,5 +1,5 @@
 export const data = [
-  { provider: 'FLOAT PROVIDER', today: ['09:30', '10:30', '11:30'] },
+  { provider: 'SKY', today: ['09:30', '10:30', '11:30'] },
   {
     provider: 'COBALT',
     today: ['09:00', '10:00', '10:30', '11:00', '14:30', '15:00']
@@ -42,10 +42,10 @@ export const data = [
     provider: 'RESIDENT 1',
     today: ['13:30', '14:00', '14:30', '15:00']
   },
-  {
-    provider: 'RESIDENT 2',
-    today: ['13:30', '14:00', '14:30', '15:00']
-  },
+  // {
+  //   provider: 'RESIDENT 2',
+  //   today: ['13:30', '14:00', '14:30', '15:00']
+  // },
   {
     provider: 'RESIDENT 3',
     today: ['13:30', '14:00', '14:30', '15:00']
@@ -56,7 +56,7 @@ export const data = [
   }
 ]
 
-export function createSchedule(schedules, offices, algo = 0) {
+export function createSchedule(schedules, offices, algo = 1) {
   let sortedAppointments = sortIt(schedules)
   let rooms = createRooms(offices)
   let dailyTotalAppointments = sortedAppointments.reduce(
@@ -77,7 +77,7 @@ export function createSchedule(schedules, offices, algo = 0) {
       idealApptsPerRoom
     ) {
       fullOffices++
-      if (fullOffices >= offices + algo) {
+      if (fullOffices > offices + algo) {
         //if statement adjusts which room goes next
         break
       }
