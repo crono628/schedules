@@ -56,7 +56,7 @@ export const data = [
   }
 ]
 
-export function createSchedule(schedules, offices) {
+export function createSchedule(schedules, offices, algo = 0) {
   let sortedAppointments = sortIt(schedules)
   let rooms = createRooms(offices)
   let dailyTotalAppointments = sortedAppointments.reduce(
@@ -77,7 +77,7 @@ export function createSchedule(schedules, offices) {
       idealApptsPerRoom
     ) {
       fullOffices++
-      if (fullOffices >= offices) {
+      if (fullOffices >= offices + algo) {
         //if statement adjusts which room goes next
         break
       }

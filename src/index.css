@@ -27,6 +27,12 @@ body {
   background-color: white;
 }
 
+.btn-wrapper {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 10px;
+}
+
 .team-submit-container > * {
   font-size: 0.7rem;
 }
@@ -39,7 +45,7 @@ body {
 }
 
 .checkbox-item {
-  flex: 1;
+  display: flex;
 }
 
 .room-div-wrapper {
@@ -102,7 +108,8 @@ body {
   float: right;
 }
 
-.room-btns button {
+.room-btns button,
+.algo-btns button {
   width: 30px;
   border: none;
   background-color: #112e51;
