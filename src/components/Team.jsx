@@ -59,7 +59,7 @@ const Team = ({ handleSubmit, handleTestData }) => {
       <div>
         <div className="checkbox-div">
           {TIMES.map((time) => (
-            <div key={time}>
+            <div className="checkbox-item" key={time}>
               <input
                 type="checkbox"
                 id={time}

@@ -9,7 +9,7 @@ const Daily = ({ dailyArr, obj }) => {
             <div className="total-appts-div">
               Total appointments {item.totalAppts}
               <div className="busy-times">
-                Busy times: {console.log(item)}
+                Busy times:
                 {item.duplicates
                   .sort((a, b) =>
                     b.value < a.value ? 1 : b.value > a.value ? -1 : 0
