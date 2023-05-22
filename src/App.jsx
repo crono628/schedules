@@ -45,19 +45,21 @@ function App() {
     }
   }
 
-  // const handleEdit = (e) => {
-  //   const { name, value } = e.target
-  //   setData((prev) => {
-  //     const newState = prev.map((obj) => {
-  //       if (obj.provider === name) {
-  //         return { ...obj, today: [value] }
-  //       } else {
-  //         return obj
-  //       }
-  //     })
-  //     return newState
-  //   })
-  // }
+  const handleButtons = (e) => {
+    const button = e.target.parentElement.dataset.provider
+    console.log(button)
+  }
+
+  const objButtons = {
+    handleButtons: (e) => {
+      const button = e.target.parentElement.dataset.provider
+      console.log(button + ' edited')
+    },
+    handleDelete: (e) => {
+      const button = e.target.parentElement.dataset.provider
+      console.log(button + ' deleted')
+    }
+  }
 
   return (
     <div className="wrapper">
@@ -84,7 +86,7 @@ function App() {
           </button>
         </div>
       </div>
-      <Daily dailyArr={daily} obj={data} />
+      <Daily dailyArr={daily} obj={data} handleButtons={objButtons} />
     </div>
   )
 }
