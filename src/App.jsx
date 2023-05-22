@@ -8,7 +8,6 @@ function App() {
   const [rooms, setRooms] = useState(1)
   const [algo, setAlgo] = useState(1)
   const [daily, setDaily] = useState([])
-  const [busy, setBusy] = useState([2])
 
   useEffect(() => {
     displaySchedule()
@@ -46,6 +45,20 @@ function App() {
     }
   }
 
+  // const handleEdit = (e) => {
+  //   const { name, value } = e.target
+  //   setData((prev) => {
+  //     const newState = prev.map((obj) => {
+  //       if (obj.provider === name) {
+  //         return { ...obj, today: [value] }
+  //       } else {
+  //         return obj
+  //       }
+  //     })
+  //     return newState
+  //   })
+  // }
+
   return (
     <div className="wrapper">
       <Team handleSubmit={handleSchedule} handleTestData={handleTestData} />
@@ -71,7 +84,6 @@ function App() {
           </button>
         </div>
       </div>
-
       <Daily dailyArr={daily} obj={data} />
     </div>
   )

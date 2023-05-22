@@ -11,12 +11,24 @@ const CollapsibleSchedule = ({ obj }) => {
   }
 
   return (
-    <div>
+    <>
       <div className="collapsible" onClick={toggleOpen}>
         {provider}
       </div>
-      <div>{isOpen && <>{' ' + formatAppointmentTimes()}</>}</div>
-    </div>
+      {isOpen && <>{' ' + formatAppointmentTimes()}</>}
+      {isOpen && (
+        <div data-provider={provider}>
+          <button
+            onClick={(e) => {
+              console.log(e.currentTarget.parentNode.dataset.provider)
+            }}
+          >
+            Edit
+          </button>
+          <button>Delete</button>
+        </div>
+      )}
+    </>
   )
 }
 

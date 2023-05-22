@@ -24,11 +24,10 @@ const Daily = ({ dailyArr, obj }) => {
             </div>
             <div className="provider-div">
               {item?.providers.map((item, index) => (
-                <div key={index}>
-                  <CollapsibleSchedule
-                    obj={obj.find((p) => p.provider === item)}
-                  />
-                </div>
+                <CollapsibleSchedule
+                  key={index}
+                  obj={obj.find((p) => p.provider === item)}
+                />
               ))}
             </div>
           </div>
