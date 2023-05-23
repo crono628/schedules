@@ -8,6 +8,7 @@ function App() {
   const [rooms, setRooms] = useState(1)
   const [algo, setAlgo] = useState(1)
   const [daily, setDaily] = useState([])
+  const [edit, setEdit] = useState(null)
 
   useEffect(() => {
     displaySchedule()
@@ -45,12 +46,11 @@ function App() {
 
   const objButtons = {
     handleEdit: (e) => {
-      // a function to handle the edit button
-
       const button = e.target.parentElement.dataset.provider
       const obj = data.find((p) => p.provider === button)
       const newData = data.filter((p) => p.provider !== button)
-      console.log(newData)
+      setEdit(obj)
+      setData(newData)
       console.log(button + ' edited')
     },
     handleDelete: (e) => {
@@ -63,7 +63,11 @@ function App() {
 
   return (
     <div className="wrapper">
-      <Team handleSubmit={handleSchedule} handleTestData={handleTestData} />
+      <Team
+        handleSubmit={handleSchedule}
+        handleTestData={handleTestData}
+        handleEdit={edit}
+      />
       <div className="btn-wrapper">
         <div className="room-btns">
           Rooms

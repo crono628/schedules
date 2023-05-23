@@ -3,7 +3,6 @@ const Daily = ({ dailyArr, obj, handleButtons }) => {
   return (
     <div className="room-div-wrapper">
       {dailyArr?.rooms?.map((item, index) => {
-        console.log(item)
         return (
           <div className="room-div" key={index}>
             <div>Room {item.room}</div>
