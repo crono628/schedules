@@ -22,9 +22,7 @@ function App() {
   }
 
   const displaySchedule = () => {
-    if (data.length > 0 && rooms > 0) {
-      setDaily(createSchedule(data, rooms, algo))
-    }
+    setDaily(createSchedule(data, rooms, algo))
   }
 
   const handleRoomsButton = (e) => {
@@ -45,18 +43,20 @@ function App() {
     }
   }
 
-  const handleButtons = (e) => {
-    const button = e.target.parentElement.dataset.provider
-    console.log(button)
-  }
-
   const objButtons = {
-    handleButtons: (e) => {
+    handleEdit: (e) => {
+      // a function to handle the edit button
+
       const button = e.target.parentElement.dataset.provider
+      const obj = data.find((p) => p.provider === button)
+      const newData = data.filter((p) => p.provider !== button)
+      console.log(newData)
       console.log(button + ' edited')
     },
     handleDelete: (e) => {
       const button = e.target.parentElement.dataset.provider
+      const newData = data.filter((p) => p.provider !== button)
+      setData(newData)
       console.log(button + ' deleted')
     }
   }

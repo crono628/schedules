@@ -1,7 +1,8 @@
 import { useState } from 'react'
 
 const CollapsibleSchedule = ({ obj, handleButtons: buttonHandle }) => {
-  const { handleButtons, handleDelete } = buttonHandle
+  if (!obj) return null
+  const { handleEdit, handleDelete } = buttonHandle
   const { provider, today } = obj
   const [isOpen, setIsOpen] = useState(false)
 
@@ -19,7 +20,7 @@ const CollapsibleSchedule = ({ obj, handleButtons: buttonHandle }) => {
       {isOpen && <>{' ' + formatAppointmentTimes()}</>}
       {isOpen && (
         <div data-provider={provider}>
-          <button onClick={handleButtons}>Edit</button>
+          <button onClick={handleEdit}>Edit</button>
           <button onClick={handleDelete}>Delete</button>
         </div>
       )}
