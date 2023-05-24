@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Team from './components/Team'
 import { data as testData, createSchedule } from './components/schedule'
 import Daily from './components/Daily'
+import { TEAMS } from './components/schedule'
 
 function App() {
   const [data, setData] = useState([])
@@ -9,13 +10,16 @@ function App() {
   const [algo, setAlgo] = useState(1)
   const [daily, setDaily] = useState([])
   const [edit, setEdit] = useState(null)
+  const [teams, setTeams] = useState([])
 
   useEffect(() => {
+    teams.length === 0 ? setTeams(TEAMS) : setTeams(teams)
     displaySchedule()
   }, [rooms, data, algo])
 
   const handleSchedule = (newState) => {
     setData((prev) => [...prev, newState])
+    setEdit(null)
   }
 
   const handleTestData = () => {
@@ -67,6 +71,7 @@ function App() {
         handleSubmit={handleSchedule}
         handleTestData={handleTestData}
         handleEdit={edit}
+        teams={teams}
       />
       <div className="btn-wrapper">
         <div className="room-btns">
@@ -80,7 +85,7 @@ function App() {
           </button>
         </div>
         <div className="algo-btns">
-          Algorithm
+          Shift
           <button data-button="plus algo" onClick={handleAlgoButton}>
             +
           </button>

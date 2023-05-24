@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
-import { TEAMS, TIMES } from './schedule'
+import { TIMES } from './schedule'
 
-const Team = ({ handleSubmit, handleTestData, handleEdit }) => {
+const Team = ({ handleSubmit, handleTestData, handleEdit, teams }) => {
   const [selectedTimes, setSelectedTimes] = useState([])
   const [selectedTeam, setSelectedTeam] = useState('')
 
@@ -46,7 +46,7 @@ const Team = ({ handleSubmit, handleTestData, handleEdit }) => {
           onChange={handleTeamChange}
         >
           <option value=""></option>
-          {TEAMS.map((team) => (
+          {teams.map((team) => (
             <option key={team} value={team}>
               {team}
             </option>

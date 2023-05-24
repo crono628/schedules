@@ -17,13 +17,16 @@ const CollapsibleSchedule = ({ obj, handleButtons: buttonHandle }) => {
       <div className="collapsible" onClick={toggleOpen}>
         {provider}
       </div>
-      {isOpen && <>{' ' + formatAppointmentTimes()}</>}
-      {isOpen && (
-        <div data-provider={provider}>
-          <button onClick={handleEdit}>Edit</button>
-          <button onClick={handleDelete}>Delete</button>
-        </div>
-      )}
+      <div className="collapsible-content">
+        {isOpen && <>{' ' + formatAppointmentTimes()}</>}
+
+        {isOpen && (
+          <div data-provider={provider}>
+            <button onClick={handleEdit}>Edit</button>
+            <button onClick={handleDelete}>Delete</button>
+          </div>
+        )}
+      </div>
     </>
   )
 }

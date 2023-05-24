@@ -29,8 +29,18 @@ body {
 
 .btn-wrapper {
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+  align-items: end;
+  align-self: flex-end;
+  justify-content: space-evenly;
   margin-bottom: 10px;
+  width: 30vw;
+  min-width: 200px;
+  gap: 5px;
+}
+
+.btn-wrapper * {
+  font-size: 0.7rem;
 }
 
 .team-submit-container > * {
@@ -46,6 +56,8 @@ body {
 
 .checkbox-item {
   display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .room-div-wrapper {
@@ -94,10 +106,20 @@ body {
   background-color: inherit;
 }
 
+.collapsible-content button {
+  font-size: 0.7rem;
+  margin: 0 10px 0 0px;
+  padding: 3px;
+}
+
 .collapsible:hover {
   background-color: #112e51;
   color: white;
   border-radius: 15px;
+}
+
+.collapsible-content {
+  padding-left: 15px;
 }
 
 /* .submit-btn {
