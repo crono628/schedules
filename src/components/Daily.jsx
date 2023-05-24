@@ -5,7 +5,7 @@ const Daily = ({ dailyArr, obj, handleButtons }) => {
       {dailyArr?.rooms?.map((item, index) => {
         return (
           <div className="room-div" key={index}>
-            <div>Room {item.room}</div>
+            <div>Group {item.room}</div>
             <div className="total-appts-div">
               Total appointments {item.totalAppts}
               <div className="busy-times">

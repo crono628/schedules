@@ -149,22 +149,36 @@ function resetIfGreater(reset, num) {
 
 export const schedule = createSchedule(data, 2)
 
-export const TEAMS = [
-  'AIR FORCE',
-  'COBALT',
-  'CYAN',
-  'ICE',
-  'NAVY',
-  'RESIDENT 1',
-  'RESIDENT 2',
-  'RESIDENT 3',
-  'ROYAL',
-  'SAPPHIRE',
-  'SKY',
-  'SLATE',
-  'STEEL',
-  'TURQUOISE'
-]
+export const TEAMS = {
+  FIRM_1: [
+    'CARDINAL',
+    'CARNATION',
+    'CERISE',
+    'CORAL',
+    'CRIMSON',
+    'FUCHSIA',
+    'MAUVE',
+    'ORCHID',
+    'ROSE',
+    'RUBY'
+  ],
+  FIRM_2: [
+    'AIR FORCE',
+    'COBALT',
+    'CYAN',
+    'ICE',
+    'NAVY',
+    'RESIDENT 1',
+    'RESIDENT 2',
+    'RESIDENT 3',
+    'ROYAL',
+    'SAPPHIRE',
+    'SKY',
+    'SLATE',
+    'STEEL',
+    'TURQUOISE'
+  ]
+}
 
 export const TIMES = [
   '07:00',

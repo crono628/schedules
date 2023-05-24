@@ -14,7 +14,10 @@ body {
   justify-content: center;
   background-color: lightgrey;
 }
-
+select {
+  font-size: 0.7rem;
+  width: 120px;
+}
 .wrapper {
   padding: 10px;
   display: flex;
@@ -25,6 +28,10 @@ body {
   max-width: 1024px;
   height: 100vh;
   background-color: white;
+}
+
+.firm-div > * {
+  font-size: 0.7rem;
 }
 
 .btn-wrapper {
@@ -108,7 +115,7 @@ body {
 
 .collapsible-content button {
   font-size: 0.7rem;
-  margin: 0 10px 0 0px;
+  margin: 0 10px 5px 0px;
   padding: 3px;
 }
 

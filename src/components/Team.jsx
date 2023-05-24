@@ -37,7 +37,7 @@ const Team = ({ handleSubmit, handleTestData, handleEdit, teams }) => {
   }, [handleEdit])
 
   return (
-    <div>
+    <>
       <div className="team-submit-container">
         <label htmlFor="color-dropdown">Team: </label>
         <select
@@ -80,7 +80,7 @@ const Team = ({ handleSubmit, handleTestData, handleEdit, teams }) => {
           ))}
         </div>
       </div>
-    </div>
+    </>
   )
 }
 

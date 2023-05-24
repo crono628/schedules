@@ -11,11 +11,21 @@ function App() {
   const [daily, setDaily] = useState([])
   const [edit, setEdit] = useState(null)
   const [teams, setTeams] = useState([])
+  const [firm, setFirm] = useState('')
 
   useEffect(() => {
-    teams.length === 0 ? setTeams(TEAMS) : setTeams(teams)
+    if (firm === '') {
+      setTeams([])
+    }
+    if (firm === '1') {
+      setTeams(TEAMS.FIRM_1)
+    }
+    if (firm === '2') {
+      setTeams(TEAMS.FIRM_2)
+    }
+
     displaySchedule()
-  }, [rooms, data, algo])
+  }, [rooms, data, algo, firm])
 
   const handleSchedule = (newState) => {
     setData((prev) => [...prev, newState])
@@ -48,6 +58,10 @@ function App() {
     }
   }
 
+  const handleFirmChange = (e) => {
+    setFirm(e.target.value)
+  }
+
   const objButtons = {
     handleEdit: (e) => {
       const button = e.target.parentElement.dataset.provider
@@ -67,6 +81,14 @@ function App() {
 
   return (
     <div className="wrapper">
+      <div className="firm-div">
+        <label htmlFor="firm-dropdown">Firm: </label>
+        <select id="color-dropdown" value={firm} onChange={handleFirmChange}>
+          <option value=""></option>
+          <option value="1"> 1 </option>
+          <option value="2"> 2 </option>
+        </select>
+      </div>
       <Team
         handleSubmit={handleSchedule}
         handleTestData={handleTestData}
