@@ -146,3 +146,14 @@ select {
   margin: 0 10px 0 10px;
   border-radius: 10px;
 }
+
+.footer p {
+  position: fixed;
+  left: 10px;
+  bottom: 0;
+  width: 100%;
+  background-color: #112e51;
+  color: white;
+  text-align: left;
+  font-size: 0.5rem;
+}

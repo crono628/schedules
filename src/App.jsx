@@ -3,6 +3,7 @@ import Team from './components/Team'
 import { data as testData, createSchedule } from './components/schedule'
 import Daily from './components/Daily'
 import { TEAMS } from './components/schedule'
+import Footer from './components/Footer'
 
 function App() {
   const [data, setData] = useState([])
@@ -69,6 +70,7 @@ function App() {
       const newData = data.filter((p) => p.provider !== button)
       setEdit(obj)
       setData(newData)
+      console.log(obj)
       console.log(button + ' edited')
     },
     handleDelete: (e) => {
@@ -118,6 +120,7 @@ function App() {
         </div>
       </div>
       <Daily dailyArr={daily} obj={data} handleButtons={objButtons} />
+      <Footer />
     </div>
   )
 }

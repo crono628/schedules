@@ -15,7 +15,18 @@ const CollapsibleSchedule = ({ obj, handleButtons: buttonHandle }) => {
   return (
     <>
       <div className="collapsible" onClick={toggleOpen}>
-        {provider}
+        {provider}{' '}
+        <span
+          style={{
+            fontSize: '0.8rem',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            marginLeft: '0.3rem'
+          }}
+        >
+          ({today.length})
+        </span>
       </div>
       <div className="collapsible-content">
         {isOpen && <>{' ' + formatAppointmentTimes()}</>}
