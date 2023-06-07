@@ -4,6 +4,8 @@ import { data as testData, createSchedule } from './components/schedule'
 import Daily from './components/Daily'
 import { TEAMS } from './components/schedule'
 import Footer from './components/Footer'
+import { logEvent } from '@firebase/analytics'
+import { analytics } from './firebase'
 
 function App() {
   const [data, setData] = useState([])
@@ -27,6 +29,11 @@ function App() {
 
     displaySchedule()
   }, [rooms, data, algo, firm])
+
+  useEffect(() => {
+    console.log('render')
+    logEvent(analytics, 'page_view')
+  }, [])
 
   const handleSchedule = (newState) => {
     setData((prev) => [...prev, newState])
