@@ -18,7 +18,7 @@ const CollapsibleSchedule = ({ obj, handleButtons: buttonHandle }) => {
         {provider}{' '}
         <span
           style={{
-            fontSize: '0.8rem',
+            fontSize: '0.7rem',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',

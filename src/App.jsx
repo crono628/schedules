@@ -15,6 +15,7 @@ function App() {
   const [edit, setEdit] = useState(null)
   const [teams, setTeams] = useState([])
   const [firm, setFirm] = useState('')
+  const [show, setShow] = useState(false)
 
   useEffect(() => {
     if (firm === '') {
@@ -116,7 +117,7 @@ function App() {
           </button>
         </div>
         <div className="algo-btns">
-          Shift
+          Algorithm
           <button data-button="plus algo" onClick={handleAlgoButton}>
             +
           </button>

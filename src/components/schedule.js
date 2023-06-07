@@ -63,7 +63,7 @@ export function createSchedule(schedules, offices, algo = 1) {
     (acc, arr) => acc + arr.today.length,
     0
   )
-  let idealApptsPerRoom = Math.floor(dailyTotalAppointments / offices)
+  let idealApptsPerRoom = Math.floor(dailyTotalAppointments / offices - 2)
 
   let destinationOffice = 1
   let fullOffices = 0
@@ -159,6 +159,9 @@ export const TEAMS = {
     'FUCHSIA',
     'MAUVE',
     'ORCHID',
+    'RESIDENT 1',
+    'RESIDENT 2',
+    'RESIDENT 3',
     'ROSE',
     'RUBY'
   ],
