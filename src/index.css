@@ -157,3 +157,26 @@ select {
   text-align: left;
   font-size: 0.5rem;
 }
+
+.sliding-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 300px;
+  background-color: #fff;
+  transition: transform 0.3s ease-out;
+  transform: translateX(100%);
+}
+
+.sliding-panel.open {
+  transform: translateX(0);
+}
+
+.toggle-button {
+  margin: 10px;
+}
+
+.panel-content {
+  padding: 20px;
+}

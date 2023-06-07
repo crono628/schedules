@@ -6,6 +6,7 @@ import { TEAMS } from './components/schedule'
 import Footer from './components/Footer'
 import { logEvent } from '@firebase/analytics'
 import { analytics } from './firebase'
+import SlidingPanel from './components/SlidingPanel'
 
 function App() {
   const [data, setData] = useState([])
@@ -91,6 +92,8 @@ function App() {
 
   return (
     <div className="wrapper">
+      <button onClick={() => setShow(!show)}>instructions</button>
+      <SlidingPanel show={show} />
       <div className="firm-div">
         <label htmlFor="firm-dropdown">Firm: </label>
         <select id="color-dropdown" value={firm} onChange={handleFirmChange}>
