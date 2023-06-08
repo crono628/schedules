@@ -11,12 +11,14 @@ const steps = {
         'Click the dropdown for "Select Clinic List" and choose your list containing the entire firm'
     },
     {
-      action: 'Sort the list by clinic by clicking the arrow next to "Clinic"'
+      action:
+        'Sort the list by clinic by clicking the triangle arrow in the "Clinic" column'
     }
   ],
   pactPlanner: [
     {
-      action: 'Open PACTplanner'
+      action:
+        'Open PACTplanner. It is recommended to have VSE and PACT planner open side by side when creating the schedule'
     },
     {
       action: 'Choose the firm you are setting up'
