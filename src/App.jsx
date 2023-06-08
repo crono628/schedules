@@ -92,8 +92,10 @@ function App() {
 
   return (
     <div className="wrapper">
-      <button onClick={() => setShow(!show)}>instructions</button>
-      <SlidingPanel show={show} />
+      <button className="sliding-btn" onClick={() => setShow(!show)}>
+        Show instructions
+      </button>
+      <SlidingPanel show={show} togglePanel={() => setShow(!show)} />
       <div className="firm-div">
         <label htmlFor="firm-dropdown">Firm: </label>
         <select id="color-dropdown" value={firm} onChange={handleFirmChange}>

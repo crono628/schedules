@@ -19,6 +19,7 @@ select {
   width: 120px;
 }
 .wrapper {
+  position: relative;
   padding: 10px;
   display: flex;
   flex-direction: column;
@@ -159,7 +160,7 @@ select {
 }
 
 .sliding-panel {
-  position: fixed;
+  position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
@@ -167,10 +168,12 @@ select {
   background-color: #fff;
   transition: transform 0.3s ease-out;
   transform: translateX(100%);
+  border-left: #112e51 solid 5px;
 }
 
 .sliding-panel.open {
   transform: translateX(0);
+  overflow-y: scroll;
 }
 
 .toggle-button {
@@ -179,4 +182,45 @@ select {
 
 .panel-content {
   padding: 20px;
+}
+
+.panel-content * {
+  font-size: 0.65rem;
+}
+
+.panel-title {
+  margin-top: 40px;
+  font-size: 1rem;
+  font-weight: bold;
+  padding-left: 5px;
+}
+
+.collapsible-panel {
+  overflow: hidden;
+  transition: height 0.3s ease-out;
+  height: 0;
+}
+
+.collapsible-panel.open {
+  height: 200px; /* Set the desired height when open */
+}
+
+.collapsible-toggle-button {
+  margin: 10px;
+}
+
+.collapsible-panel-content {
+  padding: 20px;
+}
+
+.sliding-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: none;
+  background-color: #112e51;
+  color: white;
+  border-radius: 0 0 0 10px;
+  padding: 5px;
+  font-size: 0.7rem;
 }
