@@ -3,8 +3,8 @@ import { TIMES } from './schedule'
 import { useAppContext } from './AppContext'
 
 const Team = ({ handleSubmit, handleTestData }) => {
-  const { state, dispatch } = useAppContext()
-  const { data, edit, teams } = state
+  const { state } = useAppContext()
+  const { edit, teams } = state
   const [selectedTimes, setSelectedTimes] = useState([])
   const [selectedTeam, setSelectedTeam] = useState('')
 

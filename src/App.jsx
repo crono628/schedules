@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import Team from './components/Team'
 import { data as testData, createSchedule } from './components/schedule'
 import Daily from './components/Daily'
@@ -47,15 +47,17 @@ function App() {
   const handlePanel = () => handleDispatch({ show: !show })
 
   return (
-    <div className="wrapper">
-      <button className="sliding-btn" onClick={handlePanel}>
-        Show instructions
-      </button>
-      <SlidingPanel show={show} togglePanel={handlePanel} />
-      <Firm firm={firm} handleFirmChange={handleFirmChange} />
-      <Team handleSubmit={handleSchedule} handleTestData={handleTestData} />
-      <RoomControl />
-      <Daily dailyArr={daily} obj={data} />
+    <div className="app-wrapper">
+      <div className="wrapper">
+        <button className="sliding-btn" onClick={handlePanel}>
+          Show Instructions
+        </button>
+        <SlidingPanel show={show} togglePanel={handlePanel} />
+        <Firm firm={firm} handleFirmChange={handleFirmChange} />
+        <Team handleSubmit={handleSchedule} handleTestData={handleTestData} />
+        <RoomControl />
+        <Daily dailyArr={daily} obj={data} />
+      </div>
       <Footer />
     </div>
   )

@@ -23,14 +23,37 @@ select {
   padding: 10px;
   display: flex;
   flex-direction: column;
-  overflow-y: scroll;
+  padding-bottom: 70px;
   overflow-x: hidden;
+  overflow-y: auto;
   border: #112e51 solid 15px;
   border-bottom: 0;
   width: 100vw;
   max-width: 1024px;
   min-height: 100vh;
   background-color: white;
+}
+
+/* .app-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: lightgrey;
+} */
+
+.footer {
+  position: sticky;
+  display: flex;
+  align-items: center;
+  bottom: 0;
+  width: 100%;
+  background-color: #112e51;
+  height: 25px;
+  color: white;
+  text-align: left;
+  font-size: 0.6rem;
+  padding-left: 20px;
 }
 
 .firm-div > * {
@@ -150,20 +173,6 @@ select {
   border-radius: 10px;
 }
 
-footer {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  bottom: 0;
-  width: 100%;
-  background-color: #112e51;
-  height: 25px;
-  color: white;
-  text-align: left;
-  font-size: 0.6rem;
-  margin-left: -10px;
-}
-
 .sliding-panel {
   position: absolute;
   top: 0;
@@ -174,6 +183,7 @@ footer {
   transition: transform 0.3s ease-out;
   transform: translateX(100%);
   border-left: #112e51 solid 5px;
+  overflow: hidden;
 }
 
 .sliding-panel.open {
@@ -226,6 +236,6 @@ footer {
   background-color: #112e51;
   color: white;
   border-radius: 0 0 0 10px;
-  padding: 0 0 5px 10px;
+  padding: 0 20px 5px 10px;
   font-size: 0.7rem;
 }

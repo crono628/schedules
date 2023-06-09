@@ -8,9 +8,9 @@ const Footer = () => {
   }
 
   return (
-    <footer className="footer">
+    <div className="footer">
       © {handleDate()} Michael DeSantis. All rights reserved.
-    </footer>
+    </div>
   )
 }
 
