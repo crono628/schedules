@@ -46,7 +46,7 @@ const Team = ({ handleSubmit, handleTestData, handleEdit, teams }) => {
           onChange={handleTeamChange}
         >
           <option value=""></option>
-          {teams.map((team) => (
+          {teams?.map((team) => (
             <option key={team} value={team}>
               {team}
             </option>
