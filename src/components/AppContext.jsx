@@ -15,7 +15,6 @@ export function AppWrapper({ children }) {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    console.log('render')
     setLoading(false)
   }, [])
 

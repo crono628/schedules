@@ -1,5 +1,6 @@
 import CollapsibleSchedule from './CollapsibleSchedule'
-const Daily = ({ dailyArr, obj, handleButtons }) => {
+
+const Daily = ({ dailyArr, obj }) => {
   return (
     <div className="room-div-wrapper">
       {dailyArr?.rooms?.map((item, index) => {
@@ -25,7 +26,6 @@ const Daily = ({ dailyArr, obj, handleButtons }) => {
             <div className="provider-div">
               {item?.providers.map((item, index) => (
                 <CollapsibleSchedule
-                  handleButtons={handleButtons}
                   key={index}
                   obj={obj.find((p) => p.provider === item)}
                 />

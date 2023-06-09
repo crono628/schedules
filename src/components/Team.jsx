@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react'
 import { TIMES } from './schedule'
+import { useAppContext } from './AppContext'
 
-const Team = ({ handleSubmit, handleTestData, handleEdit, teams }) => {
+const Team = ({ handleSubmit, handleTestData }) => {
+  const { state, dispatch } = useAppContext()
+  const { data, edit, teams } = state
   const [selectedTimes, setSelectedTimes] = useState([])
   const [selectedTeam, setSelectedTeam] = useState('')
 
@@ -30,11 +33,11 @@ const Team = ({ handleSubmit, handleTestData, handleEdit, teams }) => {
   }
 
   useEffect(() => {
-    if (handleEdit) {
-      setSelectedTimes(handleEdit.today)
-      setSelectedTeam(handleEdit.provider)
+    if (edit) {
+      setSelectedTimes(edit.today)
+      setSelectedTeam(edit.provider)
     }
-  }, [handleEdit])
+  }, [edit])
 
   return (
     <>
