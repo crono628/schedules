@@ -1,23 +1,31 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
-*,
 ::before,
-::after {
+::after,
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
-  font-size: 20px;
 }
+
+:root {
+  --main-font-size: 1.2rem;
+  --dropdown: 1.5rem;
+}
+
 body {
   display: flex;
   justify-content: center;
   background-color: lightgrey;
+  font-size: var(--main-font-size);
 }
+
 select {
   font-size: 0.7rem;
   width: 120px;
 }
+
 .wrapper {
   position: relative;
   padding: 10px;
@@ -28,19 +36,34 @@ select {
   overflow-y: auto;
   border: #112e51 solid 15px;
   border-bottom: 0;
+  border-top: 0;
   width: 100vw;
   max-width: 1024px;
-  min-height: 100vh;
   background-color: white;
+  flex: 1;
 }
 
-/* .app-wrapper {
-  position: relative;
+.app-wrapper {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  background-color: lightgrey;
-} */
+  align-items: center;
+  width: 100%;
+  height: 100svh;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background-color: #112e51;
+  height: 25px;
+  color: white;
+  text-align: left;
+  padding-left: 20px;
+  z-index: 1;
+}
 
 .footer {
   position: sticky;
@@ -52,19 +75,15 @@ select {
   height: 25px;
   color: white;
   text-align: left;
-  font-size: 0.6rem;
-  padding-left: 20px;
-}
-
-.firm-div > * {
   font-size: 0.7rem;
+  padding-left: 20px;
 }
 
 .btn-wrapper {
   display: flex;
   flex-direction: column;
-  align-items: end;
-  align-self: flex-end;
+  align-items: start;
+  align-self: flex-start;
   justify-content: space-evenly;
   margin-bottom: 10px;
   width: 30vw;
@@ -72,19 +91,45 @@ select {
   gap: 5px;
 }
 
-.btn-wrapper * {
-  font-size: 0.7rem;
+.room-btns,
+.algo-btns {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
 }
 
-.team-submit-container > * {
-  font-size: 0.7rem;
+.room-btns button,
+.algo-btns button {
+  width: 30px;
+  border: none;
+  background-color: #112e51;
+  color: white;
+  margin: 0 10px 0 10px;
+  border-radius: 10px;
+  height: 100%;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+input[type='checkbox'] {
+  cursor: pointer;
+  transform: scale(1.3);
+  margin-right: 8px;
 }
 
 .checkbox-div {
   display: grid;
   grid-template-rows: repeat(4, 1fr);
+  gap: 9px;
   grid-auto-flow: column;
   margin: 20px 0 20px 0;
+  width: 65%;
+  font-size: 1.5rem;
+}
+
+.checkbox-div label {
+  cursor: pointer;
 }
 
 .checkbox-item {
@@ -96,6 +141,13 @@ select {
 .room-div-wrapper {
   display: flex;
   flex-wrap: wrap;
+}
+
+.selection-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 20px;
 }
 
 .room-div {
@@ -116,11 +168,7 @@ select {
 
 .busy-times *,
 .busy-times {
-  font-size: 14px;
-}
-
-.current-schedule div {
-  font-size: 15px;
+  font-size: 0.9rem;
 }
 
 .schedule-container {
@@ -155,22 +203,9 @@ select {
   padding-left: 15px;
 }
 
-/* .submit-btn {
-} */
-
 .test-btn {
   font-size: 0.4rem;
   float: right;
-}
-
-.room-btns button,
-.algo-btns button {
-  width: 30px;
-  border: none;
-  background-color: #112e51;
-  color: white;
-  margin: 0 10px 0 10px;
-  border-radius: 10px;
 }
 
 .sliding-panel {
@@ -178,7 +213,7 @@ select {
   top: 0;
   right: 0;
   bottom: 0;
-  width: 300px;
+  width: 35%;
   background-color: #fff;
   transition: transform 0.3s ease-out;
   transform: translateX(100%);
@@ -189,6 +224,7 @@ select {
 .sliding-panel.open {
   transform: translateX(0);
   overflow-y: scroll;
+  z-index: 3;
 }
 
 .toggle-button {
@@ -197,15 +233,12 @@ select {
 
 .panel-content {
   padding: 20px;
-}
-
-.panel-content * {
-  font-size: 0.65rem;
+  font-size: 1rem;
 }
 
 .panel-title {
   margin-top: 40px;
-  font-size: 1rem;
+  font-size: 1.3rem;
   font-weight: bold;
   padding-left: 5px;
 }
@@ -237,5 +270,17 @@ select {
   color: white;
   border-radius: 0 0 0 10px;
   padding: 0 20px 5px 10px;
-  font-size: 0.7rem;
+  z-index: 5;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 500px) {
+  input[type='checkbox'] {
+    transform: scale(1);
+    margin-right: 0;
+  }
+
+  .checkbox-div {
+    font-size: 1rem;
+  }
 }

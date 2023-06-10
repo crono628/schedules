@@ -6,7 +6,9 @@ const initialState = {
   edit: null,
   teams: [],
   firm: '',
-  show: false
+  show: false,
+  selectedTimes: [],
+  selectedTeam: ''
 }
 
 function stateReducer(state, { type, payload }) {

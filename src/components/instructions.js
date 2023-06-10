@@ -18,7 +18,7 @@ const steps = {
   pactPlanner: [
     {
       action:
-        'Open PACTplanner. It is recommended to have VSE and PACT planner open side by side when creating the schedule'
+        'Open PACT Planner. It is recommended to have VSE and PACT Planner open side by side when creating the schedule'
     },
     {
       action: 'Choose the firm you are setting up'
@@ -40,7 +40,7 @@ const steps = {
     },
     {
       action:
-        'Repeat steps 7 through 10 until all teams are input to PACTplanner'
+        'Repeat steps 7 through 10 until all teams are input to PACT Planner'
     },
     {
       action: 'Choose the desired number of rooms'
