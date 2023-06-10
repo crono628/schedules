@@ -10,6 +10,7 @@ import SlidingPanel from './components/SlidingPanel'
 import RoomControl from './components/RoomControl'
 import { useAppContext } from './components/AppContext'
 import Firm from './components/Firm'
+import Header from './components/Header'
 
 function App() {
   const { state, dispatch } = useAppContext()
@@ -48,15 +49,18 @@ function App() {
 
   return (
     <div className="app-wrapper">
+      <Header />
       <div className="wrapper">
         <button className="sliding-btn" onClick={handlePanel}>
-          Show Instructions
+          {show ? 'Hide Instructions' : 'Show Instructions'}
         </button>
-        <SlidingPanel show={show} togglePanel={handlePanel} />
-        <Firm firm={firm} handleFirmChange={handleFirmChange} />
-        <Team handleSubmit={handleSchedule} handleTestData={handleTestData} />
-        <RoomControl />
-        <Daily dailyArr={daily} obj={data} />
+        <SlidingPanel show={show} />
+        <div className="selection-container">
+          <Firm firm={firm} handleFirmChange={handleFirmChange} />
+          <Team handleSubmit={handleSchedule} handleTestData={handleTestData} />
+          <RoomControl />
+          <Daily dailyArr={daily} obj={data} />
+        </div>
       </div>
       <Footer />
     </div>

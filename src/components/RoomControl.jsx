@@ -26,23 +26,27 @@ const RoomControl = () => {
     <div className="btn-wrapper">
       <div className="room-btns">
         Rooms
-        <button data-button="plus room" onClick={handleRoomsButton}>
-          +
-        </button>
-        {rooms}
-        <button data-button="minus room" onClick={handleRoomsButton}>
-          -
-        </button>
+        <div>
+          <button data-button="minus room" onClick={handleRoomsButton}>
+            -
+          </button>
+          {rooms}
+          <button data-button="plus room" onClick={handleRoomsButton}>
+            +
+          </button>
+        </div>
       </div>
       <div className="algo-btns">
-        Algorithm
-        <button data-button="plus algo" onClick={handleAlgoButton}>
-          +
-        </button>
-        {algo}
-        <button data-button="minus algo" onClick={handleAlgoButton}>
-          -
-        </button>
+        <div>Algorithm</div>
+        <div>
+          <button data-button="minus algo" onClick={handleAlgoButton}>
+            -
+          </button>
+          {algo}
+          <button data-button="plus algo" onClick={handleAlgoButton}>
+            +
+          </button>
+        </div>
       </div>
     </div>
   )

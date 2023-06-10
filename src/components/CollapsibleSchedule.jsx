@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useAppContext } from './AppContext'
+import { TEAMS } from './schedule'
 
 const CollapsibleSchedule = ({ obj }) => {
   if (!obj) return null
@@ -16,6 +17,17 @@ const CollapsibleSchedule = ({ obj }) => {
     const button = e.target.parentElement.dataset.provider
     const obj = data.find((p) => p.provider === button)
     const newData = data.filter((p) => p.provider !== button)
+
+    for (const team in TEAMS) {
+      if (TEAMS[team].includes(obj.provider)) {
+        console.log('team', TEAMS[team] === 'FIRM_1' ? '1' : '2')
+        dispatch({
+          type: 'update',
+          payload: { firm: TEAMS[team] === 'FIRM_1' ? '1' : '2' }
+        })
+      }
+    }
+
     console.log('edit')
     dispatch({ type: 'update', payload: { data: newData, edit: obj } })
   }

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-import { TIMES } from './schedule'
 import { useAppContext } from './AppContext'
+import CheckboxTimes from './CheckboxTimes'
 
 const Team = ({ handleSubmit, handleTestData }) => {
   const { state } = useAppContext()
@@ -66,7 +66,11 @@ const Team = ({ handleSubmit, handleTestData }) => {
           test data
         </button>
       </div>
-      <div>
+      <CheckboxTimes
+        handleTimeChange={handleTimeChange}
+        selectedTimes={selectedTimes}
+      />
+      {/* <div>
         <div className="checkbox-div">
           {TIMES.map((time) => (
             <div className="checkbox-item" key={time}>
@@ -82,7 +86,7 @@ const Team = ({ handleSubmit, handleTestData }) => {
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
     </>
   )
 }
