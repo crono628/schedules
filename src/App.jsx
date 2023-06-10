@@ -11,6 +11,7 @@ import RoomControl from './components/user_selections/RoomControl'
 import { useAppContext } from './components/AppContext'
 import Firm from './components/user_selections/Firm'
 import Header from './components/Header'
+import CheckboxTimes from './components/user_selections/CheckboxTimes'
 
 function App() {
   const { state, dispatch } = useAppContext()
@@ -58,6 +59,7 @@ function App() {
         <div className="selection-container">
           <Firm firm={firm} handleFirmChange={handleFirmChange} />
           <Team handleSubmit={handleSchedule} handleTestData={handleTestData} />
+          <CheckboxTimes />
           <RoomControl />
           <Daily dailyArr={daily} obj={data} />
         </div>

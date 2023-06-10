@@ -1,6 +1,27 @@
 import { TIMES } from '../schedule'
+import { useAppContext } from '../AppContext'
 
-const CheckboxTimes = ({ handleTimeChange, selectedTimes }) => {
+const CheckboxTimes = () => {
+  const { state, dispatch } = useAppContext()
+  const { selectedTimes } = state
+
+  const handleTimeChange = (event) => {
+    const time = event.target.value
+    const isChecked = event.target.checked
+
+    if (isChecked) {
+      dispatch({
+        type: 'update',
+        payload: { selectedTimes: [...selectedTimes, time].sort() }
+      })
+    } else {
+      dispatch({
+        type: 'update',
+        payload: { selectedTimes: selectedTimes.filter((t) => t !== time) }
+      })
+    }
+  }
+
   return (
     <div>
       <div className="checkbox-div">
