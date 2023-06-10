@@ -1,4 +1,4 @@
-import { TIMES } from './schedule'
+import { TIMES } from '../schedule'
 
 const CheckboxTimes = ({ handleTimeChange, selectedTimes }) => {
   return (

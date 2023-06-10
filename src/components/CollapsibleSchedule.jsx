@@ -20,15 +20,12 @@ const CollapsibleSchedule = ({ obj }) => {
 
     for (const team in TEAMS) {
       if (TEAMS[team].includes(obj.provider)) {
-        console.log('team', TEAMS[team] === 'FIRM_1' ? '1' : '2')
         dispatch({
           type: 'update',
           payload: { firm: TEAMS[team] === 'FIRM_1' ? '1' : '2' }
         })
       }
     }
-
-    console.log('edit')
     dispatch({ type: 'update', payload: { data: newData, edit: obj } })
   }
 

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import Team from './components/Team'
+import Team from './components/user_selections/Team'
 import { data as testData, createSchedule } from './components/schedule'
 import Daily from './components/Daily'
 import { TEAMS } from './components/schedule'
@@ -7,9 +7,9 @@ import Footer from './components/Footer'
 import { logEvent } from '@firebase/analytics'
 import { analytics } from './firebase'
 import SlidingPanel from './components/SlidingPanel'
-import RoomControl from './components/RoomControl'
+import RoomControl from './components/user_selections/RoomControl'
 import { useAppContext } from './components/AppContext'
-import Firm from './components/Firm'
+import Firm from './components/user_selections/Firm'
 import Header from './components/Header'
 
 function App() {

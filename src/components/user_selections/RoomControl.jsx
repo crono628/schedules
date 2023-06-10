@@ -1,4 +1,4 @@
-import { useAppContext } from './AppContext'
+import { useAppContext } from '../AppContext'
 
 const RoomControl = () => {
   const { state, dispatch } = useAppContext()
