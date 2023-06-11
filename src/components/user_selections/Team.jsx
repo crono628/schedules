@@ -1,5 +1,7 @@
 import { useEffect } from 'react'
 import { useAppContext } from '../AppContext'
+import { logEvent } from '@firebase/analytics'
+import { analytics } from '../../firebase'
 
 const Team = () => {
   const { state, dispatch } = useAppContext()
@@ -13,6 +15,8 @@ const Team = () => {
     if (selectedTimes.length === 0 || selectedTeam === '') {
       return
     }
+
+    logEvent(analytics, 'submit_team')
 
     dispatch({
       type: 'update',

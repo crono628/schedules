@@ -39,9 +39,15 @@ function App() {
     logEvent(analytics, 'page_view')
   }, [])
 
-  const handleTestData = () => handleDispatch({ data: [...data, ...testData] })
+  const handleTestData = () => {
+    logEvent(analytics, 'test_data')
+    handleDispatch({ data: [...data, ...testData] })
+  }
 
-  const handlePanel = () => handleDispatch({ show: !show })
+  const handlePanel = () => {
+    logEvent(analytics, 'toggle_panel')
+    handleDispatch({ show: !show })
+  }
 
   return (
     <div className="app-wrapper">

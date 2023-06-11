@@ -1,6 +1,6 @@
 import { useAppContext } from './AppContext'
 
-const Header = ({ handlePanel, handleTestData }) => {
+const Header = ({ handlePanel }) => {
   const { state } = useAppContext()
   const { show } = state
   return (
