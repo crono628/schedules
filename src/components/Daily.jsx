@@ -1,9 +1,12 @@
 import CollapsibleSchedule from './CollapsibleSchedule'
+import { useAppContext } from './AppContext'
 
-const Daily = ({ dailyArr, obj }) => {
+const Daily = () => {
+  const { state } = useAppContext()
+  const { data, daily } = state
   return (
     <div className="room-div-wrapper">
-      {dailyArr?.rooms?.map((item, index) => {
+      {daily?.rooms?.map((item, index) => {
         return (
           <div className="room-div" key={index}>
             <div>Group {item.room}</div>
@@ -27,7 +30,7 @@ const Daily = ({ dailyArr, obj }) => {
               {item?.providers.map((item, index) => (
                 <CollapsibleSchedule
                   key={index}
-                  obj={obj.find((p) => p.provider === item)}
+                  obj={data.find((p) => p.provider === item)}
                 />
               ))}
             </div>

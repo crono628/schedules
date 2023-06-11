@@ -1,9 +1,9 @@
 import { useEffect } from 'react'
 import { useAppContext } from '../AppContext'
 
-const Team = ({ handleSubmit, handleTestData }) => {
+const Team = () => {
   const { state, dispatch } = useAppContext()
-  const { edit, teams, selectedTeam, selectedTimes } = state
+  const { edit, teams, selectedTeam, selectedTimes, data } = state
 
   const handleTeamChange = (event) => {
     dispatch({ type: 'update', payload: { selectedTeam: event.target.value } })
@@ -13,10 +13,15 @@ const Team = ({ handleSubmit, handleTestData }) => {
     if (selectedTimes.length === 0 || selectedTeam === '') {
       return
     }
-    handleSubmit({ provider: selectedTeam, today: selectedTimes })
+
     dispatch({
       type: 'update',
-      payload: { selectedTimes: [], selectedTeam: '' }
+      payload: {
+        selectedTimes: [],
+        selectedTeam: '',
+        edit: null,
+        data: [...data, { provider: selectedTeam, today: selectedTimes }]
+      }
     })
   }
 
@@ -30,7 +35,7 @@ const Team = ({ handleSubmit, handleTestData }) => {
   }, [edit])
 
   return (
-    <>
+    <div>
       <div className="team-submit-container">
         <label htmlFor="color-dropdown">Team: </label>
         <select
@@ -45,18 +50,15 @@ const Team = ({ handleSubmit, handleTestData }) => {
             </option>
           ))}
         </select>
-        <button
-          className="submit-btn"
-          disabled={selectedTeam === '' || selectedTimes.length < 1}
-          onClick={handleClick}
-        >
-          submit
-        </button>
-        <button onClick={handleTestData} className="test-btn">
-          test data
-        </button>
       </div>
-    </>
+      <button
+        className="submit-btn"
+        disabled={selectedTeam === '' || selectedTimes.length < 1}
+        onClick={handleClick}
+      >
+        submit
+      </button>
+    </div>
   )
 }
 

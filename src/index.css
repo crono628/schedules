@@ -11,7 +11,7 @@
 
 :root {
   --main-font-size: 1.2rem;
-  --dropdown: 1.5rem;
+  --dropdown: 1.3rem;
 }
 
 body {
@@ -22,8 +22,8 @@ body {
 }
 
 select {
-  font-size: 0.7rem;
-  width: 120px;
+  font-size: var(--dropdown);
+  width: 140px;
 }
 
 .wrapper {
@@ -56,12 +56,13 @@ select {
   top: 0;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   width: 100%;
   background-color: #112e51;
   height: 25px;
   color: white;
   text-align: left;
-  padding-left: 20px;
+  padding: 0 20px 0 20px;
   z-index: 1;
 }
 
@@ -96,7 +97,7 @@ select {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 100%;
+  width: 200px;
 }
 
 .room-btns button,
@@ -110,6 +111,44 @@ select {
   height: 100%;
   cursor: pointer;
   font-size: 1.2rem;
+}
+
+.submit-btn {
+  width: 100px;
+  border: none;
+  background-color: #112e51;
+  color: white;
+  margin: 15px 0 5px 0;
+  border-radius: 10px;
+  height: 30px;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.submit-btn:disabled {
+  background-color: grey;
+}
+
+.dropdown-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: var(--dropdown);
+  width: 250px;
+  margin-top: 10px;
+}
+
+.dropdown-container option {
+  font-size: var(--dropdown);
+}
+
+.firm-container,
+.team-submit-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 5px 0 5px 0;
+  width: 220px;
 }
 
 input[type='checkbox'] {
@@ -203,21 +242,18 @@ input[type='checkbox'] {
   padding-left: 15px;
 }
 
-.test-btn {
-  font-size: 0.4rem;
-  float: right;
-}
-
 .sliding-panel {
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
+  height: 100vmax;
   width: 35%;
   background-color: #fff;
   transition: transform 0.3s ease-out;
   transform: translateX(100%);
   border-left: #112e51 solid 5px;
+  border-bottom: #112e51 solid 5px;
   overflow: hidden;
 }
 
@@ -232,8 +268,12 @@ input[type='checkbox'] {
 }
 
 .panel-content {
-  padding: 20px;
+  padding: 0 10px 20px 30px;
   font-size: 1rem;
+}
+
+.panel-content li {
+  margin: 5px 0 10px 0;
 }
 
 .panel-title {
@@ -263,15 +303,20 @@ input[type='checkbox'] {
 
 .sliding-btn {
   position: absolute;
-  top: 0;
-  right: 0;
+  right: 30px;
   border: none;
   background-color: #112e51;
   color: white;
-  border-radius: 0 0 0 10px;
-  padding: 0 20px 5px 10px;
   z-index: 5;
   cursor: pointer;
+}
+
+.test-btn {
+  font-size: 0.4rem;
+  cursor: pointer;
+  align-self: flex-end;
+  position: absolute;
+  right: 20px;
 }
 
 @media screen and (max-width: 500px) {

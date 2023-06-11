@@ -15,10 +15,10 @@ import CheckboxTimes from './components/user_selections/CheckboxTimes'
 
 function App() {
   const { state, dispatch } = useAppContext()
-  const { data, rooms, algo, daily, firm, show } = state
+  const { data, rooms, algo, firm, show } = state
 
-  function handleDispatch(payload) {
-    dispatch({ type: 'update', payload })
+  function handleDispatch(actionPayload) {
+    dispatch({ type: 'update', payload: actionPayload })
   }
 
   useEffect(() => {
@@ -39,30 +39,27 @@ function App() {
     logEvent(analytics, 'page_view')
   }, [])
 
-  const handleSchedule = (newState) =>
-    handleDispatch({ data: [...data, newState], edit: null })
-
   const handleTestData = () => handleDispatch({ data: [...data, ...testData] })
-
-  const handleFirmChange = (e) => handleDispatch({ firm: e.target.value })
 
   const handlePanel = () => handleDispatch({ show: !show })
 
   return (
     <div className="app-wrapper">
-      <Header />
+      <Header handlePanel={handlePanel} />
       <div className="wrapper">
-        <button className="sliding-btn" onClick={handlePanel}>
-          {show ? 'Hide Instructions' : 'Show Instructions'}
+        <button onClick={handleTestData} className="test-btn">
+          test data
         </button>
         <SlidingPanel show={show} />
         <div className="selection-container">
-          <Firm firm={firm} handleFirmChange={handleFirmChange} />
-          <Team handleSubmit={handleSchedule} handleTestData={handleTestData} />
+          <div className="dropdown-container">
+            <Firm />
+            <Team handleTestData={handleTestData} />
+          </div>
           <CheckboxTimes />
           <RoomControl />
-          <Daily dailyArr={daily} obj={data} />
         </div>
+        <Daily />
       </div>
       <Footer />
     </div>

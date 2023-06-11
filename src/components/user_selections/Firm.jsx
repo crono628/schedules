@@ -1,6 +1,13 @@
-const Firm = ({ firm, handleFirmChange }) => {
+import { useAppContext } from '../AppContext'
+
+const Firm = () => {
+  const { state, dispatch } = useAppContext()
+  const { firm } = state
+
+  const handleFirmChange = (e) =>
+    dispatch({ type: 'update', payload: { firm: e.target.value } })
   return (
-    <div className="firm-div">
+    <div className="firm-container">
       <label htmlFor="firm-dropdown">Firm: </label>
       <select id="color-dropdown" value={firm} onChange={handleFirmChange}>
         <option value=""></option>
