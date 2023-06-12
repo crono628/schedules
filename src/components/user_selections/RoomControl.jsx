@@ -15,7 +15,10 @@ const RoomControl = () => {
 
   const handleAlgoButton = (e) => {
     const button = e.target.dataset.button
-    if (button === 'plus algo' && algo < rooms) {
+    if (rooms === 1) {
+      return
+    }
+    if (button === 'plus algo' && algo < rooms * 2) {
       dispatch({ type: 'update', payload: { algo: algo + 1 } })
     } else if (button === 'minus algo' && algo > 1) {
       dispatch({ type: 'update', payload: { algo: algo - 1 } })

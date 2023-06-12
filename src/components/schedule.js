@@ -56,6 +56,61 @@ export const data = [
   }
 ]
 
+// export function createSchedule(schedules, offices, algo = 1) {
+//   const sortedAppointments = sortIt(schedules)
+//   const rooms = createRooms(offices)
+//   const dailyTotalAppointments = sortedAppointments.reduce(
+//     (acc, arr) => acc + arr.today.length,
+//     0
+//   )
+//   const idealApptsPerRoom = Math.floor(dailyTotalAppointments / offices - 2)
+
+//   let fullOffices = 0
+//   for (const appt of sortedAppointments) {
+//     const { today, provider } = appt
+//     let currentRoom = rooms.reduce(
+//       (minRoom, room) =>
+//         room.totalAppts + room.appts.length <
+//         minRoom.totalAppts + minRoom.appts.length
+//           ? room
+//           : minRoom,
+//       rooms[0]
+//     )
+
+//     while (
+//       currentRoom.totalAppts + currentRoom.appts.length > idealApptsPerRoom ||
+//       haveOverlap(currentRoom.appts, today)
+//     ) {
+//       fullOffices++
+//       if (fullOffices > offices + algo) {
+//         break
+//       }
+//       currentRoom = rooms.reduce(
+//         (minRoom, room) =>
+//           room.totalAppts + room.appts.length <
+//           minRoom.totalAppts + minRoom.appts.length
+//             ? room
+//             : minRoom,
+//         rooms[0]
+//       )
+//     }
+
+//     currentRoom.appts.push(today)
+//     currentRoom.providers.push(provider)
+//     currentRoom.totalAppts += today.length
+//   }
+
+//   for (let i = 0; i < offices; i++) {
+//     rooms[i].duplicates = findMultipleAppt(rooms[i].appts)
+//   }
+
+//   return {
+//     dailyTotal: dailyTotalAppointments,
+//     appointments: sortedAppointments,
+//     rooms: rooms
+//   }
+// }
+
 export function createSchedule(schedules, offices, algo = 1) {
   let sortedAppointments = sortIt(schedules)
   let rooms = createRooms(offices)
@@ -65,31 +120,60 @@ export function createSchedule(schedules, offices, algo = 1) {
   )
   let idealApptsPerRoom = Math.floor(dailyTotalAppointments / offices - 2)
 
-  let destinationOffice = 1
   let fullOffices = 0
+  let destinationOffice = 1
+
   for (const appt of sortedAppointments) {
     let { today, provider } = appt
-    destinationOffice = resetIfGreater(destinationOffice, offices)
-    let currentRoom = rooms.find((obj) => obj.room === destinationOffice)
+    let currentRoom
+
+    if (algo === 1) {
+      // Use the optimized approach
+      currentRoom = rooms.reduce(
+        (minRoom, room) =>
+          room.totalAppts + room.appts.length <
+          minRoom.totalAppts + minRoom.appts.length
+            ? room
+            : minRoom,
+        rooms[0]
+      )
+    } else {
+      // Use the original approach with algo modification
+      currentRoom = rooms.find((obj) => obj.room === destinationOffice)
+    }
 
     while (
-      currentRoom['totalAppts'] + currentRoom.appts.length >
-      idealApptsPerRoom
+      currentRoom.totalAppts + currentRoom.appts.length > idealApptsPerRoom ||
+      haveOverlap(currentRoom.appts, today)
     ) {
       fullOffices++
       if (fullOffices > offices + algo) {
-        //if statement adjusts which room goes next
         break
       }
-      destinationOffice += 1
-      destinationOffice = resetIfGreater(destinationOffice, offices)
-      currentRoom = rooms.find((obj) => obj.room === destinationOffice)
+      if (algo === 1) {
+        currentRoom = rooms.reduce(
+          (minRoom, room) =>
+            room.totalAppts + room.appts.length <
+            minRoom.totalAppts + minRoom.appts.length
+              ? room
+              : minRoom,
+          rooms[0]
+        )
+      } else {
+        destinationOffice += 1
+        destinationOffice = resetIfGreater(destinationOffice, offices)
+        currentRoom = rooms.find((obj) => obj.room === destinationOffice)
+      }
     }
 
     currentRoom.appts.push(today)
     currentRoom.providers.push(provider)
-    currentRoom.totalAppts = currentRoom.totalAppts += today.length
-    destinationOffice++
+    currentRoom.totalAppts += today.length
+
+    if (algo !== 1) {
+      destinationOffice += 1
+      destinationOffice = resetIfGreater(destinationOffice, offices)
+    }
   }
 
   for (let i = 0; i < offices; i++) {
@@ -138,6 +222,19 @@ function findMultipleAppt(arr, num = 2) {
     .sort((a, b) =>
       a.repeats > b.repeats ? 1 : a.repeats < b.repeats ? -1 : 0
     )
+}
+
+function haveOverlap(existingAppointments, newAppointments) {
+  for (const existingAppt of existingAppointments) {
+    for (const existingTime of existingAppt) {
+      for (const newAppt of newAppointments) {
+        if (newAppt.includes(existingTime)) {
+          return true
+        }
+      }
+    }
+  }
+  return false
 }
 
 function resetIfGreater(reset, num) {
