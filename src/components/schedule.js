@@ -1,116 +1,3 @@
-export const data = [
-  { provider: 'SKY', today: ['09:30', '10:30', '11:30'] },
-  {
-    provider: 'COBALT',
-    today: ['09:00', '10:00', '10:30', '11:00', '14:30', '15:00']
-  },
-  {
-    provider: 'CYAN',
-    today: [
-      '08:00',
-      '08:30',
-      '10:30',
-      '11:00',
-      '12:30',
-      '13:00',
-      '13:30',
-      '14:00',
-      '15:00'
-    ]
-  },
-  {
-    provider: 'SAPPHIRE',
-    today: [
-      '07:00',
-      '08:00',
-      '08:30',
-      '09:00',
-      '10:00',
-      '11:00',
-      '11:30',
-      '13:00',
-      '14:00',
-      '14:30'
-    ]
-  },
-  {
-    provider: 'SLATE',
-    today: ['07:30', '08:30', '10:00', '10:30', '11:30', '12:00', '13:00']
-  },
-  { provider: 'STEEL', today: ['09:00', '10:00', '11:00'] },
-  {
-    provider: 'RESIDENT 1',
-    today: ['13:30', '14:00', '14:30', '15:00']
-  },
-  // {
-  //   provider: 'RESIDENT 2',
-  //   today: ['13:30', '14:00', '14:30', '15:00']
-  // },
-  {
-    provider: 'RESIDENT 3',
-    today: ['13:30', '14:00', '14:30', '15:00']
-  },
-  {
-    provider: 'NAVY',
-    today: ['07:30', '09:00', '10:00', '10:30', '11:30']
-  }
-]
-
-// export function createSchedule(schedules, offices, algo = 1) {
-//   const sortedAppointments = sortIt(schedules)
-//   const rooms = createRooms(offices)
-//   const dailyTotalAppointments = sortedAppointments.reduce(
-//     (acc, arr) => acc + arr.today.length,
-//     0
-//   )
-//   const idealApptsPerRoom = Math.floor(dailyTotalAppointments / offices - 2)
-
-//   let fullOffices = 0
-//   for (const appt of sortedAppointments) {
-//     const { today, provider } = appt
-//     let currentRoom = rooms.reduce(
-//       (minRoom, room) =>
-//         room.totalAppts + room.appts.length <
-//         minRoom.totalAppts + minRoom.appts.length
-//           ? room
-//           : minRoom,
-//       rooms[0]
-//     )
-
-//     while (
-//       currentRoom.totalAppts + currentRoom.appts.length > idealApptsPerRoom ||
-//       haveOverlap(currentRoom.appts, today)
-//     ) {
-//       fullOffices++
-//       if (fullOffices > offices + algo) {
-//         break
-//       }
-//       currentRoom = rooms.reduce(
-//         (minRoom, room) =>
-//           room.totalAppts + room.appts.length <
-//           minRoom.totalAppts + minRoom.appts.length
-//             ? room
-//             : minRoom,
-//         rooms[0]
-//       )
-//     }
-
-//     currentRoom.appts.push(today)
-//     currentRoom.providers.push(provider)
-//     currentRoom.totalAppts += today.length
-//   }
-
-//   for (let i = 0; i < offices; i++) {
-//     rooms[i].duplicates = findMultipleAppt(rooms[i].appts)
-//   }
-
-//   return {
-//     dailyTotal: dailyTotalAppointments,
-//     appointments: sortedAppointments,
-//     rooms: rooms
-//   }
-// }
-
 export function createSchedule(schedules, offices, algo = 1) {
   let sortedAppointments = sortIt(schedules)
   let rooms = createRooms(offices)
@@ -299,4 +186,62 @@ export const TIMES = [
   '14:30',
   '15:00',
   '15:30'
+]
+
+export const data = [
+  { provider: 'SKY', today: ['09:30', '10:30', '11:30'] },
+  {
+    provider: 'COBALT',
+    today: ['09:00', '10:00', '10:30', '11:00', '14:30', '15:00']
+  },
+  {
+    provider: 'CYAN',
+    today: [
+      '08:00',
+      '08:30',
+      '10:30',
+      '11:00',
+      '12:30',
+      '13:00',
+      '13:30',
+      '14:00',
+      '15:00'
+    ]
+  },
+  {
+    provider: 'SAPPHIRE',
+    today: [
+      '07:00',
+      '08:00',
+      '08:30',
+      '09:00',
+      '10:00',
+      '11:00',
+      '11:30',
+      '13:00',
+      '14:00',
+      '14:30'
+    ]
+  },
+  {
+    provider: 'SLATE',
+    today: ['07:30', '08:30', '10:00', '10:30', '11:30', '12:00', '13:00']
+  },
+  { provider: 'STEEL', today: ['09:00', '10:00', '11:00'] },
+  {
+    provider: 'RESIDENT 1',
+    today: ['13:30', '14:00', '14:30', '15:00']
+  },
+  // {
+  //   provider: 'RESIDENT 2',
+  //   today: ['13:30', '14:00', '14:30', '15:00']
+  // },
+  {
+    provider: 'RESIDENT 3',
+    today: ['13:30', '14:00', '14:30', '15:00']
+  },
+  {
+    provider: 'NAVY',
+    today: ['07:30', '09:00', '10:00', '10:30', '11:30']
+  }
 ]
