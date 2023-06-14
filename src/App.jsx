@@ -15,7 +15,7 @@ import CheckboxTimes from './components/user_selections/CheckboxTimes'
 
 function App() {
   const { state, dispatch } = useAppContext()
-  const { data, rooms, algo, firm, show } = state
+  const { data, rooms, algo, firm, show, busyTimes } = state
 
   function handleDispatch(actionPayload) {
     dispatch({ type: 'update', payload: actionPayload })
@@ -23,7 +23,7 @@ function App() {
 
   useEffect(() => {
     if (firm === '') {
-      handleDispatch({ teams: TEAMS.ALL })
+      handleDispatch({ teams: [] })
     }
     if (firm === '1') {
       handleDispatch({ teams: TEAMS.FIRM_1 })
@@ -31,13 +31,8 @@ function App() {
     if (firm === '2') {
       handleDispatch({ teams: TEAMS.FIRM_2 })
     }
-    handleDispatch({ daily: createSchedule(data, rooms, algo) })
-  }, [rooms, data, algo, firm])
-
-  useEffect(() => {
-    console.log('render')
-    logEvent(analytics, 'page_view')
-  }, [])
+    handleDispatch({ daily: createSchedule(data, rooms, algo, busyTimes) })
+  }, [rooms, data, algo, firm, busyTimes])
 
   const handleTestData = () => {
     logEvent(analytics, 'test_data')

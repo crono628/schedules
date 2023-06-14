@@ -1,8 +1,10 @@
+import { logEvent } from 'firebase/analytics'
 import { useAppContext } from '../AppContext'
+import { analytics } from '../../firebase'
 
 const RoomControl = () => {
   const { state, dispatch } = useAppContext()
-  const { rooms, algo } = state
+  const { rooms, algo, busyTimes } = state
 
   const handleRoomsButton = (e) => {
     const button = e.target.dataset.button
@@ -19,9 +21,20 @@ const RoomControl = () => {
       return
     }
     if (button === 'plus algo' && algo < rooms * 2) {
+      logEvent(analytics, 'algo_plus')
       dispatch({ type: 'update', payload: { algo: algo + 1 } })
     } else if (button === 'minus algo' && algo > 1) {
+      logEvent(analytics, 'algo_minus')
       dispatch({ type: 'update', payload: { algo: algo - 1 } })
+    }
+  }
+
+  const handleBusyButton = (e) => {
+    const button = e.target.dataset.button
+    if (button === 'plus busy' && busyTimes < 9) {
+      dispatch({ type: 'update', payload: { busyTimes: busyTimes + 1 } })
+    } else if (button === 'minus busy' && busyTimes > 1) {
+      dispatch({ type: 'update', payload: { busyTimes: busyTimes - 1 } })
     }
   }
 
@@ -51,6 +64,22 @@ const RoomControl = () => {
           </button>
         </div>
       </div>
+      {/* <div className="busy-btns">
+        <div>Busy Display</div>
+        <div>
+          <button
+            data-button="minus busy"
+            onClick={handleBusyButton}
+            disabled={busyTimes <= 2}
+          >
+            -
+          </button>
+          {busyTimes}
+          <button data-button="plus busy" onClick={handleBusyButton}>
+            +
+          </button>
+        </div>
+      </div> */}
     </div>
   )
 }

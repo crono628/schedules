@@ -8,7 +8,8 @@ const initialState = {
   firm: '',
   show: false,
   selectedTimes: [],
-  selectedTeam: ''
+  selectedTeam: '',
+  busyTimes: 3
 }
 
 function stateReducer(state, { type, payload }) {

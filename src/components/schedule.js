@@ -56,7 +56,12 @@ export const data = [
   }
 ]
 
-export function createSchedule(schedules, offices, algo = 1) {
+export function createSchedule(
+  schedules,
+  offices,
+  algo = 1,
+  busyThreshold = 3
+) {
   let sortedAppointments = sortIt(schedules)
   let rooms = createRooms(offices)
   let dailyTotalAppointments = sortedAppointments.reduce(
@@ -122,7 +127,7 @@ export function createSchedule(schedules, offices, algo = 1) {
   }
 
   for (let i = 0; i < offices; i++) {
-    rooms[i].duplicates = findMultipleAppt(rooms[i].appts)
+    rooms[i].duplicates = findMultipleAppt(rooms[i].appts, busyThreshold)
   }
 
   return {
@@ -150,7 +155,10 @@ function sortIt(arr) {
   return arr.slice().sort((a, b) => b.today.length - a.today.length)
 }
 
-function findMultipleAppt(arr, num = 2) {
+function findMultipleAppt(arr, num = 3) {
+  if (num < 2) {
+    return []
+  }
   const flattened = arr.flat()
   const counts = {}
   flattened.forEach((obj) => {
@@ -163,7 +171,7 @@ function findMultipleAppt(arr, num = 2) {
     result.push({ count, repeats: obj })
   })
   return result
-    .filter((item) => item.count > num)
+    .filter((item) => item.count >= num)
     .sort((a, b) =>
       a.repeats > b.repeats ? 1 : a.repeats < b.repeats ? -1 : 0
     )
