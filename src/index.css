@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
 
 ::before,
 ::after,
@@ -12,8 +13,17 @@
 :root {
   --main-font-size: 1.2rem;
   --dropdown: 1.3rem;
+  --panel-title-font-size: 1.3rem;
+  --panel-title-font-size-mobile: 0.7rem;
   --panel-content-font-size: 1rem;
+  --panel-content-font-size-mobile: 0.6rem;
   --button-font-size: 1.2rem;
+  --sliding-panel-width: 35%;
+  --sliding-panel-width-mobile: 60%;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 700, 'GRAD' 200, 'opsz' 48;
 }
 
 body {
@@ -256,13 +266,13 @@ input[type='checkbox'] {
   right: 0;
   bottom: 0;
   height: 100vmax;
-  width: 35%;
+  width: var(--sliding-panel-width);
   background-color: #fff;
   transition: transform 0.3s ease-out;
-  transform: translateX(100%);
-  border-left: #112e51 solid 5px;
-  border-bottom: #112e51 solid 5px;
+  transform: translateX(120%);
   overflow: hidden;
+  box-shadow: -10px 0px 5px rgba(17, 46, 81, 0.5),
+    0px 5px 5px rgba(17, 46, 81, 0.5);
 }
 
 .sliding-panel.open {
@@ -289,24 +299,6 @@ input[type='checkbox'] {
   font-size: 1.3rem;
   font-weight: bold;
   padding-left: 5px;
-}
-
-.collapsible-panel {
-  overflow: hidden;
-  transition: height 0.3s ease-out;
-  height: 0;
-}
-
-.collapsible-panel.open {
-  height: 200px; /* Set the desired height when open */
-}
-
-.collapsible-toggle-button {
-  margin: 10px;
-}
-
-.collapsible-panel-content {
-  padding: 20px;
 }
 
 .sliding-btn {
@@ -343,5 +335,8 @@ input[type='checkbox'] {
   .algo-btns,
   .room-btns {
     font-size: 0.9rem;
+  }
+  .sliding-panel {
+    width: var(--sliding-panel-width-mobile);
   }
 }
