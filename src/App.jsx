@@ -11,7 +11,7 @@ import RoomControl from './components/user_selections/RoomControl'
 import { useAppContext } from './components/AppContext/AppContext'
 import Firm from './components/user_selections/Firm'
 import Header from './components/Header/Header'
-import CheckboxTimes from './components/user_selections/CheckboxTimes'
+import CheckboxTimes from './components/user_selections/CheckboxTimes/CheckboxTimes'
 
 function App() {
   const { state, dispatch } = useAppContext()

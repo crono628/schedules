@@ -1,5 +1,6 @@
 import Accordion from '../Accordion/Accordion'
 import steps from '../instructions'
+import './SlidingPanel.css'
 
 const SlidingPanel = ({ show }) => {
   return (

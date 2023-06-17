@@ -1,0 +1,20 @@
+.sliding-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  height: 100vmax;
+  width: var(--sliding-panel-width);
+  background-color: #fff;
+  transition: transform 0.3s ease-out;
+  transform: translateX(110%);
+  overflow: hidden;
+  box-shadow: -10px 0px 5px rgba(17, 46, 81, 0.5),
+    0px 5px 5px rgba(17, 46, 81, 0.5);
+}
+
+.sliding-panel.open {
+  transform: translateX(0);
+  overflow-y: scroll;
+  z-index: 3;
+}
