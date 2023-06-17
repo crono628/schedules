@@ -195,37 +195,11 @@ input[type='checkbox'] {
   justify-content: center;
 }
 
-.room-div-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-}
-
 .selection-container {
   display: flex;
   flex-direction: column;
   width: 100%;
   margin-bottom: 20px;
-}
-
-.room-div {
-  margin: 20px;
-  width: 40%;
-}
-
-.provider-div {
-  display: flex;
-  flex-direction: column;
-}
-
-.total-appts-div {
-  border-bottom: black solid 2px;
-  max-width: fit-content;
-  margin-bottom: 10px;
-}
-
-.busy-times *,
-.busy-times {
-  font-size: 0.9rem;
 }
 
 .schedule-container {
@@ -269,7 +243,7 @@ input[type='checkbox'] {
   width: var(--sliding-panel-width);
   background-color: #fff;
   transition: transform 0.3s ease-out;
-  transform: translateX(120%);
+  transform: translateX(110%);
   overflow: hidden;
   box-shadow: -10px 0px 5px rgba(17, 46, 81, 0.5),
     0px 5px 5px rgba(17, 46, 81, 0.5);

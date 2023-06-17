@@ -1,5 +1,5 @@
 import { logEvent } from 'firebase/analytics'
-import { useAppContext } from '../AppContext'
+import { useAppContext } from '../AppContext/AppContext'
 import { analytics } from '../../firebase'
 
 const RoomControl = () => {

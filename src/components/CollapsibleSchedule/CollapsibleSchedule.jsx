@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import { useAppContext } from './AppContext'
-import { TEAMS } from './schedule'
+import { useAppContext } from '../AppContext/AppContext'
+import { TEAMS } from '../schedule'
 import { logEvent } from '@firebase/analytics'
-import { analytics } from '../firebase'
+import { analytics } from '../../firebase'
 
 const CollapsibleSchedule = ({ obj }) => {
   if (!obj) return null

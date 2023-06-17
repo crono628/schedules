@@ -22,9 +22,11 @@ const Accordion = ({ title, children }) => {
         {title}
         <div className="accordion-symbol">
           {show ? (
-            <span class="material-symbols-outlined">expand_circle_down</span>
+            <span className="material-symbols-outlined">
+              expand_circle_down
+            </span>
           ) : (
-            <span class="material-symbols-outlined">expand_circle_up</span>
+            <span className="material-symbols-outlined">expand_circle_up</span>
           )}
         </div>
       </div>

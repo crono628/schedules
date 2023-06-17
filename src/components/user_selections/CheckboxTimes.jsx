@@ -1,5 +1,5 @@
 import { TIMES } from '../schedule'
-import { useAppContext } from '../AppContext'
+import { useAppContext } from '../AppContext/AppContext'
 
 const CheckboxTimes = () => {
   const { state, dispatch } = useAppContext()

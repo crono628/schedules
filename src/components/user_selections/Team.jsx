@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useAppContext } from '../AppContext'
+import { useAppContext } from '../AppContext/AppContext'
 import { logEvent } from '@firebase/analytics'
 import { analytics } from '../../firebase'
 

@@ -1,5 +1,5 @@
-import Accordion from './Accordion/Accordion'
-import steps from './instructions'
+import Accordion from '../Accordion/Accordion'
+import steps from '../instructions'
 
 const SlidingPanel = ({ show }) => {
   return (

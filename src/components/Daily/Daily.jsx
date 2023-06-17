@@ -1,5 +1,6 @@
-import CollapsibleSchedule from './CollapsibleSchedule'
-import { useAppContext } from './AppContext'
+import CollapsibleSchedule from '../CollapsibleSchedule/CollapsibleSchedule'
+import { useAppContext } from '../AppContext/AppContext'
+import './Daily.css'
 
 const Daily = () => {
   const { state } = useAppContext()

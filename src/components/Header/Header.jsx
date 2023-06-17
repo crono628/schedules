@@ -1,4 +1,4 @@
-import { useAppContext } from './AppContext'
+import { useAppContext } from '../AppContext/AppContext'
 
 const Header = ({ handlePanel }) => {
   const { state } = useAppContext()

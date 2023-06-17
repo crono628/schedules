@@ -6,7 +6,7 @@ import {
   useReducer
 } from 'react'
 
-import { stateReducer, initialState } from '../reducer'
+import { stateReducer, initialState } from '../../reducer'
 
 const AppContext = createContext()
 

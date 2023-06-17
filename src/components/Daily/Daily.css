@@ -1,0 +1,24 @@
+.room-div-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+.room-div {
+  margin: 20px;
+  width: 40%;
+}
+
+.total-appts-div {
+  border-bottom: black solid 2px;
+  max-width: fit-content;
+  margin-bottom: 10px;
+}
+
+.busy-times *,
+.busy-times {
+  font-size: 0.9rem;
+}
+
+.provider-div {
+  display: flex;
+  flex-direction: column;
+}
