@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import './Accordion.css'
 import { logEvent } from 'firebase/analytics'
 import { analytics } from '../../firebase'
+import expand_less from '../../assets/expand_less.svg'
+import expand_more from '../../assets/expand_more.svg'
 
 const Accordion = ({ title, children }) => {
   const [show, setShow] = useState(false)
@@ -22,11 +24,9 @@ const Accordion = ({ title, children }) => {
         {title}
         <div className="accordion-symbol">
           {show ? (
-            <span className="material-symbols-outlined">
-              expand_circle_down
-            </span>
+            <img src={expand_more} alt="expand_more" />
           ) : (
-            <span className="material-symbols-outlined">expand_circle_up</span>
+            <img src={expand_less} alt="expand_less" />
           )}
         </div>
       </div>

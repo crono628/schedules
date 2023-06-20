@@ -9,7 +9,7 @@ const Firm = () => {
   return (
     <div className="firm-container">
       <label htmlFor="firm-dropdown">Firm: </label>
-      <select id="color-dropdown" value={firm} onChange={handleFirmChange}>
+      <select id="firm-dropdown" value={firm} onChange={handleFirmChange}>
         <option value=""></option>
         <option value="1"> 1 </option>
         <option value="2"> 2 </option>
