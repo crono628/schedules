@@ -16,21 +16,35 @@ import CheckboxTimes from './components/user_selections/CheckboxTimes/CheckboxTi
 function App() {
   const { state, dispatch } = useAppContext()
   const { data, rooms, algo, firm, show, busyTimes } = state
-
   function handleDispatch(actionPayload) {
     dispatch({ type: 'update', payload: actionPayload })
   }
 
+  // useEffect(() => {
+  //   if (firm === '') {
+  //     handleDispatch({ teams: [] })
+  //   }
+  //   if (firm === '1') {
+  //     handleDispatch({ teams: TEAMS.FIRM_1 })
+  //   }
+  //   if (firm === '2') {
+  //     handleDispatch({ teams: TEAMS.FIRM_2 })
+  //   }
+  //   handleDispatch({ daily: createSchedule(data, rooms, algo, busyTimes) })
+  // }, [rooms, data, algo, firm, busyTimes])
   useEffect(() => {
     if (firm === '') {
       handleDispatch({ teams: [] })
+    } else {
+      const selectedFirm = TEAMS.find(
+        (team) => team.firm.toString() === firm.toString()
+      )
+
+      if (selectedFirm) {
+        handleDispatch({ teams: selectedFirm.providers })
+      }
     }
-    if (firm === '1') {
-      handleDispatch({ teams: TEAMS.FIRM_1 })
-    }
-    if (firm === '2') {
-      handleDispatch({ teams: TEAMS.FIRM_2 })
-    }
+
     handleDispatch({ daily: createSchedule(data, rooms, algo, busyTimes) })
   }, [rooms, data, algo, firm, busyTimes])
 

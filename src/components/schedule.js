@@ -39,7 +39,7 @@ export const data = [
   },
   { provider: 'STEEL', today: ['09:00', '10:00', '11:00'] },
   {
-    provider: 'RESIDENT 1',
+    provider: 'STEEL RESIDENT 1',
     today: ['13:30', '14:00', '14:30', '15:00']
   },
   // {
@@ -47,7 +47,7 @@ export const data = [
   //   today: ['13:30', '14:00', '14:30', '15:00']
   // },
   {
-    provider: 'RESIDENT 3',
+    provider: 'STEEL RESIDENT 3',
     today: ['13:30', '14:00', '14:30', '15:00']
   },
   {
@@ -199,35 +199,41 @@ function resetIfGreater(reset, num) {
 
 export const schedule = createSchedule(data, 2)
 
-export const TEAMS = {
-  FIRM_1: [
-    'CARDINAL',
-    'CARNATION',
-    'CERISE',
-    'CORAL',
-    'CRIMSON',
-    'FUCHSIA',
-    'MAUVE',
-    'ORCHID',
-    'RESIDENT',
-    'ROSE',
-    'RUBY'
-  ],
-  FIRM_2: [
-    'AIR FORCE',
-    'COBALT',
-    'CYAN',
-    'ICE',
-    'NAVY',
-    'RESIDENT',
-    'ROYAL',
-    'SAPPHIRE',
-    'SKY',
-    'SLATE',
-    'STEEL',
-    'TURQUOISE'
-  ]
-}
+export const TEAMS = [
+  {
+    firm: 1,
+    campus: 'Newington',
+    providers: [
+      'CARDINAL',
+      'CARNATION',
+      'CERISE',
+      'CORAL',
+      'CRIMSON',
+      'FUCHSIA',
+      'MAUVE',
+      'ORCHID',
+      'ROSE',
+      'RUBY'
+    ]
+  },
+  {
+    firm: 2,
+    campus: 'Newington',
+    providers: [
+      'AIR FORCE',
+      'COBALT',
+      'CYAN',
+      'ICE',
+      'NAVY',
+      'ROYAL',
+      'SAPPHIRE',
+      'SKY',
+      'SLATE',
+      'STEEL',
+      'TURQUOISE'
+    ]
+  }
+]
 
 export const TIMES = [
   '07:00',
