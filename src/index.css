@@ -163,10 +163,26 @@ select {
 .team-submit-container,
 .firm-container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  width: 250px;
+  margin-top: 10px;
+
+  /* display: grid;
+  grid-template-rows: repeat(3, 1fr);
   width: 270px;
   gap: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 10px; */
+  /* background-color: hotpink; */
+}
+
+.res-checkbox {
+  font-size: var(--main-font-size);
+}
+
+.resident-number-input {
+  width: 95%;
+  font-size: 0.8rem;
 }
 
 .selection-container {
@@ -264,5 +280,9 @@ select {
   .team-submit-container,
   .firm-container {
     width: 220px;
+  }
+
+  .res-checkbox {
+    font-size: 0.9rem;
   }
 }

@@ -20,18 +20,6 @@ function App() {
     dispatch({ type: 'update', payload: actionPayload })
   }
 
-  // useEffect(() => {
-  //   if (firm === '') {
-  //     handleDispatch({ teams: [] })
-  //   }
-  //   if (firm === '1') {
-  //     handleDispatch({ teams: TEAMS.FIRM_1 })
-  //   }
-  //   if (firm === '2') {
-  //     handleDispatch({ teams: TEAMS.FIRM_2 })
-  //   }
-  //   handleDispatch({ daily: createSchedule(data, rooms, algo, busyTimes) })
-  // }, [rooms, data, algo, firm, busyTimes])
   useEffect(() => {
     if (firm === '') {
       handleDispatch({ teams: [] })

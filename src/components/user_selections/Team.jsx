@@ -5,16 +5,34 @@ import { analytics } from '../../firebase'
 
 const Team = () => {
   const { state, dispatch } = useAppContext()
-  const { edit, teams, selectedTeam, selectedTimes, data } = state
-  const [resident, setResident] = useState('')
+  const { edit, teams, selectedTeam, selectedTimes, data, selectedResident } =
+    state
+  const [residentNumber, setResidentNumber] = useState('')
 
   const handleTeamChange = (event) => {
-    dispatch({ type: 'update', payload: { selectedTeam: event.target.value } })
-    setResident('')
+    dispatch({
+      type: 'update',
+      payload: {
+        selectedTeam: event.target.value,
+        selectedResident: false,
+        selectedTimes: [],
+        edit: null
+      }
+    })
+    setResidentNumber('')
   }
 
-  const handleResidentChange = (event) => {
-    setResident(event.target.value.toString())
+  const handleResidentClinicChange = (event) => {
+    dispatch({
+      type: 'update',
+      payload: { selectedResident: event.target.checked }
+    })
+
+    setResidentNumber('')
+  }
+
+  const handleResidentNumberChange = (event) => {
+    setResidentNumber(event.target.value)
   }
 
   const handleClick = () => {
@@ -22,9 +40,9 @@ const Team = () => {
       return
     }
 
-    if (selectedTeam === 'RESIDENT' && resident === '') {
-      return
-    }
+    const provider = selectedResident
+      ? `${selectedTeam} RESIDENT ${residentNumber}`
+      : selectedTeam
 
     logEvent(analytics, 'submit_team')
 
@@ -34,33 +52,40 @@ const Team = () => {
         selectedTimes: [],
         selectedTeam: '',
         edit: null,
+        selectedResident: false,
         data: [
           ...data,
           {
-            provider:
-              resident === '' ? selectedTeam : `${selectedTeam} ${resident}`,
+            provider: provider,
             today: selectedTimes
           }
         ]
       }
     })
-    setResident('')
+
+    setResidentNumber('')
   }
 
   useEffect(() => {
     if (edit) {
+      const isResidentClinic = edit.provider.includes('RESIDENT')
+      const selectedTeamValue = isResidentClinic
+        ? edit.provider.split(' ')[0]
+        : edit.provider
+      const residentNumberValue = isResidentClinic
+        ? edit.provider.split(' ')[2]
+        : ''
+      console.log(edit)
       dispatch({
         type: 'update',
         payload: {
           selectedTimes: edit.today,
-          selectedTeam: edit.provider.includes('RESIDENT')
-            ? 'RESIDENT'
-            : edit.provider.split(' ')[0]
+          selectedTeam: selectedTeamValue,
+          selectedResident: isResidentClinic
         }
       })
-      if (edit.provider.includes('RESIDENT')) {
-        setResident(edit.provider.split(' ')[1])
-      }
+
+      setResidentNumber(residentNumberValue)
     }
   }, [edit])
 
@@ -80,21 +105,26 @@ const Team = () => {
             </option>
           ))}
         </select>
-        {selectedTeam === 'RESIDENT' && (
-          <>
-            <select
-              id="resident-dropdown"
-              value={resident}
-              onChange={handleResidentChange}
-            >
-              <option value="" disabled></option>
-              {[...Array(20)].map((_, i) => (
-                <option key={i} value={i + 1}>
-                  {i + 1}
-                </option>
-              ))}
-            </select>
-          </>
+        <div className="resident-clinic-container">
+          <input
+            type="checkbox"
+            id="resident-clinic-checkbox"
+            checked={selectedResident}
+            onChange={handleResidentClinicChange}
+          />
+          <label className="res-checkbox" htmlFor="resident-clinic-checkbox">
+            Resident
+          </label>
+        </div>
+
+        {selectedResident && (
+          <input
+            type="text"
+            value={residentNumber}
+            onChange={handleResidentNumberChange}
+            placeholder="Resident Number"
+            className="resident-number-input"
+          />
         )}
       </div>
       <button
@@ -102,7 +132,7 @@ const Team = () => {
         disabled={
           selectedTeam === '' ||
           selectedTimes.length < 1 ||
-          (selectedTeam === 'RESIDENT' && resident === '')
+          (selectedResident && residentNumber === '')
         }
         onClick={handleClick}
       >

@@ -7,7 +7,7 @@ import { analytics } from '../../firebase'
 const CollapsibleSchedule = ({ obj }) => {
   if (!obj) return null
   const { state, dispatch } = useAppContext()
-  const { data } = state
+  const { data, teams } = state
 
   const { provider, today } = obj
 
@@ -22,16 +22,18 @@ const CollapsibleSchedule = ({ obj }) => {
     const button = e.target.parentElement.dataset.provider
     const obj = data.find((p) => p.provider === button)
     const newData = data.filter((p) => p.provider !== button)
+
     logEvent(analytics, 'edit_provider')
-    for (const team in TEAMS) {
-      if (TEAMS[team].includes(obj.provider)) {
-        dispatch({
-          type: 'update',
-          payload: { firm: TEAMS[team] === 'FIRM_1' ? '1' : '2' }
-        })
+
+    dispatch({
+      type: 'update',
+      payload: {
+        data: newData,
+        edit: obj,
+        selectedTeam: obj.provider,
+        selectedResidentClinic: obj.provider.includes('RESIDENT')
       }
-    }
-    dispatch({ type: 'update', payload: { data: newData, edit: obj } })
+    })
   }
 
   const handleDelete = (e) => {

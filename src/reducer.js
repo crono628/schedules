@@ -9,6 +9,7 @@ const initialState = {
   show: false,
   selectedTimes: [],
   selectedTeam: '',
+  selectedResident: false,
   busyTimes: 3
 }
 
