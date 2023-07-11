@@ -199,42 +199,6 @@ function resetIfGreater(reset, num) {
 
 export const schedule = createSchedule(data, 2)
 
-export const TEAMS = [
-  {
-    firm: 1,
-    campus: 'Newington',
-    providers: [
-      'CARDINAL',
-      'CARNATION',
-      'CERISE',
-      'CORAL',
-      'CRIMSON',
-      'FUCHSIA',
-      'MAUVE',
-      'ORCHID',
-      'ROSE',
-      'RUBY'
-    ]
-  },
-  {
-    firm: 2,
-    campus: 'Newington',
-    providers: [
-      'AIR FORCE',
-      'COBALT',
-      'CYAN',
-      'ICE',
-      'NAVY',
-      'ROYAL',
-      'SAPPHIRE',
-      'SKY',
-      'SLATE',
-      'STEEL',
-      'TURQUOISE'
-    ]
-  }
-]
-
 export const TIMES = [
   '07:00',
   '07:30',

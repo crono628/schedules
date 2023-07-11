@@ -2,12 +2,33 @@ import { useEffect, useState } from 'react'
 import { useAppContext } from '../AppContext/AppContext'
 import { logEvent } from '@firebase/analytics'
 import { analytics } from '../../firebase'
+import { TEAMS } from '../../FirmData'
 
 const Team = () => {
   const { state, dispatch } = useAppContext()
-  const { edit, teams, selectedTeam, selectedTimes, data, selectedResident } =
-    state
+  const {
+    edit,
+    teams,
+    selectedTeam,
+    selectedTimes,
+    data,
+    selectedResident,
+    firm,
+    campus
+  } = state
   const [residentNumber, setResidentNumber] = useState('')
+
+  useEffect(() => {
+    if (firm) {
+      const campusTeam = TEAMS.find((team) => team.campus === campus)
+      const firmTeam = campusTeam.firms.find((firmObj) => firmObj.firm == firm)
+      console.log(firmTeam)
+      dispatch({
+        type: 'update',
+        payload: { teams: firmTeam?.providers }
+      })
+    }
+  }, [firm, campus, teams])
 
   const handleTeamChange = (event) => {
     dispatch({
@@ -88,7 +109,7 @@ const Team = () => {
       setResidentNumber(residentNumberValue)
     }
   }, [edit])
-
+  console.log(teams)
   return (
     <>
       <div className="team-submit-container">

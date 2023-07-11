@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import Team from './components/user_selections/Team'
 import { data as testData, createSchedule } from './components/schedule'
 import Daily from './components/Daily/Daily'
-import { TEAMS } from './components/schedule'
 import Footer from './components/Footer/Footer'
 import { logEvent } from '@firebase/analytics'
 import { analytics } from './firebase'
@@ -12,25 +11,18 @@ import { useAppContext } from './components/AppContext/AppContext'
 import Firm from './components/user_selections/Firm'
 import Header from './components/Header/Header'
 import CheckboxTimes from './components/user_selections/CheckboxTimes/CheckboxTimes'
+import Campus from './components/user_selections/Campus'
 
 function App() {
   const { state, dispatch } = useAppContext()
-  const { data, rooms, algo, firm, show, busyTimes } = state
+  const { data, rooms, algo, firm, show, busyTimes, campus } = state
   function handleDispatch(actionPayload) {
     dispatch({ type: 'update', payload: actionPayload })
   }
 
   useEffect(() => {
-    if (firm === '') {
-      handleDispatch({ teams: [] })
-    } else {
-      const selectedFirm = TEAMS.find(
-        (team) => team.firm.toString() === firm.toString()
-      )
-
-      if (selectedFirm) {
-        handleDispatch({ teams: selectedFirm.providers })
-      }
+    if (campus === '') {
+      handleDispatch({ firm: '', teams: [], firms: [] })
     }
 
     handleDispatch({ daily: createSchedule(data, rooms, algo, busyTimes) })
@@ -56,6 +48,7 @@ function App() {
         <SlidingPanel show={show} />
         <div className="selection-container">
           <div className="dropdown-container">
+            <Campus />
             <Firm />
             <Team handleTestData={handleTestData} />
           </div>
