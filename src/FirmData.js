@@ -41,35 +41,35 @@ export const TEAMS = [
       {
         firm: 'A',
         providers: [
-          'Aqua1',
-          'Aqua2',
-          'Blue1',
-          'Green1',
-          'Green2',
-          'Green3',
-          'Pink1',
-          'Pink3',
-          'Purple2',
-          'Yellow1',
-          'Yellow3',
-          'Yellow4',
-          'Yellow8'
+          'AQUA1',
+          'AQUA2',
+          'BLUE1',
+          'GREEN1',
+          'GREEN2',
+          'GREEN3',
+          'PINK1',
+          'PINK3',
+          'PURPLE2',
+          'YELLOW1',
+          'YELLOW3',
+          'YELLOW4',
+          'YELLOW8'
         ]
       },
       {
         firm: 'B',
         providers: [
-          'Amber',
-          'Aqua',
-          'Jade',
-          'Khaki',
-          'Magenta',
-          'Mint',
-          'Navy',
-          'Ruby',
-          'Teal',
-          'Silver',
-          'Slate'
+          'AMBER',
+          'AQUA',
+          'JADE',
+          'KHAKI',
+          'MAGENTA',
+          'MINT',
+          'NAVY',
+          'RUBY',
+          'TEAL',
+          'SILVER',
+          'SLATE'
         ]
       }
     ]

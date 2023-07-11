@@ -30,7 +30,11 @@ function App() {
 
   const handleTestData = () => {
     logEvent(analytics, 'test_data')
-    handleDispatch({ data: [...data, ...testData], firm: '2' })
+    handleDispatch({
+      data: [...data, ...testData],
+      campus: 'Newington',
+      firm: '2'
+    })
   }
 
   const handlePanel = () => {

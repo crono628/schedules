@@ -21,8 +21,7 @@ const Team = () => {
   useEffect(() => {
     if (firm) {
       const campusTeam = TEAMS.find((team) => team.campus === campus)
-      const firmTeam = campusTeam.firms.find((firmObj) => firmObj.firm == firm)
-      console.log(firmTeam)
+      const firmTeam = campusTeam?.firms.find((firmObj) => firmObj.firm == firm)
       dispatch({
         type: 'update',
         payload: { teams: firmTeam?.providers }
@@ -36,7 +35,6 @@ const Team = () => {
       payload: {
         selectedTeam: event.target.value,
         selectedResident: false,
-        selectedTimes: [],
         edit: null
       }
     })
@@ -96,7 +94,6 @@ const Team = () => {
       const residentNumberValue = isResidentClinic
         ? edit.provider.split(' ')[2]
         : ''
-      console.log(edit)
       dispatch({
         type: 'update',
         payload: {
@@ -109,7 +106,6 @@ const Team = () => {
       setResidentNumber(residentNumberValue)
     }
   }, [edit])
-  console.log(teams)
   return (
     <>
       <div className="team-submit-container">
