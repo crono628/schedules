@@ -11,7 +11,7 @@ export default defineConfig({
   // keeping this here for future reference
   plugins: [react()],
   test: {
-    globals: true,
-    environment: 'jsdom'
+    environment: 'jsdom',
+    globals: true
   }
 })

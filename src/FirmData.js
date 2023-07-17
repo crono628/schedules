@@ -53,7 +53,12 @@ export const TEAMS = [
           'YELLOW1',
           'YELLOW3',
           'YELLOW4',
-          'YELLOW8'
+          'YELLOW8',
+          'COE SAME DAY ACCESS',
+          'URGENT CLINIC COE',
+          'URGENT CLINIC FIRM A',
+          'COE PHARMACY',
+          'ROUTINE CLINIC'
         ]
       },
       {
@@ -69,7 +74,8 @@ export const TEAMS = [
           'RUBY',
           'TEAL',
           'SILVER',
-          'SLATE'
+          'SLATE',
+          'URGENT CLINIC FIRM B'
         ]
       }
     ]
