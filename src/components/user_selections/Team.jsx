@@ -51,6 +51,14 @@ const Team = () => {
   }
 
   const handleResidentNumberChange = (event) => {
+    // only allow numbers
+    if (isNaN(event.target.value)) {
+      return
+    }
+
+    if (event.target.value < 0) {
+      return
+    }
     setResidentNumber(event.target.value)
   }
 
@@ -137,6 +145,7 @@ const Team = () => {
         {selectedResident && (
           <input
             type="text"
+            maxLength="2"
             value={residentNumber}
             onChange={handleResidentNumberChange}
             placeholder="Resident Number"
