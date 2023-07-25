@@ -14,7 +14,8 @@ const Team = () => {
     data,
     selectedResident,
     firm,
-    campus
+    campus,
+    extraSelection
   } = state
   const [residentNumber, setResidentNumber] = useState('')
 
@@ -35,7 +36,8 @@ const Team = () => {
       payload: {
         selectedTeam: event.target.value,
         selectedResident: false,
-        edit: null
+        edit: null,
+        extraSelection: ''
       }
     })
     setResidentNumber('')
@@ -51,14 +53,6 @@ const Team = () => {
   }
 
   const handleResidentNumberChange = (event) => {
-    // only allow numbers
-    if (isNaN(event.target.value)) {
-      return
-    }
-
-    if (event.target.value < 0) {
-      return
-    }
     setResidentNumber(event.target.value)
   }
 
@@ -68,7 +62,11 @@ const Team = () => {
     }
 
     const provider = selectedResident
-      ? `${selectedTeam} RESIDENT ${residentNumber}`
+      ? `${selectedTeam}${
+          extraSelection ? ` ${extraSelection}` : ''
+        } RESIDENT ${residentNumber}`
+      : !!extraSelection
+      ? `${selectedTeam} ${extraSelection}`
       : selectedTeam
 
     logEvent(analytics, 'submit_team')
@@ -80,6 +78,7 @@ const Team = () => {
         selectedTeam: '',
         edit: null,
         selectedResident: false,
+        extraSelection: '',
         data: [
           ...data,
           {
@@ -95,25 +94,37 @@ const Team = () => {
 
   useEffect(() => {
     if (edit) {
+      let extraSelectionValue, selectedTeamValue, residentNumberValue
       const isResidentClinic = edit.provider.includes('RESIDENT')
-      const selectedTeamValue = isResidentClinic
+      const isExtraSelection = edit.provider.includes('YELLOW')
+      const isBoth = isResidentClinic && isExtraSelection
+
+      extraSelectionValue = isExtraSelection ? edit.provider.split(' ')[1] : ''
+
+      selectedTeamValue = isResidentClinic
         ? edit.provider.split(' ')[0]
         : edit.provider
-      const residentNumberValue = isResidentClinic
+
+      residentNumberValue = isBoth
+        ? edit.provider.split(' ')[3]
+        : isResidentClinic
         ? edit.provider.split(' ')[2]
         : ''
+      console.log(edit)
       dispatch({
         type: 'update',
         payload: {
           selectedTimes: edit.today,
           selectedTeam: selectedTeamValue,
-          selectedResident: isResidentClinic
+          selectedResident: isResidentClinic,
+          extraSelection: extraSelectionValue
         }
       })
 
       setResidentNumber(residentNumberValue)
     }
   }, [edit])
+
   return (
     <>
       <div className="team-submit-container">
@@ -130,6 +141,27 @@ const Team = () => {
             </option>
           ))}
         </select>
+        <div>{/* this is a placeholder for the grid */}</div>
+
+        <div>
+          {selectedTeam.includes('YELLOW') && (
+            <select
+              value={extraSelection}
+              onChange={(e) =>
+                dispatch({
+                  type: 'update',
+                  payload: { extraSelection: e.target.value }
+                })
+              }
+            >
+              <option value=""></option>
+              <option value="MD1">MD1</option>
+              <option value="MD2">MD2</option>
+              <option value="NP1">NP1</option>
+              <option value="NP2">NP2</option>
+            </select>
+          )}
+        </div>
         <div className="resident-clinic-container">
           <input
             type="checkbox"
@@ -141,17 +173,21 @@ const Team = () => {
             Resident
           </label>
         </div>
-
-        {selectedResident && (
-          <input
-            type="text"
-            maxLength="2"
-            value={residentNumber}
-            onChange={handleResidentNumberChange}
-            placeholder="Resident Number"
-            className="resident-number-input"
-          />
-        )}
+        <div>
+          {selectedResident && (
+            <select
+              value={residentNumber}
+              onChange={handleResidentNumberChange}
+            >
+              <option value=""></option>
+              {[...Array(20)].map((_, i) => (
+                <option key={i} value={i + 1}>
+                  {i + 1}
+                </option>
+              ))}
+            </select>
+          )}
+        </div>
       </div>
       <button
         className="submit-btn"

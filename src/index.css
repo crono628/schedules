@@ -171,21 +171,19 @@ select {
   width: 100%;
 }
 
+.resident-number-dropdown {
+  width: 70%;
+  font-size: var(--dropdown);
+}
+
 .team-submit-container,
 .firm-container,
 .campus-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 10px;
-  width: 250px;
+  width: 350px;
   margin-top: 10px;
-
-  /* display: grid;
-  grid-template-rows: repeat(3, 1fr);
-  width: 270px;
-  gap: 10px;
-  margin-bottom: 10px; */
-  /* background-color: hotpink; */
 }
 
 .res-checkbox {
@@ -285,7 +283,8 @@ select {
   .sliding-panel {
     width: var(--sliding-panel-width-mobile);
   }
-  .dropdown-container {
+  .dropdown-container,
+  .resident-number-dropdown {
     font-size: var(--dropdown-mobile);
   }
 
@@ -293,6 +292,8 @@ select {
   .firm-container,
   .campus-container {
     width: 220px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .res-checkbox {

@@ -12,7 +12,8 @@ const initialState = {
   selectedTimes: [],
   selectedTeam: '',
   selectedResident: false,
-  busyTimes: 3
+  busyTimes: 3,
+  extraSelection: ''
 }
 
 function stateReducer(state, { type, payload }) {
