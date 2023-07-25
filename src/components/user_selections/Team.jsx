@@ -101,16 +101,17 @@ const Team = () => {
 
       extraSelectionValue = isExtraSelection ? edit.provider.split(' ')[1] : ''
 
-      selectedTeamValue = isResidentClinic
-        ? edit.provider.split(' ')[0]
-        : edit.provider
+      selectedTeamValue =
+        isBoth || isExtraSelection || isResidentClinic
+          ? edit.provider.split(' ')[0]
+          : edit.provider
 
       residentNumberValue = isBoth
         ? edit.provider.split(' ')[3]
         : isResidentClinic
         ? edit.provider.split(' ')[2]
         : ''
-      console.log(edit)
+
       dispatch({
         type: 'update',
         payload: {
