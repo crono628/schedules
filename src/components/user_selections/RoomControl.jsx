@@ -5,10 +5,11 @@ import { analytics } from '../../firebase'
 const RoomControl = () => {
   const { state, dispatch } = useAppContext()
   const { rooms, algo, busyTimes } = state
+  const roomLimit = 25
 
   const handleRoomsButton = (e) => {
     const button = e.target.dataset.button
-    if (button === 'plus room' && rooms < 9) {
+    if (button === 'plus room' && rooms < roomLimit) {
       dispatch({ type: 'update', payload: { rooms: rooms + 1 } })
     } else if (button === 'minus room' && rooms > 1) {
       dispatch({ type: 'update', payload: { rooms: rooms - 1 } })
@@ -31,7 +32,7 @@ const RoomControl = () => {
 
   const handleBusyButton = (e) => {
     const button = e.target.dataset.button
-    if (button === 'plus busy' && busyTimes < 9) {
+    if (button === 'plus busy' && busyTimes < roomLimit) {
       dispatch({ type: 'update', payload: { busyTimes: busyTimes + 1 } })
     } else if (button === 'minus busy' && busyTimes > 1) {
       dispatch({ type: 'update', payload: { busyTimes: busyTimes - 1 } })
@@ -42,11 +43,11 @@ const RoomControl = () => {
     <div className="btn-wrapper">
       <div className="room-btns">
         Rooms
-        <div>
+        <div className="btn-container">
           <button data-button="minus room" onClick={handleRoomsButton}>
             -
           </button>
-          {rooms}
+          <div className="room-algo">{rooms}</div>
           <button data-button="plus room" onClick={handleRoomsButton}>
             +
           </button>
@@ -54,11 +55,11 @@ const RoomControl = () => {
       </div>
       <div className="algo-btns">
         <div>Algorithm</div>
-        <div>
+        <div className="btn-container">
           <button data-button="minus algo" onClick={handleAlgoButton}>
             -
           </button>
-          {algo}
+          <div className="room-algo">{algo}</div>
           <button data-button="plus algo" onClick={handleAlgoButton}>
             +
           </button>

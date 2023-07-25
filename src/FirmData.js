@@ -58,7 +58,8 @@ export const TEAMS = [
           'URGENT CLINIC COE',
           'URGENT CLINIC FIRM A',
           'COE PHARMACY',
-          'ROUTINE CLINIC'
+          'ROUTINE CLINIC',
+          'WES PACT A MSK INJECTION'
         ]
       },
       {
