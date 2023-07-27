@@ -20,37 +20,39 @@ const Team = () => {
   } = state
 
   useEffect(() => {
+    const campusTeam = TEAMS.find((team) => team.campus === campus)
+    const firmTeam = campusTeam?.firms.find((firmObj) => firmObj.firm == firm)
+
     if (firm) {
-      const campusTeam = TEAMS.find((team) => team.campus === campus)
-      const firmTeam = campusTeam?.firms.find((firmObj) => firmObj.firm == firm)
       dispatch({
         type: 'update',
-        payload: { teams: firmTeam?.providers }
+        payload: {
+          teams: firmTeam?.providers,
+          selectedTeam: firmTeam?.providers.find(
+            (provider) => provider === selectedTeam
+          )
+        }
       })
     }
 
     if (edit) {
       const isResidentClinic = edit.provider.includes('RESIDENT')
-      const isExtraSelection = edit.provider.includes(
-        'YELLOW' && ('MD1' || 'MD2' || 'NP1' || 'NP2')
-      )
+      const isExtraSelection = edit.provider.includes('MD' || 'NP')
 
       const residentNumberValue = isResidentClinic
         ? edit.provider.split(' ')[edit.provider.split(' ').length - 1]
         : ''
 
-      const extraSelectionValue =
-        isExtraSelection && isResidentClinic
-          ? edit.provider.split(' ')[1]
-          : isExtraSelection && !isResidentClinic
-          ? edit.provider.split(' ')[edit.provider.split(' ').length - 1]
-          : ''
-      console.log(extraSelectionValue)
+      const extraSelectionValue = isExtraSelection
+        ? edit.provider.split(' ')[1]
+        : ''
+
       dispatch({
         type: 'update',
         payload: {
           selectedTimes: edit.today,
-          selectedTeam: edit.provider.split(' ')[0],
+          // selectedTeam: edit.provider.split(' ')[0],
+          selectedTeam: teams.find((team) => edit.provider.includes(team)),
           selectedResident: isResidentClinic,
           extraSelection: extraSelectionValue,
           selectedResidentNumber: residentNumberValue
@@ -139,7 +141,7 @@ const Team = () => {
         <div>{/* this is a placeholder for the grid */}</div>
 
         <div>
-          {selectedTeam.includes('YELLOW') && (
+          {selectedTeam?.includes('YELLOW') && (
             <select
               value={extraSelection}
               onChange={(e) =>

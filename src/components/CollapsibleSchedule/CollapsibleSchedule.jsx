@@ -23,7 +23,6 @@ const CollapsibleSchedule = ({ obj }) => {
     const newData = data.filter((p) => p.provider !== button)
 
     logEvent(analytics, 'edit_provider')
-    console.log(button, obj)
     dispatch({
       type: 'update',
       payload: {
