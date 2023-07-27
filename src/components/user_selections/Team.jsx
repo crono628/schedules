@@ -15,9 +15,9 @@ const Team = () => {
     selectedResident,
     firm,
     campus,
-    extraSelection
+    extraSelection,
+    selectedResidentNumber
   } = state
-  const [residentNumber, setResidentNumber] = useState('')
 
   useEffect(() => {
     if (firm) {
@@ -28,7 +28,36 @@ const Team = () => {
         payload: { teams: firmTeam?.providers }
       })
     }
-  }, [firm, campus, teams])
+
+    if (edit) {
+      const isResidentClinic = edit.provider.includes('RESIDENT')
+      const isExtraSelection = edit.provider.includes(
+        'YELLOW' && ('MD1' || 'MD2' || 'NP1' || 'NP2')
+      )
+
+      const residentNumberValue = isResidentClinic
+        ? edit.provider.split(' ')[edit.provider.split(' ').length - 1]
+        : ''
+
+      const extraSelectionValue =
+        isExtraSelection && isResidentClinic
+          ? edit.provider.split(' ')[1]
+          : isExtraSelection && !isResidentClinic
+          ? edit.provider.split(' ')[edit.provider.split(' ').length - 1]
+          : ''
+      console.log(extraSelectionValue)
+      dispatch({
+        type: 'update',
+        payload: {
+          selectedTimes: edit.today,
+          selectedTeam: edit.provider.split(' ')[0],
+          selectedResident: isResidentClinic,
+          extraSelection: extraSelectionValue,
+          selectedResidentNumber: residentNumberValue
+        }
+      })
+    }
+  }, [firm, campus, edit])
 
   const handleTeamChange = (event) => {
     dispatch({
@@ -37,23 +66,27 @@ const Team = () => {
         selectedTeam: event.target.value,
         selectedResident: false,
         edit: null,
-        extraSelection: ''
+        extraSelection: '',
+        selectedResidentNumber: ''
       }
     })
-    setResidentNumber('')
   }
 
   const handleResidentClinicChange = (event) => {
     dispatch({
       type: 'update',
-      payload: { selectedResident: event.target.checked }
+      payload: {
+        selectedResident: event.target.checked,
+        selectedResidentNumber: ''
+      }
     })
-
-    setResidentNumber('')
   }
 
   const handleResidentNumberChange = (event) => {
-    setResidentNumber(event.target.value)
+    dispatch({
+      type: 'update',
+      payload: { selectedResidentNumber: event.target.value }
+    })
   }
 
   const handleClick = () => {
@@ -61,13 +94,9 @@ const Team = () => {
       return
     }
 
-    const provider = selectedResident
-      ? `${selectedTeam}${
-          extraSelection ? ` ${extraSelection}` : ''
-        } RESIDENT ${residentNumber}`
-      : !!extraSelection
-      ? `${selectedTeam} ${extraSelection}`
-      : selectedTeam
+    const provider = `${selectedTeam} ${extraSelection} ${
+      selectedResident ? `RESIDENT ${selectedResidentNumber}` : ''
+    } `.trim()
 
     logEvent(analytics, 'submit_team')
 
@@ -79,6 +108,7 @@ const Team = () => {
         edit: null,
         selectedResident: false,
         extraSelection: '',
+        selectedResidentNumber: '',
         data: [
           ...data,
           {
@@ -88,43 +118,7 @@ const Team = () => {
         ]
       }
     })
-
-    setResidentNumber('')
   }
-
-  useEffect(() => {
-    if (edit) {
-      let extraSelectionValue, selectedTeamValue, residentNumberValue
-      const isResidentClinic = edit.provider.includes('RESIDENT')
-      const isExtraSelection = edit.provider.includes('YELLOW')
-      const isBoth = isResidentClinic && isExtraSelection
-
-      extraSelectionValue = isExtraSelection ? edit.provider.split(' ')[1] : ''
-
-      selectedTeamValue =
-        isBoth || isExtraSelection || isResidentClinic
-          ? edit.provider.split(' ')[0]
-          : edit.provider
-
-      residentNumberValue = isBoth
-        ? edit.provider.split(' ')[3]
-        : isResidentClinic
-        ? edit.provider.split(' ')[2]
-        : ''
-
-      dispatch({
-        type: 'update',
-        payload: {
-          selectedTimes: edit.today,
-          selectedTeam: selectedTeamValue,
-          selectedResident: isResidentClinic,
-          extraSelection: extraSelectionValue
-        }
-      })
-
-      setResidentNumber(residentNumberValue)
-    }
-  }, [edit])
 
   return (
     <>
@@ -177,7 +171,7 @@ const Team = () => {
         <div>
           {selectedResident && (
             <select
-              value={residentNumber}
+              value={selectedResidentNumber}
               onChange={handleResidentNumberChange}
             >
               <option value=""></option>
@@ -195,7 +189,7 @@ const Team = () => {
         disabled={
           selectedTeam === '' ||
           selectedTimes.length < 1 ||
-          (selectedResident && residentNumber === '')
+          (selectedResident && selectedResidentNumber === '')
         }
         onClick={handleClick}
       >
