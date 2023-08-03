@@ -58,6 +58,7 @@ export const TEAMS = [
           'URGENT CLINIC COE',
           'URGENT CLINIC FIRM A',
           'COE PHARMACY',
+          'FIRM A PHARMACY',
           'ROUTINE CLINIC',
           'WES PACT A MSK INJECTION'
         ]
