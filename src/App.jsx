@@ -15,7 +15,8 @@ import Campus from './components/user_selections/Campus'
 
 function App() {
   const { state, dispatch } = useAppContext()
-  const { data, rooms, algo, firm, show, busyTimes, campus } = state
+  const { data, rooms, algo, firm, show, busyTimes, campus, manualSelection } =
+    state
   function handleDispatch(actionPayload) {
     dispatch({ type: 'update', payload: actionPayload })
   }
@@ -24,8 +25,9 @@ function App() {
     if (campus === '') {
       handleDispatch({ firm: '', teams: [], firms: [] })
     }
-
-    handleDispatch({ daily: createSchedule(data, rooms, algo, busyTimes) })
+    if (!manualSelection) {
+      handleDispatch({ daily: createSchedule(data, rooms, algo, busyTimes) })
+    }
   }, [rooms, data, algo, firm, busyTimes])
 
   const handleTestData = () => {
@@ -45,6 +47,13 @@ function App() {
   return (
     <div className="app-wrapper">
       <Header handlePanel={handlePanel} />
+      <input
+        type="checkbox"
+        className="manual-selection"
+        onChange={() =>
+          handleDispatch({ manualSelection: !state.manualSelection })
+        }
+      />
       <div className="wrapper">
         <button onClick={handleTestData} className="test-btn">
           test data

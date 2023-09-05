@@ -14,7 +14,9 @@ const initialState = {
   selectedResident: false,
   selectedResidentNumber: '',
   busyTimes: 3,
-  extraSelection: ''
+  extraSelection: '',
+  manualSelection: false,
+  manualDaily: []
 }
 
 function stateReducer(state, { type, payload }) {
