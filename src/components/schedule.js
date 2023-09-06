@@ -1,8 +1,9 @@
 export const data = [
-  { provider: 'SKY', today: ['09:30', '10:30', '11:30'] },
+  { provider: 'SKY', today: ['09:30', '10:30', '11:30'], room: null },
   {
     provider: 'COBALT',
-    today: ['09:00', '10:00', '10:30', '11:00', '14:30', '15:00']
+    today: ['09:00', '10:00', '10:30', '11:00', '14:30', '15:00'],
+    room: null
   },
   {
     provider: 'CYAN',
@@ -16,7 +17,8 @@ export const data = [
       '13:30',
       '14:00',
       '15:00'
-    ]
+    ],
+    room: null
   },
   {
     provider: 'SAPPHIRE',
@@ -31,16 +33,19 @@ export const data = [
       '13:00',
       '14:00',
       '14:30'
-    ]
+    ],
+    room: null
   },
   {
     provider: 'SLATE',
-    today: ['07:30', '08:30', '10:00', '10:30', '11:30', '12:00', '13:00']
+    today: ['07:30', '08:30', '10:00', '10:30', '11:30', '12:00', '13:00'],
+    room: null
   },
-  { provider: 'STEEL', today: ['09:00', '10:00', '11:00'] },
+  { provider: 'STEEL', today: ['09:00', '10:00', '11:00'], room: null },
   {
     provider: 'STEEL RESIDENT 1',
-    today: ['13:30', '14:00', '14:30', '15:00']
+    today: ['13:30', '14:00', '14:30', '15:00'],
+    room: null
   },
   // {
   //   provider: 'RESIDENT 2',
@@ -48,11 +53,13 @@ export const data = [
   // },
   {
     provider: 'STEEL RESIDENT 3',
-    today: ['13:30', '14:00', '14:30', '15:00']
+    today: ['13:30', '14:00', '14:30', '15:00'],
+    room: null
   },
   {
     provider: 'NAVY',
-    today: ['07:30', '09:00', '10:00', '10:30', '11:30']
+    today: ['07:30', '09:00', '10:00', '10:30', '11:30'],
+    room: null
   }
 ]
 
@@ -129,6 +136,21 @@ export function createSchedule(
   for (let i = 0; i < offices; i++) {
     rooms[i].duplicates = findMultipleAppt(rooms[i].appts, busyThreshold)
   }
+
+  return {
+    dailyTotal: dailyTotalAppointments,
+    appointments: sortedAppointments,
+    rooms: rooms
+  }
+}
+
+export function createManualSchedule(schedules, offices) {
+  let sortedAppointments = sortIt(schedules)
+  let rooms = createRooms(offices)
+  let dailyTotalAppointments = sortedAppointments.reduce(
+    (acc, arr) => acc + arr.today.length,
+    0
+  )
 
   return {
     dailyTotal: dailyTotalAppointments,

@@ -1,6 +1,10 @@
 import React, { useEffect } from 'react'
 import Team from './components/user_selections/Team'
-import { data as testData, createSchedule } from './components/schedule'
+import {
+  data as testData,
+  createSchedule,
+  createManualSchedule
+} from './components/schedule'
 import Daily from './components/Daily/Daily'
 import Footer from './components/Footer/Footer'
 import { logEvent } from '@firebase/analytics'
@@ -15,11 +19,25 @@ import Campus from './components/user_selections/Campus'
 
 function App() {
   const { state, dispatch } = useAppContext()
-  const { data, rooms, algo, firm, show, busyTimes, campus, manualSelection } =
-    state
+  const {
+    data,
+    daily,
+    rooms,
+    algo,
+    firm,
+    show,
+    busyTimes,
+    campus,
+    manualSelection,
+    manualDaily
+  } = state
   function handleDispatch(actionPayload) {
     dispatch({ type: 'update', payload: actionPayload })
   }
+
+  console.table(daily)
+
+  console.table(data)
 
   useEffect(() => {
     if (campus === '') {
@@ -28,7 +46,16 @@ function App() {
     if (!manualSelection) {
       handleDispatch({ daily: createSchedule(data, rooms, algo, busyTimes) })
     }
-  }, [rooms, data, algo, firm, busyTimes])
+
+    if (manualSelection) {
+      handleDispatch({
+        manualDaily:
+          manualDaily.length === 0
+            ? [{ ...daily }]
+            : createManualSchedule(manualDaily, rooms)
+      })
+    }
+  }, [rooms, data, algo, firm, busyTimes, manualSelection])
 
   const handleTestData = () => {
     logEvent(analytics, 'test_data')

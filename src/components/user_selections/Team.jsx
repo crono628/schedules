@@ -115,7 +115,8 @@ const Team = () => {
           ...data,
           {
             provider: provider,
-            today: selectedTimes
+            today: selectedTimes,
+            room: null
           }
         ]
       }
