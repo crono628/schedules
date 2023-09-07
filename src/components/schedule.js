@@ -81,19 +81,20 @@ export function createSchedule(
   let destinationOffice = 1
 
   for (const appt of sortedAppointments) {
-    let { today, provider } = appt
+    let { today, provider, room } = appt
     let currentRoom
 
     if (algo === 1) {
       // Use the optimized approach
-      currentRoom = rooms.reduce(
-        (minRoom, room) =>
+      currentRoom = rooms.reduce((minRoom, room) => {
+        return (
           room.totalAppts + room.appts.length <
           minRoom.totalAppts + minRoom.appts.length
             ? room
             : minRoom,
-        rooms[0]
-      )
+          rooms[0]
+        )
+      })
     } else {
       // Use the original approach with algo modification
       currentRoom = rooms.find((obj) => obj.room === destinationOffice)
@@ -126,6 +127,7 @@ export function createSchedule(
     currentRoom.appts.push(today)
     currentRoom.providers.push(provider)
     currentRoom.totalAppts += today.length
+    appt.room = currentRoom.room
 
     if (algo !== 1) {
       destinationOffice += 1
