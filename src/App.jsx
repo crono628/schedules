@@ -1,10 +1,6 @@
 import React, { useEffect } from 'react'
 import Team from './components/user_selections/Team'
-import {
-  data as testData,
-  createSchedule,
-  createManualSchedule
-} from './components/schedule'
+import { data as testData, createSchedule } from './components/schedule'
 import Daily from './components/Daily/Daily'
 import Footer from './components/Footer/Footer'
 import { logEvent } from '@firebase/analytics'
@@ -16,6 +12,7 @@ import Firm from './components/user_selections/Firm'
 import Header from './components/Header/Header'
 import CheckboxTimes from './components/user_selections/CheckboxTimes/CheckboxTimes'
 import Campus from './components/user_selections/Campus'
+import ManualDaily from './components/ManualDaily'
 
 function App() {
   const { state, dispatch } = useAppContext()
@@ -35,10 +32,6 @@ function App() {
     dispatch({ type: 'update', payload: actionPayload })
   }
 
-  console.table(daily)
-
-  console.table(data)
-
   useEffect(() => {
     if (campus === '') {
       handleDispatch({ firm: '', teams: [], firms: [] })
@@ -47,14 +40,14 @@ function App() {
       handleDispatch({ daily: createSchedule(data, rooms, algo, busyTimes) })
     }
 
-    if (manualSelection) {
-      handleDispatch({
-        manualDaily:
-          manualDaily.length === 0
-            ? [{ ...daily }]
-            : createManualSchedule(manualDaily, rooms)
-      })
-    }
+    // if (manualSelection) {
+    //   handleDispatch({
+    //     manualDaily:
+    //       manualDaily.length === 0
+    //         ? [{ ...daily }]
+    //         : createManualSchedule(manualDaily, rooms)
+    //   })
+    // }
   }, [rooms, data, algo, firm, busyTimes, manualSelection])
 
   const handleTestData = () => {
@@ -95,7 +88,7 @@ function App() {
           <CheckboxTimes />
           <RoomControl />
         </div>
-        <Daily />
+        {manualSelection ? <ManualDaily /> : <Daily />}
       </div>
       <Footer />
     </div>

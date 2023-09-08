@@ -63,6 +63,40 @@ export const data = [
   }
 ]
 
+// Function to calculate the ideal number of appointments per room
+function calculateIdealApptsPerRoom(dailyTotalAppointments, offices) {
+  return Math.floor(dailyTotalAppointments / offices - 2)
+}
+
+// Function to find the room with the fewest appointments (optimized approach)
+function findMinAppointmentsRoom(rooms) {
+  return rooms.reduce((minRoom, room) => {
+    return room.totalAppts + room.appts.length <
+      minRoom.totalAppts + minRoom.appts.length
+      ? room
+      : minRoom
+  }, rooms[0])
+}
+
+// Function to find a room based on the destination office (original approach with algo modification)
+export function findRoomByDestination(rooms, destinationOffice) {
+  return rooms.find((obj) => obj.room === destinationOffice)
+}
+
+// Function to handle appointment allocation
+function allocateAppointment(currentRoom, today, provider, appt) {
+  currentRoom.appts.push(today)
+  currentRoom.providers.push(provider)
+  currentRoom.totalAppts += today.length
+  appt.room = currentRoom.room
+}
+
+// Function to reset destination office if it exceeds the number of offices
+export function resetDestinationOffice(destinationOffice, offices) {
+  return (destinationOffice + 1) % offices
+}
+
+// Main createSchedule function
 export function createSchedule(
   schedules,
   offices,
@@ -75,29 +109,23 @@ export function createSchedule(
     (acc, arr) => acc + arr.today.length,
     0
   )
-  let idealApptsPerRoom = Math.floor(dailyTotalAppointments / offices - 2)
+
+  let idealApptsPerRoom = calculateIdealApptsPerRoom(
+    dailyTotalAppointments,
+    offices
+  )
 
   let fullOffices = 0
   let destinationOffice = 1
 
   for (const appt of sortedAppointments) {
-    let { today, provider, room } = appt
+    let { today, provider } = appt
     let currentRoom
 
     if (algo === 1) {
-      // Use the optimized approach
-      currentRoom = rooms.reduce((minRoom, room) => {
-        return (
-          room.totalAppts + room.appts.length <
-          minRoom.totalAppts + minRoom.appts.length
-            ? room
-            : minRoom,
-          rooms[0]
-        )
-      })
+      currentRoom = findMinAppointmentsRoom(rooms) // Optimized approach
     } else {
-      // Use the original approach with algo modification
-      currentRoom = rooms.find((obj) => obj.room === destinationOffice)
+      currentRoom = findRoomByDestination(rooms, destinationOffice) // Original approach with algo modification
     }
 
     while (
@@ -105,33 +133,23 @@ export function createSchedule(
       haveOverlap(currentRoom.appts, today)
     ) {
       fullOffices++
+
       if (fullOffices > offices + algo) {
         break
       }
+
       if (algo === 1) {
-        currentRoom = rooms.reduce(
-          (minRoom, room) =>
-            room.totalAppts + room.appts.length <
-            minRoom.totalAppts + minRoom.appts.length
-              ? room
-              : minRoom,
-          rooms[0]
-        )
+        currentRoom = findMinAppointmentsRoom(rooms)
       } else {
-        destinationOffice += 1
-        destinationOffice = resetIfGreater(destinationOffice, offices)
-        currentRoom = rooms.find((obj) => obj.room === destinationOffice)
+        destinationOffice = resetDestinationOffice(destinationOffice, offices)
+        currentRoom = findRoomByDestination(rooms, destinationOffice)
       }
     }
 
-    currentRoom.appts.push(today)
-    currentRoom.providers.push(provider)
-    currentRoom.totalAppts += today.length
-    appt.room = currentRoom.room
+    allocateAppointment(currentRoom, today, provider, appt)
 
     if (algo !== 1) {
-      destinationOffice += 1
-      destinationOffice = resetIfGreater(destinationOffice, offices)
+      destinationOffice = resetDestinationOffice(destinationOffice, offices)
     }
   }
 
@@ -146,22 +164,9 @@ export function createSchedule(
   }
 }
 
-export function createManualSchedule(schedules, offices) {
-  let sortedAppointments = sortIt(schedules)
-  let rooms = createRooms(offices)
-  let dailyTotalAppointments = sortedAppointments.reduce(
-    (acc, arr) => acc + arr.today.length,
-    0
-  )
+// a function to group providers by room
 
-  return {
-    dailyTotal: dailyTotalAppointments,
-    appointments: sortedAppointments,
-    rooms: rooms
-  }
-}
-
-function createRooms(num) {
+export function createRooms(num) {
   const arr = []
   for (let i = 1; i <= num; i++) {
     arr.push({
@@ -176,10 +181,10 @@ function createRooms(num) {
 }
 
 function sortIt(arr) {
-  return arr.slice().sort((a, b) => b.today.length - a.today.length)
+  return arr?.slice().sort((a, b) => b.today.length - a.today.length)
 }
 
-function findMultipleAppt(arr, num = 3) {
+export function findMultipleAppt(arr, num = 3) {
   if (num < 2) {
     return []
   }
@@ -201,7 +206,7 @@ function findMultipleAppt(arr, num = 3) {
     )
 }
 
-function haveOverlap(existingAppointments, newAppointments) {
+export function haveOverlap(existingAppointments, newAppointments) {
   for (const existingAppt of existingAppointments) {
     for (const existingTime of existingAppt) {
       for (const newAppt of newAppointments) {
