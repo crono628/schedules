@@ -16,7 +16,8 @@ const initialState = {
   busyTimes: 3,
   extraSelection: '',
   manualSelection: false,
-  manualDaily: []
+  manualDaily: [],
+  isOpenAll: false
 }
 
 function stateReducer(state, { type, payload }) {

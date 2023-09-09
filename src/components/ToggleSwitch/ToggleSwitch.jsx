@@ -7,7 +7,6 @@ function ToggleSwitch() {
   const { manualSelection, rooms } = state
 
   const toggleActive = rooms < 2
-  console.log('toggleActive', toggleActive)
 
   const handleToggle = () => {
     dispatch({ type: 'update', payload: { manualSelection: !manualSelection } })

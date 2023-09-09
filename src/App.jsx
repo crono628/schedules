@@ -26,7 +26,7 @@ function App() {
     busyTimes,
     campus,
     manualSelection,
-    manualDaily
+    isOpenAll
   } = state
   function handleDispatch(actionPayload) {
     dispatch({ type: 'update', payload: actionPayload })
@@ -52,7 +52,7 @@ function App() {
     //         : createManualSchedule(manualDaily, rooms)
     //   })
     // }
-  }, [rooms, data, algo, firm, busyTimes, manualSelection])
+  }, [rooms, data, algo, firm, busyTimes, manualSelection, isOpenAll])
 
   const handleTestData = () => {
     logEvent(analytics, 'test_data')
@@ -66,6 +66,11 @@ function App() {
   const handlePanel = () => {
     logEvent(analytics, 'toggle_panel')
     handleDispatch({ show: !show })
+  }
+
+  const handleAppointmentToggle = () => {
+    logEvent(analytics, 'toggle_all_appointments')
+    handleDispatch({ isOpenAll: !isOpenAll })
   }
 
   return (
@@ -85,6 +90,9 @@ function App() {
           </div>
           <CheckboxTimes />
           <RoomControl />
+          <button onClick={handleAppointmentToggle}>
+            {isOpenAll ? 'Close All Appointments' : 'Open All Appointments'}
+          </button>
         </div>
         {manualSelection ? <ManualDaily /> : <Daily />}
       </div>

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useAppContext } from '../AppContext/AppContext'
 import { logEvent } from '@firebase/analytics'
 import { analytics } from '../../firebase'
@@ -6,11 +6,12 @@ import { analytics } from '../../firebase'
 const CollapsibleSchedule = ({ obj }) => {
   if (!obj) return null
   const { state, dispatch } = useAppContext()
-  const { data } = state
+  const { data, isOpenAll } = state
 
   const { provider, today } = obj
 
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(isOpenAll)
+  const [mouseOver, setMouseOver] = useState(false)
 
   const toggleOpen = () => {
     logEvent(analytics, 'toggle_collapsible_schedule')
@@ -47,33 +48,42 @@ const CollapsibleSchedule = ({ obj }) => {
     return today.join(', ')
   }
 
+  const handleMouseOver = () => {
+    setMouseOver(true)
+  }
+
+  useEffect(() => {
+    setIsOpen(isOpenAll)
+  }, [isOpenAll])
+
   return (
-    <>
+    <div onMouseOver={handleMouseOver} onMouseLeave={() => setMouseOver(false)}>
       <div className="collapsible" onClick={toggleOpen}>
-        {provider}{' '}
+        <div>{provider} </div>
         <span
           style={{
             fontSize: '0.7rem',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            marginLeft: '0.3rem'
+            marginLeft: '0.4rem'
           }}
         >
           ({today.length})
+          <div>
+            {isOpen && mouseOver && (
+              <div data-provider={provider}>
+                <button onClick={handleEdit}>Edit</button>
+                <button onClick={handleDelete}>Delete</button>
+              </div>
+            )}
+          </div>
         </span>
       </div>
       <div className="collapsible-content">
         {isOpen && <>{' ' + formatAppointmentTimes()}</>}
-
-        {isOpen && (
-          <div data-provider={provider}>
-            <button onClick={handleEdit}>Edit</button>
-            <button onClick={handleDelete}>Delete</button>
-          </div>
-        )}
       </div>
-    </>
+    </div>
   )
 }
 

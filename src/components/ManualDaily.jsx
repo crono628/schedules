@@ -3,8 +3,8 @@ import { useDrag, useDrop } from 'react-dnd'
 import { useAppContext } from './AppContext/AppContext'
 import { findMultipleAppt } from './schedule'
 import CollapsibleSchedule from './CollapsibleSchedule/CollapsibleSchedule'
-
 const DraggableProvider = ({ provider }) => {
+  const { state } = useAppContext()
   const [{ isDragging }, drag] = useDrag({
     type: 'PROVIDER',
     item: { provider },
@@ -21,22 +21,38 @@ const DraggableProvider = ({ provider }) => {
         cursor: 'move'
       }}
     >
-      {provider}
+      <CollapsibleSchedule
+        obj={state.data.find((p) => p.provider === provider)}
+      />
     </div>
   )
 }
 
 const DroppableArea = ({ children, roomNumber, onDrop }) => {
-  const [, drop] = useDrop({
+  const [{ isOver }, drop] = useDrop({
     accept: 'PROVIDER',
-    drop: (item) => onDrop(item.provider, roomNumber)
+    drop: (item) => onDrop(item.provider, roomNumber),
+    collect: (monitor) => ({
+      isOver: monitor.isOver()
+    })
   })
 
-  return <div ref={drop}>{children}</div>
+  const highlight = isOver ? 'lightgreen' : ''
+
+  return (
+    <div
+      ref={drop}
+      style={{
+        backgroundColor: highlight
+      }}
+    >
+      {children}
+    </div>
+  )
 }
 
 const ManualDaily = () => {
-  const { state, dispatch } = useAppContext() // Assuming you have a dispatch function in your context
+  const { state, dispatch } = useAppContext()
   const { data, daily } = state
   const [, drop] = useDrop({
     accept: 'PROVIDER',
@@ -44,17 +60,10 @@ const ManualDaily = () => {
   })
 
   const handleDrop = (provider, room) => {
-    console.log('handleDrop')
-
     dispatch({
       type: 'update',
       payload: updateProviderRoom(provider, room)
     })
-    //dispatch to update daily based on which provider was dropped into which room
-
-    // Implement the logic to update the room with the dropped provider
-    // You need to update your state or dispatch an action here
-    // Example: dispatch({ type: 'ADD_PROVIDER_TO_ROOM', room, provider });
   }
 
   function updateProviderRoom(provider, room) {
@@ -79,14 +88,13 @@ const ManualDaily = () => {
       {Object.keys(groupedProviders).map((roomNumber, index) => {
         const providers = groupedProviders[roomNumber]
         const busyTimes = findMultipleAppt(dailyAppts[roomNumber].today)
-        console.log('d', busyTimes)
 
         return (
           <div className="room-div" key={roomNumber}>
             <DroppableArea roomNumber={roomNumber} onDrop={handleDrop}>
               <div>Group {roomNumber}</div>
               <div className="total-appts-div">
-                Total appointments{' '}
+                Total appointments -{' '}
                 {dailyAppts[roomNumber]?.today.reduce((acc, curr) => {
                   return acc + curr.length
                 }, 0)}

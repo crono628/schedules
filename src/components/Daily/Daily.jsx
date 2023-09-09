@@ -12,7 +12,7 @@ const Daily = () => {
           <div className="room-div" key={index}>
             <div>Group {item.room}</div>
             <div className="total-appts-div">
-              Total appointments {item.totalAppts}
+              Total appointments - {item.totalAppts}
               <div className="busy-times">
                 <span className="busy-span">Busy times:</span>
                 {item.duplicates
