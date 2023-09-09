@@ -14,7 +14,7 @@ const Daily = () => {
             <div className="total-appts-div">
               Total appointments {item.totalAppts}
               <div className="busy-times">
-                Busy times:
+                <span className="busy-span">Busy times:</span>
                 {item.duplicates
                   .sort((a, b) =>
                     b.value < a.value ? 1 : b.value > a.value ? -1 : 0

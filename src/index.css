@@ -133,8 +133,18 @@ select {
   display: flex;
 }
 
+.toggle-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+}
+
 .busy-btns button:disabled {
   background-color: grey;
+}
+
+.busy-span {
+  padding-right: 5px;
 }
 
 .submit-btn {

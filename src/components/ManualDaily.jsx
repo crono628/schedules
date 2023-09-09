@@ -91,7 +91,7 @@ const ManualDaily = () => {
                   return acc + curr.length
                 }, 0)}
                 <div className="busy-times">
-                  Busy times:
+                  <span className="busy-span">Busy times:</span>
                   {busyTimes
                     .sort((a, b) =>
                       b.value < a.value ? 1 : b.value > a.value ? -1 : 0

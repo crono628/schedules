@@ -1,6 +1,7 @@
 import { logEvent } from 'firebase/analytics'
 import { useAppContext } from '../AppContext/AppContext'
 import { analytics } from '../../firebase'
+import ToggleSwitch from '../ToggleSwitch/ToggleSwitch'
 
 const RoomControl = () => {
   const { state, dispatch } = useAppContext()
@@ -53,36 +54,33 @@ const RoomControl = () => {
           </button>
         </div>
       </div>
-      <div className="algo-btns">
-        <div>Algorithm</div>
-        <div className="btn-container">
-          <button data-button="minus algo" onClick={handleAlgoButton}>
-            -
-          </button>
-          <div className="room-algo">{algo}</div>
-          <button data-button="plus algo" onClick={handleAlgoButton}>
-            +
-          </button>
+      <div className="room-btns">
+        <div className="toggle-container">
+          Manual Mode
+          <ToggleSwitch />
         </div>
       </div>
-      {/* <div className="busy-btns">
-        <div>Busy Display</div>
-        <div>
-          <button
-            data-button="minus busy"
-            onClick={handleBusyButton}
-            disabled={busyTimes <= 2}
-          >
-            -
-          </button>
-          {busyTimes}
-          <button data-button="plus busy" onClick={handleBusyButton}>
-            +
-          </button>
-        </div>
-      </div> */}
     </div>
   )
 }
 
 export default RoomControl
+
+{
+  /* <div className="busy-btns">
+  <div>Busy Display</div>
+  <div>
+    <button
+      data-button="minus busy"
+      onClick={handleBusyButton}
+      disabled={busyTimes <= 2}
+    >
+      -
+    </button>
+    {busyTimes}
+    <button data-button="plus busy" onClick={handleBusyButton}>
+      +
+    </button>
+  </div>
+</div> */
+}

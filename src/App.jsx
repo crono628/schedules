@@ -40,6 +40,10 @@ function App() {
       handleDispatch({ daily: createSchedule(data, rooms, algo, busyTimes) })
     }
 
+    if (state.rooms === 1) {
+      handleDispatch({ manualSelection: false })
+    }
+
     // if (manualSelection) {
     //   handleDispatch({
     //     manualDaily:
@@ -67,13 +71,7 @@ function App() {
   return (
     <div className="app-wrapper">
       <Header handlePanel={handlePanel} />
-      <input
-        type="checkbox"
-        className="manual-selection"
-        onChange={() =>
-          handleDispatch({ manualSelection: !state.manualSelection })
-        }
-      />
+
       <div className="wrapper">
         <button onClick={handleTestData} className="test-btn">
           test data
