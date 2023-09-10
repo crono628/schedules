@@ -68,11 +68,6 @@ function App() {
     handleDispatch({ show: !show })
   }
 
-  const handleAppointmentToggle = () => {
-    logEvent(analytics, 'toggle_all_appointments')
-    handleDispatch({ isOpenAll: !isOpenAll })
-  }
-
   return (
     <div className="app-wrapper">
       <Header handlePanel={handlePanel} />
@@ -90,9 +85,6 @@ function App() {
           </div>
           <CheckboxTimes />
           <RoomControl />
-          <button onClick={handleAppointmentToggle}>
-            {isOpenAll ? 'Close All Appointments' : 'Open All Appointments'}
-          </button>
         </div>
         {manualSelection ? <ManualDaily /> : <Daily />}
       </div>

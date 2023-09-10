@@ -5,7 +5,7 @@ import ToggleSwitch from '../ToggleSwitch/ToggleSwitch'
 
 const RoomControl = () => {
   const { state, dispatch } = useAppContext()
-  const { rooms, manualSelection } = state
+  const { rooms, manualSelection, isOpenAll } = state
   const roomLimit = 25
 
   const handleRoomsButton = (e) => {
@@ -16,6 +16,11 @@ const RoomControl = () => {
     } else if (button === 'minus room' && rooms > 1) {
       dispatch({ type: 'update', payload: { rooms: rooms - 1 } })
     }
+  }
+
+  const handleAppointmentToggle = () => {
+    logEvent(analytics, 'toggle_all_appointments')
+    dispatch({ type: 'update', payload: { isOpenAll: !isOpenAll } })
   }
 
   return (
@@ -32,13 +37,23 @@ const RoomControl = () => {
           </button>
         </div>
       </div>
+      <div>
+        <button
+          className="all-appointments-btn"
+          onClick={handleAppointmentToggle}
+        >
+          {isOpenAll ? 'Close All Appointments' : 'Open All Appointments'}
+        </button>
+      </div>
       <div className="room-btns">
-        {rooms > 1 ? (
+        {rooms > 1 && state.data.length ? (
           <div className="toggle-container">
-            Manual Mode
+            Drag and Drop
             <ToggleSwitch />
           </div>
-        ) : null}
+        ) : (
+          <div className="toggle-container"></div>
+        )}
       </div>
     </div>
   )

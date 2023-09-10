@@ -37,13 +37,12 @@ const DroppableArea = ({ children, roomNumber, onDrop }) => {
     })
   })
 
-  const highlight = isOver ? 'lightgreen' : ''
-
   return (
     <div
       ref={drop}
       style={{
-        backgroundColor: highlight
+        boxShadow: isOver ? '0 0 3px 3px lightgreen' : '',
+        borderRadius: '5px'
       }}
     >
       {children}
@@ -92,9 +91,11 @@ const ManualDaily = () => {
         return (
           <div className="room-div" key={roomNumber}>
             <DroppableArea roomNumber={roomNumber} onDrop={handleDrop}>
-              <div>Group {roomNumber}</div>
+              <strong>
+                <div>Group {roomNumber}</div>
+              </strong>
               <div className="total-appts-div">
-                Total appointments -{' '}
+                Total appointments:{' '}
                 {dailyAppts[roomNumber]?.today.reduce((acc, curr) => {
                   return acc + curr.length
                 }, 0)}

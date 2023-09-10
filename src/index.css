@@ -35,7 +35,7 @@ select {
 
 .wrapper {
   position: relative;
-  padding: 10px;
+  /* padding: 10px; */
   display: flex;
   flex-direction: column;
   padding-bottom: 70px;
@@ -135,8 +135,31 @@ select {
 
 .toggle-container {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
   margin-top: 15px;
+  height: 30px;
+}
+
+.all-appointments-btn {
+  width: 100%;
+  border: none;
+  background-color: inherit;
+  margin: 15px 0 0 0;
+  border-radius: 10px;
+  border: #112e51;
+  border-style: solid;
+  border-width: 1px;
+  padding: 0 5px;
+  height: 30px;
+  cursor: pointer;
+  font-size: var(--button-font-size);
+}
+
+.all-appointments-btn:hover {
+  background-color: #112e51;
+  color: white;
 }
 
 .busy-btns button:disabled {
@@ -210,6 +233,13 @@ select {
   flex-direction: column;
   width: 100%;
   margin-bottom: 20px;
+  padding: 10px;
+  background: linear-gradient(
+    to bottom,
+
+    rgb(226, 226, 226) 96%,
+    white 100%
+  );
 }
 
 .schedule-container {
@@ -287,7 +317,8 @@ select {
   .submit-btn,
   .busy-btns,
   .algo-btns,
-  .room-btns {
+  .room-btns,
+  .all-appointments-btn {
     font-size: 0.9rem;
   }
   .sliding-panel {

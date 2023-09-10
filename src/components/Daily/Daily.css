@@ -11,6 +11,7 @@
   border-bottom: black solid 2px;
   max-width: fit-content;
   margin-bottom: 10px;
+  font-size: 1rem;
 }
 
 .busy-times *,

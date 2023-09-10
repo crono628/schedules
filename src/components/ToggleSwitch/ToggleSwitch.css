@@ -18,7 +18,8 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #ccc;
+  /* background-color: #ccc; */
+  background-color: darkgray;
   transition: 0.4s;
   border-radius: 15px;
 }
@@ -41,4 +42,24 @@
 
 .checkbox:checked + .slider:before {
   transform: translateX(30px);
+}
+
+@media screen and (max-width: 500px) {
+  .slider {
+    width: 35px;
+    height: 20px;
+  }
+
+  .slider:before {
+    width: 14px;
+    height: 14px;
+  }
+
+  .checkbox:checked + .slider:before {
+    transform: translateX(15px);
+  }
+
+  .checkbox:checked + .slider {
+    background-color: #112e51;
+  }
 }

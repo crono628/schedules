@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useAppContext } from '../AppContext/AppContext'
 import { logEvent } from '@firebase/analytics'
 import { analytics } from '../../firebase'
+import './CollapsibleSchedule.css'
 
 const CollapsibleSchedule = ({ obj }) => {
   if (!obj) return null
@@ -72,7 +73,7 @@ const CollapsibleSchedule = ({ obj }) => {
           ({today.length})
           <div>
             {isOpen && mouseOver && (
-              <div data-provider={provider}>
+              <div data-provider={provider} className="edit-delete-container">
                 <button onClick={handleEdit}>Edit</button>
                 <button onClick={handleDelete}>Delete</button>
               </div>

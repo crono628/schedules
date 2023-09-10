@@ -16,7 +16,8 @@ const Team = () => {
     firm,
     campus,
     extraSelection,
-    selectedResidentNumber
+    selectedResidentNumber,
+    manualSelection
   } = state
 
   useEffect(() => {
@@ -111,6 +112,7 @@ const Team = () => {
         selectedResident: false,
         extraSelection: '',
         selectedResidentNumber: '',
+        manualSelection: false,
         data: [
           ...data,
           {
