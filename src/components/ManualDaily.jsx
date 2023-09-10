@@ -52,7 +52,8 @@ const DroppableArea = ({ children, roomNumber, onDrop }) => {
 
 const ManualDaily = () => {
   const { state, dispatch } = useAppContext()
-  const { data, daily } = state
+  const { data, daily, rooms } = state
+
   const [, drop] = useDrop({
     accept: 'PROVIDER',
     drop: (droppedProvider) => handleDrop(daily, droppedProvider.provider)
@@ -82,6 +83,9 @@ const ManualDaily = () => {
     return acc
   }, {})
 
+  //an array of room numbers from 1 to the number of rooms
+  const roomNumbers = Array.from({ length: rooms }, (_, i) => i + 1)
+
   return (
     <div className="room-div-wrapper">
       {Object.keys(groupedProviders).map((roomNumber, index) => {
@@ -92,7 +96,14 @@ const ManualDaily = () => {
           <div className="room-div" key={roomNumber}>
             <DroppableArea roomNumber={roomNumber} onDrop={handleDrop}>
               <strong>
-                <div>Group {roomNumber}</div>
+                <div>
+                  Group{' '}
+                  {
+                    daily?.rooms?.find(
+                      (item) => item.room === parseInt(roomNumber)
+                    )?.room
+                  }
+                </div>
               </strong>
               <div className="total-appts-div">
                 Total appointments:{' '}
@@ -114,14 +125,23 @@ const ManualDaily = () => {
                 </div>
               </div>
               <div className="provider-div">
-                {providers.map((provider, index) => {
-                  return (
-                    <DraggableProvider
-                      key={index}
-                      provider={provider.provider}
-                    />
+                {data
+                  .filter((provider) => provider.room === parseInt(roomNumber))
+                  .sort((a, b) =>
+                    b.today.length > a.today.length
+                      ? 1
+                      : b.today.length < a.today.length
+                      ? -1
+                      : 0
                   )
-                })}
+                  .map((provider, index) => {
+                    return (
+                      <DraggableProvider
+                        key={index}
+                        provider={provider.provider}
+                      />
+                    )
+                  })}
               </div>
             </DroppableArea>
           </div>

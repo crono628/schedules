@@ -30,12 +30,16 @@ const Daily = () => {
               </div>
             </div>
             <div className="provider-div">
-              {item?.providers.map((item, index) => (
-                <CollapsibleSchedule
-                  key={index}
-                  obj={data.find((p) => p.provider === item)}
-                />
-              ))}
+              {item?.providers
+                .sort((a, b) =>
+                  b.provider < a.provider ? 1 : b.provider > a.provider ? -1 : 0
+                )
+                .map((item, index) => (
+                  <CollapsibleSchedule
+                    key={index}
+                    obj={data.find((p) => p.provider === item)}
+                  />
+                ))}
             </div>
           </div>
         )
