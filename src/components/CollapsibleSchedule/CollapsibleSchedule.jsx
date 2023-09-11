@@ -71,18 +71,23 @@ const CollapsibleSchedule = ({ obj }) => {
           }}
         >
           ({today.length})
-          <div>
-            {isOpen && mouseOver && (
+        </span>
+      </div>
+      <div className="collapsible-content">
+        {isOpen && (
+          <>
+            {' ' + formatAppointmentTimes()}
+
+            {isOpen && mouseOver ? (
               <div data-provider={provider} className="edit-delete-container">
                 <button onClick={handleEdit}>Edit</button>
                 <button onClick={handleDelete}>Delete</button>
               </div>
+            ) : (
+              <div className="edit-delete-container"></div>
             )}
-          </div>
-        </span>
-      </div>
-      <div className="collapsible-content">
-        {isOpen && <>{' ' + formatAppointmentTimes()}</>}
+          </>
+        )}
       </div>
     </div>
   )

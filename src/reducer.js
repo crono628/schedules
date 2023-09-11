@@ -17,7 +17,8 @@ const initialState = {
   extraSelection: '',
   manualSelection: false,
   manualDaily: [],
-  isOpenAll: false
+  isOpenAll: false,
+  dndExplain: false
 }
 
 function stateReducer(state, { type, payload }) {

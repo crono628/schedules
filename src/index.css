@@ -55,7 +55,7 @@ select {
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: 100svh;
+  min-height: 1700px;
 }
 
 .header {
@@ -154,7 +154,7 @@ select {
   padding: 0 5px;
   height: 30px;
   cursor: pointer;
-  font-size: var(--button-font-size);
+  font-size: 1rem;
 }
 
 .all-appointments-btn:hover {
@@ -234,10 +234,11 @@ select {
   width: 100%;
   margin-bottom: 20px;
   padding: 10px;
+  padding-bottom: 30px;
   background: linear-gradient(
     to bottom,
 
-    rgb(226, 226, 226) 96%,
+    rgb(233, 233, 233) 96%,
     white 100%
   );
 }
@@ -312,6 +313,13 @@ select {
   right: 20px;
 }
 
+.explain {
+  font-size: 0.8rem;
+  margin-top: 5px;
+  width: 85vw;
+  max-width: 550px;
+}
+
 @media screen and (max-width: 500px) {
   button,
   .submit-btn,
@@ -338,6 +346,10 @@ select {
   }
 
   .res-checkbox {
+    font-size: 0.9rem;
+  }
+
+  .collapsible {
     font-size: 0.9rem;
   }
 }

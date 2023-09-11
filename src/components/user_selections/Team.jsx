@@ -125,6 +125,21 @@ const Team = () => {
     })
   }
 
+  console.log('selectedTeam', selectedTeam)
+
+  const disableSubmit = () => {
+    if (selectedTeam === '' || selectedTeam === undefined) {
+      return true
+    }
+    if (selectedTimes.length < 1) {
+      return true
+    }
+    if (selectedResident && selectedResidentNumber === '') {
+      return true
+    }
+    return false
+  }
+
   return (
     <>
       <div className="team-submit-container">
@@ -191,11 +206,7 @@ const Team = () => {
       </div>
       <button
         className="submit-btn"
-        disabled={
-          selectedTeam === '' ||
-          selectedTimes.length < 1 ||
-          (selectedResident && selectedResidentNumber === '')
-        }
+        disabled={disableSubmit()}
         onClick={handleClick}
       >
         submit

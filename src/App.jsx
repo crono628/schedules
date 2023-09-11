@@ -59,7 +59,8 @@ function App() {
     handleDispatch({
       data: [...data, ...testData],
       campus: 'Newington',
-      firm: '2'
+      firm: '2',
+      selectedTeam: ''
     })
   }
 
