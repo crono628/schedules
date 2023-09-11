@@ -125,8 +125,6 @@ const Team = () => {
     })
   }
 
-  console.log('selectedTeam', selectedTeam)
-
   const disableSubmit = () => {
     if (selectedTeam === '' || selectedTeam === undefined) {
       return true
