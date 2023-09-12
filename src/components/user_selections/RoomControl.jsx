@@ -68,10 +68,15 @@ const RoomControl = () => {
         <div>
           {rooms > 1 && state.data.length > 2 && (
             <div className="explain">
-              Any drag and drop changes will reset by toggling drag and drop,
+              {/* Any drag and drop changes will reset by toggling drag and drop,
               pressing submit, or changing the number of rooms. Drag and drop is
               best used once the number of rooms is decided and all clinics have
-              been entered.
+              been entered. */}
+              Disabling drag and drop will reset any drag and drop changes made.
+              Clicking submit or changing the number of rooms will disable drag
+              and drop and will need to be reenabled to continue using it. Drag
+              and drop is best used once the number of rooms is decided and all
+              clinics have been entered.
             </div>
           )}
         </div>
