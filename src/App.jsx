@@ -12,7 +12,7 @@ import Firm from './components/user_selections/Firm'
 import Header from './components/Header/Header'
 import CheckboxTimes from './components/user_selections/CheckboxTimes/CheckboxTimes'
 import Campus from './components/user_selections/Campus'
-import ManualDaily from './components/ManualDaily'
+import ManualDaily from './components/ManualDaily/ManualDaily'
 
 function App() {
   const { state, dispatch } = useAppContext()

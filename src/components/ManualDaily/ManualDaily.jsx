@@ -1,8 +1,9 @@
 import React from 'react'
 import { useDrag, useDrop } from 'react-dnd'
-import { useAppContext } from './AppContext/AppContext'
-import { findMultipleAppt } from './schedule'
-import CollapsibleSchedule from './CollapsibleSchedule/CollapsibleSchedule'
+import { useAppContext } from '../AppContext/AppContext'
+import { findMultipleAppt } from '../schedule'
+import CollapsibleSchedule from '../CollapsibleSchedule/CollapsibleSchedule'
+
 const DraggableProvider = ({ provider }) => {
   const { state } = useAppContext()
   const [{ isDragging }, drag] = useDrag({
