@@ -23,6 +23,7 @@ export const TEAMS = [
           'AIR FORCE',
           'COBALT',
           'CYAN',
+          'FLOAT',
           'ICE',
           'NAVY',
           'ROYAL',
