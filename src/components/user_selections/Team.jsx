@@ -38,8 +38,13 @@ const Team = () => {
 
     if (edit) {
       const isResidentClinic = edit.provider.includes('RESIDENT')
-      const isExtraSelection = edit.provider.includes('MD' || 'NP')
+      const extraSelections = ['MD1', 'MD2', 'NP1', 'NP2', 'NPR']
+      const isExtraSelection = extraSelections.some((selection) =>
+        edit.provider.includes(selection)
+      )
 
+      console.log('isExtraSelection', isExtraSelection)
+      console.log('edit.provider', edit.provider)
       const residentNumberValue = isResidentClinic
         ? edit.provider.split(' ')[edit.provider.split(' ').length - 1]
         : ''
@@ -172,6 +177,7 @@ const Team = () => {
               <option value="MD2">MD2</option>
               <option value="NP1">NP1</option>
               <option value="NP2">NP2</option>
+              <option value="NPR">NPR</option>
             </select>
           )}
         </div>
