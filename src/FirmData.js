@@ -10,6 +10,7 @@ export const TEAMS = [
           'CERISE',
           'CORAL',
           'CRIMSON',
+          'FLOAT',
           'FUCHSIA',
           'MAUVE',
           'ORCHID',

@@ -43,8 +43,6 @@ const Team = () => {
         edit.provider.includes(selection)
       )
 
-      console.log('isExtraSelection', isExtraSelection)
-      console.log('edit.provider', edit.provider)
       const residentNumberValue = isResidentClinic
         ? edit.provider.split(' ')[edit.provider.split(' ').length - 1]
         : ''
