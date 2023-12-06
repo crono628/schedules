@@ -1,12 +1,13 @@
 import CollapsibleSchedule from '../CollapsibleSchedule/CollapsibleSchedule'
 import { useAppContext } from '../AppContext/AppContext'
 import './Daily.css'
+import React from 'react'
 
-const Daily = () => {
+const Daily = React.forwardRef((props, ref) => {
   const { state } = useAppContext()
   const { data, daily } = state
   return (
-    <div className="room-div-wrapper">
+    <div ref={ref} className="room-div-wrapper">
       {daily?.rooms?.map((item, index) => {
         return (
           <div className="room-div" key={index}>
@@ -46,6 +47,6 @@ const Daily = () => {
       })}
     </div>
   )
-}
+})
 
 export default Daily

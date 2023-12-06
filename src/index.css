@@ -142,7 +142,8 @@ select {
   height: 30px;
 }
 
-.all-appointments-btn {
+.all-appointments-btn,
+.print-btn {
   width: 100%;
   border: none;
   background-color: inherit;
@@ -157,9 +158,15 @@ select {
   font-size: 1rem;
 }
 
-.all-appointments-btn:hover {
+.all-appointments-btn:hover,
+.print-btn:hover {
   background-color: #112e51;
   color: white;
+}
+
+.print-btn {
+  width: fit-content;
+  margin-left: 10px;
 }
 
 .busy-btns button:disabled {
@@ -326,7 +333,8 @@ select {
   .busy-btns,
   .algo-btns,
   .room-btns,
-  .all-appointments-btn {
+  .all-appointments-btn,
+  .print-btn {
     font-size: 0.9rem;
   }
   .sliding-panel {

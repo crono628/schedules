@@ -13,6 +13,8 @@ import Header from './components/Header/Header'
 import CheckboxTimes from './components/user_selections/CheckboxTimes/CheckboxTimes'
 import Campus from './components/user_selections/Campus'
 import ManualDaily from './components/ManualDaily'
+import { PrintManualDaily } from './components/PrintSchedules/PrintManualDaily'
+import { PrintDaily } from './components/PrintSchedules/PrintDaily'
 
 function App() {
   const { state, dispatch } = useAppContext()
@@ -87,7 +89,7 @@ function App() {
           <CheckboxTimes />
           <RoomControl />
         </div>
-        {manualSelection ? <ManualDaily /> : <Daily />}
+        {manualSelection ? <PrintManualDaily /> : <PrintDaily />}
       </div>
       <Footer />
     </div>

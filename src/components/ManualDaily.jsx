@@ -3,6 +3,8 @@ import { useDrag, useDrop } from 'react-dnd'
 import { useAppContext } from './AppContext/AppContext'
 import { findMultipleAppt } from './schedule'
 import CollapsibleSchedule from './CollapsibleSchedule/CollapsibleSchedule'
+import './Daily/Daily.css'
+
 const DraggableProvider = ({ provider }) => {
   const { state } = useAppContext()
   const [{ isDragging }, drag] = useDrag({
@@ -50,7 +52,7 @@ const DroppableArea = ({ children, roomNumber, onDrop }) => {
   )
 }
 
-const ManualDaily = () => {
+const ManualDaily = React.forwardRef((props, ref) => {
   const { state, dispatch } = useAppContext()
   const { data, daily, rooms } = state
 
@@ -87,7 +89,7 @@ const ManualDaily = () => {
   const roomNumbers = Array.from({ length: rooms }, (_, i) => i + 1)
 
   return (
-    <div className="room-div-wrapper">
+    <div ref={ref} className="room-div-wrapper">
       {Object.keys(groupedProviders).map((roomNumber, index) => {
         const providers = groupedProviders[roomNumber]
         const busyTimes = findMultipleAppt(dailyAppts[roomNumber].today)
@@ -149,7 +151,7 @@ const ManualDaily = () => {
       })}
     </div>
   )
-}
+})
 
 function groupProvidersByRoom(providers) {
   const groupedProviders = {}

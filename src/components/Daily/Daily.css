@@ -5,6 +5,7 @@
 .room-div {
   margin: 20px;
   width: 40%;
+  break-inside: avoid;
 }
 
 .total-appts-div {
