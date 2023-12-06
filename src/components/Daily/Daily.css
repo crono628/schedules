@@ -1,9 +1,11 @@
 .room-div-wrapper {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
 }
 .room-div {
   margin: 20px;
+  margin-top: 40px;
   width: 40%;
   break-inside: avoid;
 }
