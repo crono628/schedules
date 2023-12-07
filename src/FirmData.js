@@ -15,7 +15,8 @@ export const TEAMS = [
           'MAUVE',
           'ORCHID',
           'ROSE',
-          'RUBY'
+          'RUBY',
+          'SAME DAY ACCESS'
         ]
       },
       {
@@ -28,6 +29,7 @@ export const TEAMS = [
           'ICE',
           'NAVY',
           'ROYAL',
+          'SAME DAY ACCESS',
           'SAPPHIRE',
           'SKY',
           'SLATE',
