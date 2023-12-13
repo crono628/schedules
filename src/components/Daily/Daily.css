@@ -14,15 +14,18 @@
   border-bottom: black solid 2px;
   max-width: fit-content;
   margin-bottom: 10px;
-  font-size: 1rem;
+  font-size: 0.85em;
 }
 
-.busy-times *,
 .busy-times {
-  font-size: 0.9rem;
+  font-size: 0.8em;
 }
 
 .provider-div {
   display: flex;
   flex-direction: column;
+}
+
+.font-slider {
+  margin: 0.4em;
 }

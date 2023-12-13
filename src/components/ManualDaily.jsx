@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useDrag, useDrop } from 'react-dnd'
 import { useAppContext } from './AppContext/AppContext'
 import { findMultipleAppt } from './schedule'
@@ -87,68 +87,91 @@ const ManualDaily = React.forwardRef((props, ref) => {
 
   //an array of room numbers from 1 to the number of rooms
   const roomNumbers = Array.from({ length: rooms }, (_, i) => i + 1)
+  const [fontSize, setFontSize] = useState(100)
 
+  const handleSliderChange = (event) => {
+    setFontSize(event.target.value)
+  }
   return (
-    <div ref={ref} className="room-div-wrapper">
-      {Object.keys(groupedProviders).map((roomNumber, index) => {
-        const providers = groupedProviders[roomNumber]
-        const busyTimes = findMultipleAppt(dailyAppts[roomNumber].today)
-
-        return (
-          <div className="room-div" key={roomNumber}>
-            <DroppableArea roomNumber={roomNumber} onDrop={handleDrop}>
-              <strong>
-                <div>
-                  Group{' '}
-                  {
-                    daily?.rooms?.find(
-                      (item) => item.room === parseInt(roomNumber)
-                    )?.room
-                  }
+    <div>
+      <input
+        type="range"
+        min="50"
+        max="200"
+        value={fontSize}
+        onChange={handleSliderChange}
+        className="font-slider"
+      />
+      <div
+        ref={ref}
+        className="room-div-wrapper"
+        style={{ fontSize: `${fontSize}%` }}
+      >
+        {Object.keys(groupedProviders).map((roomNumber, index) => {
+          const providers = groupedProviders[roomNumber]
+          const busyTimes = findMultipleAppt(dailyAppts[roomNumber].today)
+          return (
+            <div
+              className="room-div"
+              key={roomNumber}
+              style={fontSize < 85 ? { width: '20%' } : { width: '40%' }}
+            >
+              <DroppableArea roomNumber={roomNumber} onDrop={handleDrop}>
+                <strong>
+                  <div>
+                    Group{' '}
+                    {
+                      daily?.rooms?.find(
+                        (item) => item.room === parseInt(roomNumber)
+                      )?.room
+                    }
+                  </div>
+                </strong>
+                <div className="total-appts-div">
+                  Total appointments:{' '}
+                  {dailyAppts[roomNumber]?.today.reduce((acc, curr) => {
+                    return acc + curr.length
+                  }, 0)}
+                  <div className="busy-times">
+                    <span className="busy-span">Busy times:</span>
+                    {busyTimes
+                      .sort((a, b) =>
+                        b.value < a.value ? 1 : b.value > a.value ? -1 : 0
+                      )
+                      .map((dup, index) => (
+                        <span key={index}>
+                          {dup.repeats} ({dup.count})
+                          {index < busyTimes.length - 1 ? ', ' : ''}
+                        </span>
+                      ))}
+                  </div>
                 </div>
-              </strong>
-              <div className="total-appts-div">
-                Total appointments:{' '}
-                {dailyAppts[roomNumber]?.today.reduce((acc, curr) => {
-                  return acc + curr.length
-                }, 0)}
-                <div className="busy-times">
-                  <span className="busy-span">Busy times:</span>
-                  {busyTimes
+                <div className="provider-div">
+                  {data
+                    .filter(
+                      (provider) => provider.room === parseInt(roomNumber)
+                    )
                     .sort((a, b) =>
-                      b.value < a.value ? 1 : b.value > a.value ? -1 : 0
+                      b.today.length > a.today.length
+                        ? 1
+                        : b.today.length < a.today.length
+                        ? -1
+                        : 0
                     )
-                    .map((dup, index) => (
-                      <span key={index}>
-                        {dup.repeats} ({dup.count})
-                        {index < busyTimes.length - 1 ? ', ' : ''}
-                      </span>
-                    ))}
+                    .map((provider, index) => {
+                      return (
+                        <DraggableProvider
+                          key={index}
+                          provider={provider.provider}
+                        />
+                      )
+                    })}
                 </div>
-              </div>
-              <div className="provider-div">
-                {data
-                  .filter((provider) => provider.room === parseInt(roomNumber))
-                  .sort((a, b) =>
-                    b.today.length > a.today.length
-                      ? 1
-                      : b.today.length < a.today.length
-                      ? -1
-                      : 0
-                  )
-                  .map((provider, index) => {
-                    return (
-                      <DraggableProvider
-                        key={index}
-                        provider={provider.provider}
-                      />
-                    )
-                  })}
-              </div>
-            </DroppableArea>
-          </div>
-        )
-      })}
+              </DroppableArea>
+            </div>
+          )
+        })}
+      </div>
     </div>
   )
 })
