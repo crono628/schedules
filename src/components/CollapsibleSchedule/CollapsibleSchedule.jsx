@@ -63,7 +63,7 @@ const CollapsibleSchedule = ({ obj }) => {
         <div>{provider} </div>
         <span
           style={{
-            fontSize: '0.7rem',
+            fontSize: '0.7em',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',

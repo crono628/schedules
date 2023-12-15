@@ -270,6 +270,7 @@ select {
   font-size: 0.7rem;
   margin: 0 10px 5px 0px;
   padding: 3px;
+  cursor: pointer;
 }
 
 .collapsible:hover {
@@ -280,6 +281,7 @@ select {
 
 .collapsible-content {
   padding-left: 25px;
+  cursor: default;
 }
 
 .toggle-button {

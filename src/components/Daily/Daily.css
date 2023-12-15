@@ -2,12 +2,13 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  padding: 3rem;
 }
+
 .room-div {
-  margin: 20px;
-  width: 40%;
   break-inside: avoid;
-  margin-top: 40px;
+  margin: 0.5em;
+  margin-bottom: 1rem;
 }
 
 .total-appts-div {

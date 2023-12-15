@@ -1,5 +1,6 @@
 .edit-delete-container {
   display: flex;
+  position: absolute;
   flex-direction: row;
   justify-content: space-between;
   width: 75px;
