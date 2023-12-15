@@ -337,7 +337,7 @@ select {
   .room-btns,
   .all-appointments-btn,
   .print-btn {
-    font-size: 0.9rem;
+    font-size: 0.7em;
   }
   .sliding-panel {
     width: var(--sliding-panel-width-mobile);
@@ -356,10 +356,14 @@ select {
   }
 
   .res-checkbox {
-    font-size: 0.9rem;
+    font-size: 0.7em;
   }
 
   .collapsible {
-    font-size: 0.9rem;
+    font-size: 0.7em;
+  }
+
+  .room-div-wrapper {
+    padding: 1rem;
   }
 }
