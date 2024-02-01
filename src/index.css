@@ -315,7 +315,7 @@ select {
 }
 
 .test-btn {
-  font-size: 0.4rem;
+  font-size: 0.5rem;
   cursor: pointer;
   align-self: flex-end;
   position: absolute;

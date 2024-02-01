@@ -28,7 +28,8 @@ function App() {
     busyTimes,
     campus,
     manualSelection,
-    isOpenAll
+    isOpenAll,
+    testDataClicked
   } = state
   function handleDispatch(actionPayload) {
     dispatch({ type: 'update', payload: actionPayload })
@@ -62,7 +63,8 @@ function App() {
       data: [...data, ...testData],
       campus: 'Newington',
       firm: '2',
-      selectedTeam: ''
+      selectedTeam: '',
+      testDataClicked: true
     })
   }
 
@@ -76,9 +78,11 @@ function App() {
       <Header handlePanel={handlePanel} />
 
       <div className="wrapper">
-        <button onClick={handleTestData} className="test-btn">
-          test data
-        </button>
+        {!testDataClicked && (
+          <button onClick={handleTestData} className="test-btn">
+            test data
+          </button>
+        )}
         <SlidingPanel show={show} />
         <div className="selection-container">
           <div className="dropdown-container">
