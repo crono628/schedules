@@ -4,11 +4,12 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 :root {
   --main-font-size: 1.2rem;
+  --pact-planner-title-font-size: 1.5rem;
   --dropdown: 1.3rem;
   --dropdown-mobile: 1rem;
   --dropdown-selection: 1rem;
@@ -24,7 +25,7 @@
 body {
   display: flex;
   justify-content: center;
-  background-color: lightgrey;
+  background-color: #112e51;
   font-size: var(--main-font-size);
 }
 
@@ -35,13 +36,12 @@ select {
 
 .wrapper {
   position: relative;
-  /* padding: 10px; */
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   padding-bottom: 70px;
   overflow-x: hidden;
   overflow-y: auto;
-  border: #112e51 solid 15px;
+  /* border: #112e51 solid 15px; */
   border-bottom: 0;
   border-top: 0;
   width: 100vw;
@@ -66,11 +66,12 @@ select {
   justify-content: space-between;
   width: 100%;
   background-color: #112e51;
-  height: 25px;
+  height: 40px;
   color: white;
   text-align: left;
   padding: 0 20px 0 20px;
   z-index: 1;
+  font-size: var(--pact-planner-title-font-size);
 }
 
 .footer {
@@ -199,7 +200,7 @@ select {
   flex-direction: column;
   align-items: flex-start;
   font-size: var(--dropdown);
-  width: 350px;
+  width: 40vw;
   margin-top: 10px;
 }
 
@@ -222,7 +223,7 @@ select {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 10px;
-  width: 350px;
+  width: 90%;
   margin-top: 10px;
 }
 
@@ -238,16 +239,13 @@ select {
 .selection-container {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  margin-bottom: 20px;
+  width: 40%;
   padding: 10px;
   padding-bottom: 30px;
-  background: linear-gradient(
-    to bottom,
-
-    rgb(233, 233, 233) 96%,
-    white 100%
-  );
+  background-color: rgb(213, 222, 233);
+  border-right: #112e51;
+  border-style: solid;
+  border-width: 1px;
 }
 
 .schedule-container {
