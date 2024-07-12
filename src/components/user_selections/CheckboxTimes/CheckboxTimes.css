@@ -4,14 +4,20 @@ input[type='checkbox'] {
   margin-right: 8px;
 }
 
+.checkbox-div-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
 .checkbox-div {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 9px;
+  gap: 15px;
   grid-auto-flow: row;
   margin: 20px 0 20px 0;
   width: 65%;
   font-size: 1.5rem;
+  justify-content: center;
 }
 
 .checkbox-div label {

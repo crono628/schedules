@@ -41,7 +41,10 @@ const Daily = React.forwardRef((props, ref) => {
               <div className="total-appts-div">
                 Total appointments: {item.totalAppts}
                 <div className="busy-times">
-                  <span className="busy-span">Busy times:</span>
+                  <span className="busy-span">
+                    {item.duplicates.length > 0 ? 'Busy times:' : ''}
+                  </span>
+                  {console.log(item.duplicates)}
                   {item.duplicates
                     .sort((a, b) =>
                       b.value < a.value ? 1 : b.value > a.value ? -1 : 0

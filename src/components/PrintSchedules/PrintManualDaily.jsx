@@ -3,6 +3,7 @@ import ManualDaily from '../ManualDaily'
 import { useReactToPrint } from 'react-to-print'
 import { logEvent } from 'firebase/analytics'
 import { analytics } from '../../firebase'
+import './Print.css'
 
 export const PrintManualDaily = () => {
   const componentRef = useRef()
@@ -15,7 +16,7 @@ export const PrintManualDaily = () => {
   })
 
   return (
-    <div>
+    <div className="print-wrapper">
       <button className="print-btn" onClick={handlePrint}>
         Print Schedule
       </button>

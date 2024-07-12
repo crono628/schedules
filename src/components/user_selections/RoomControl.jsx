@@ -60,8 +60,8 @@ const RoomControl = () => {
             })
           }
         >
-          Click here for {state.dndExplain ? 'less' : 'more'} information on
-          drag and drop.
+          Click here for {state.dndExplain ? 'less' : ''} info about drag and
+          drop.
         </div>
       )}
       {state.dndExplain === true && (
