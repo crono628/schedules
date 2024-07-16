@@ -110,7 +110,6 @@ const ManualDaily = React.forwardRef((props, ref) => {
         {Object.keys(groupedProviders).map((roomNumber, index) => {
           const providers = groupedProviders[roomNumber]
           const busyTimes = findMultipleAppt(dailyAppts[roomNumber].today)
-          console.log(busyTimes)
           return (
             <div
               className="room-div"
@@ -134,9 +133,10 @@ const ManualDaily = React.forwardRef((props, ref) => {
                     return acc + curr.length
                   }, 0)}
                   <div className="busy-times">
-                    <span className="busy-span">
-                      {busyTimes.length > 0 ? 'Busy times:' : ''}
-                    </span>
+                    {busyTimes.length > 0 && (
+                      <span className="busy-span">Busy times:</span>
+                    )}
+
                     {busyTimes
                       .sort((a, b) =>
                         b.value < a.value ? 1 : b.value > a.value ? -1 : 0

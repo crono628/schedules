@@ -2,6 +2,12 @@ import { logEvent } from 'firebase/analytics'
 import { useAppContext } from '../AppContext/AppContext'
 import { analytics } from '../../firebase'
 import ToggleSwitch from '../ToggleSwitch/ToggleSwitch'
+import Accordion from '@mui/material/Accordion'
+import AccordionActions from '@mui/material/AccordionActions'
+import AccordionSummary from '@mui/material/AccordionSummary'
+import AccordionDetails from '@mui/material/AccordionDetails'
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+import Button from '@mui/material/Button'
 
 const RoomControl = () => {
   const { state, dispatch } = useAppContext()
@@ -16,11 +22,6 @@ const RoomControl = () => {
     } else if (button === 'minus room' && rooms > 1) {
       dispatch({ type: 'update', payload: { rooms: rooms - 1 } })
     }
-  }
-
-  const handleAppointmentToggle = () => {
-    logEvent(analytics, 'toggle_all_appointments')
-    dispatch({ type: 'update', payload: { isOpenAll: !isOpenAll } })
   }
 
   const showDnd = rooms > 1 && state.data.length > 2
@@ -51,6 +52,41 @@ const RoomControl = () => {
       </div>
       {showDnd && (
         <div
+          style={{
+            width: 150
+          }}
+        >
+          <Accordion
+            className="explain"
+            style={{ cursor: 'pointer' }}
+            onClick={() =>
+              dispatch({
+                type: 'update',
+                payload: { dndExplain: !state.dndExplain }
+              })
+            }
+          >
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1-content"
+              id="panel1-header"
+            >
+              <div style={{ fontSize: '1.1rem' }}>
+                Drag and Drop Information
+              </div>
+            </AccordionSummary>
+            <AccordionDetails>
+              Disabling drag and drop will reset any changes made using it.
+              Clicking submit or changing the number of rooms will also disable
+              drag and drop, which will need to be reenabled to continue using
+              it. It's best to use drag and drop once the number of rooms is
+              decided and all clinics have been entered.
+            </AccordionDetails>
+          </Accordion>
+        </div>
+      )}
+      {showDnd && (
+        <div
           className="explain"
           style={{ cursor: 'pointer' }}
           onClick={() =>
@@ -59,36 +95,8 @@ const RoomControl = () => {
               payload: { dndExplain: !state.dndExplain }
             })
           }
-        >
-          Click here for {state.dndExplain ? 'less' : ''} info about drag and
-          drop.
-        </div>
+        ></div>
       )}
-      {state.dndExplain === true && (
-        <div>
-          {rooms > 1 && state.data.length > 2 && (
-            <div className="explain">
-              {/* Any drag and drop changes will reset by toggling drag and drop,
-              pressing submit, or changing the number of rooms. Drag and drop is
-              best used once the number of rooms is decided and all clinics have
-              been entered. */}
-              Disabling drag and drop will reset any drag and drop changes made.
-              Clicking submit or changing the number of rooms will disable drag
-              and drop and will need to be reenabled to continue using it. Drag
-              and drop is best used once the number of rooms is decided and all
-              clinics have been entered.
-            </div>
-          )}
-        </div>
-      )}
-      <div>
-        <button
-          className="all-appointments-btn"
-          onClick={handleAppointmentToggle}
-        >
-          {isOpenAll ? 'Collapse Appointments' : 'Expand Appointments'}
-        </button>
-      </div>
     </div>
   )
 }

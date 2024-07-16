@@ -37,7 +37,7 @@ const Team = () => {
     }
 
     if (edit) {
-      const isResidentClinic = edit.provider.includes('RESIDENT')
+      const isResidentClinic = edit.provider.includes('RES')
       const extraSelections = ['MD1', 'MD2', 'NP1', 'NP2', 'NPR']
       const isExtraSelection = extraSelections.some((selection) =>
         edit.provider.includes(selection)
@@ -101,7 +101,7 @@ const Team = () => {
     }
 
     const provider = `${selectedTeam} ${extraSelection} ${
-      selectedResident ? `RESIDENT ${selectedResidentNumber}` : ''
+      selectedResident ? `RES ${selectedResidentNumber}` : ''
     } `.trim()
 
     logEvent(analytics, 'submit_team')

@@ -7,6 +7,9 @@ input[type='checkbox'] {
 .checkbox-div-wrapper {
   display: flex;
   justify-content: center;
+  border-bottom: 5px #112e51 solid;
+  margin-bottom: 20px;
+  position: relative;
 }
 
 .checkbox-div {
