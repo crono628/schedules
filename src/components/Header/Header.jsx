@@ -7,7 +7,7 @@ const Header = ({ handlePanel }) => {
     <div className="header">
       <div>PACT Planner</div>
       <button className="sliding-btn" onClick={handlePanel}>
-        {show ? 'Hide Instructions' : 'Show Instructions'}
+        {show ? 'Hide Information' : 'Click here for important information'}
       </button>
     </div>
   )
