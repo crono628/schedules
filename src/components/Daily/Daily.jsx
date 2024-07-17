@@ -39,16 +39,20 @@ const Daily = React.forwardRef((props, ref) => {
                 <div>Group {item.room}</div>
               </strong>
               <div className="total-appts-div">
-                Total appointments: {item.totalAppts}
+                <span style={{ whiteSpace: 'nowrap' }}>
+                  Total appointments: {item.totalAppts}
+                </span>
                 <div className="busy-times">
-                  {item.duplicates.length > 0 ? 'Busy times:' : ''}
+                  {item.duplicates.length > 0 ? 'Busy times: ' : ''}
                   {item.duplicates
                     .sort((a, b) =>
                       b.value < a.value ? 1 : b.value > a.value ? -1 : 0
                     )
                     .map((dup, index) => (
                       <span key={index}>
-                        {dup.repeats} ({dup.count})
+                        <span style={{ whiteSpace: 'nowrap' }}>
+                          {dup.repeats} ({dup.count})
+                        </span>
                         {index < item.duplicates.length - 1 ? ', ' : ''}
                       </span>
                     ))}

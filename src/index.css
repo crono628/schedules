@@ -246,6 +246,13 @@ select {
   gap: 15px;
 }
 
+.collapsible-wrapper {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  width: 100%;
+}
+
 .collapsible {
   cursor: pointer;
   display: flex;
@@ -254,6 +261,7 @@ select {
   width: max-content;
   border-radius: 20px;
   background-color: inherit;
+  font-size: 80%;
 }
 
 .collapsible-content button {
@@ -270,7 +278,7 @@ select {
 }
 
 .collapsible-content {
-  padding-left: 15px;
+  padding: 0 10px;
   cursor: default;
   text-wrap: wrap;
   font-size: 75%;

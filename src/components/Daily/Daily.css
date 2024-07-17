@@ -3,27 +3,26 @@
   flex-wrap: wrap;
   justify-content: space-around;
   gap: 1rem;
-  /* padding: 0 4rem 0 1rem; */
+  padding: 0 1rem 0 1rem;
   flex: 1;
 }
 
 .room-div {
   break-inside: avoid;
-  margin: 0.5em;
-  margin-bottom: 1rem;
+  margin: 0.5rem;
   flex: 1;
-  /* max-width: calc(25% - 1rem); */
 }
 
 .total-appts-div {
   border-bottom: black solid 2px;
   max-width: fit-content;
+  min-width: 0;
   margin-bottom: 10px;
-  font-size: 0.85em;
+  font-size: 75%;
 }
 
 .busy-times * {
-  font-size: 0.8em;
+  font-size: 85%;
 }
 
 .provider-div {

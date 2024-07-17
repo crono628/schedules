@@ -17,7 +17,7 @@ const CollapsibleSchedule = ({ obj }) => {
 
   const toggleOpen = () => {
     logEvent(analytics, 'toggle_collapsible_schedule')
-    setIsOpen(!isOpen)
+    setIsOpen((prev) => !prev)
   }
 
   const handleEdit = (e) => {
