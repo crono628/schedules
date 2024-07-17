@@ -2,17 +2,17 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  gap: 1rem;
   /* padding: 0 4rem 0 1rem; */
+  flex: 1;
 }
 
 .room-div {
   break-inside: avoid;
   margin: 0.5em;
   margin-bottom: 1rem;
-  min-width: fit-content;
-  /* width: 100%; */
   flex: 1;
-  max-width: calc(25% - 1rem);
+  /* max-width: calc(25% - 1rem); */
 }
 
 .total-appts-div {
