@@ -79,10 +79,6 @@ const steps = {
     },
     {
       action:
-        'If the number of rooms is greater than 1 and the number of appointments is greater than 2, the drag and drop feature will be enabled'
-    },
-    {
-      action:
         'The default sorting algorithm may unintentionally create busy times. Drag and drop can be used to adjust the schedule to better fit the needs of the clinic'
     }
   ],

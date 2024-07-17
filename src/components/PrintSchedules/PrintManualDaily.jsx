@@ -5,6 +5,7 @@ import { logEvent } from 'firebase/analytics'
 import { analytics } from '../../firebase'
 import './Print.css'
 import { useAppContext } from '../AppContext/AppContext'
+import RoomControl from '../user_selections/RoomControl'
 
 export const PrintManualDaily = () => {
   const componentRef = useRef()
@@ -25,6 +26,7 @@ export const PrintManualDaily = () => {
 
   return (
     <div className="print-wrapper">
+      <RoomControl />
       <div className="print-btn-wrapper">
         <button className="print-btn" onClick={handlePrint}>
           Print Schedule

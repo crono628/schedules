@@ -91,7 +91,6 @@ function App() {
             <Team handleTestData={handleTestData} />
           </div>
           <CheckboxTimes />
-          <RoomControl />
         </div>
         {manualSelection ? <PrintManualDaily /> : <PrintDaily />}
       </div>
