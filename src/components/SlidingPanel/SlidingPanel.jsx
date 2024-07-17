@@ -29,6 +29,40 @@ const SlidingPanel = ({ show }) => {
     >
       <div>
         <Accordion>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1-content"
+            id="panel1-header"
+          >
+            <Typography>Room Control</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <List>
+              {steps.roomControl.map((step, i) => (
+                <ListItem key={i}>
+                  <ListItemText primary={step.action} />
+                </ListItem>
+              ))}
+            </List>
+          </AccordionDetails>
+        </Accordion>
+
+        <Accordion>
+          <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+            <Typography>Drag and Drop</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <List>
+              {steps.dragAndDrop.map((step, i) => (
+                <ListItem key={i}>
+                  <ListItemText primary={step.action} />
+                </ListItem>
+              ))}
+            </List>
+          </AccordionDetails>
+        </Accordion>
+
+        <Accordion>
           <AccordionSummary expandIcon={<ExpandMoreIcon />}>
             <Typography>Create a Schedule</Typography>
           </AccordionSummary>

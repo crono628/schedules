@@ -71,6 +71,29 @@ const steps = {
       action:
         'Click the dropdown for "Select Clinic List" and choose your group'
     }
+  ],
+  roomControl: [
+    {
+      action:
+        'Click the plus or minus button to increase or decrease the number of rooms'
+    },
+    {
+      action:
+        'If the number of rooms is greater than 1 and the number of appointments is greater than 2, the drag and drop feature will be enabled'
+    }
+  ],
+  dragAndDrop: [
+    {
+      action: 'Disabling drag and drop will reset any changes made using it.'
+    },
+    {
+      action:
+        'Clicking submit or changing the number of rooms will also disable drag and drop, which will need to be reenabled to continue using it.'
+    },
+    {
+      action:
+        "It's best to use drag and drop once the number of rooms is decided and all clinics have been entered."
+    }
   ]
 }
 

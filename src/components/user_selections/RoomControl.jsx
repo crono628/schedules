@@ -50,53 +50,6 @@ const RoomControl = () => {
           <div className="toggle-container"></div>
         )}
       </div>
-      {showDnd && (
-        <div
-          style={{
-            width: 150
-          }}
-        >
-          <Accordion
-            className="explain"
-            style={{ cursor: 'pointer' }}
-            onClick={() =>
-              dispatch({
-                type: 'update',
-                payload: { dndExplain: !state.dndExplain }
-              })
-            }
-          >
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1-content"
-              id="panel1-header"
-            >
-              <div style={{ fontSize: '1.1rem' }}>
-                Drag and Drop Information
-              </div>
-            </AccordionSummary>
-            <AccordionDetails>
-              Disabling drag and drop will reset any changes made using it.
-              Clicking submit or changing the number of rooms will also disable
-              drag and drop, which will need to be reenabled to continue using
-              it. It's best to use drag and drop once the number of rooms is
-              decided and all clinics have been entered.
-            </AccordionDetails>
-          </Accordion>
-        </div>
-      )}
-      {showDnd && (
-        <div
-          className="explain"
-          style={{ cursor: 'pointer' }}
-          onClick={() =>
-            dispatch({
-              type: 'update',
-              payload: { dndExplain: !state.dndExplain }
-            })
-          }
-        ></div>
-      )}
     </div>
   )
 }
