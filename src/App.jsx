@@ -83,7 +83,7 @@ function App() {
             test data
           </button>
         )}
-        <SlidingPanel show={show} />
+        <SlidingPanel show={show} toggleDrawer={handlePanel} />
         <div className="selection-container">
           <div className="dropdown-container">
             <Campus />

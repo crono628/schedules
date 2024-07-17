@@ -11,24 +11,25 @@ import Typography from '@mui/material/Typography'
 import steps from '../instructions'
 import './SlidingPanel.css'
 
-const SlidingPanel = ({ show }) => {
+const SlidingPanel = ({ show, toggleDrawer }) => {
   return (
     <Drawer
       anchor="right"
+      onClick={toggleDrawer}
       open={show}
       sx={{
         zIndex: 0,
         width: '33vw',
         flexShrink: 0,
         '& .MuiDrawer-paper': {
-          width: '33vw',
+          width: '35vw',
           boxSizing: 'border-box',
           paddingTop: '64px'
         }
       }}
     >
       <div>
-        <Accordion>
+        {/* <Accordion>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1-content"
@@ -45,7 +46,7 @@ const SlidingPanel = ({ show }) => {
               ))}
             </List>
           </AccordionDetails>
-        </Accordion>
+        </Accordion> */}
 
         <Accordion>
           <AccordionSummary expandIcon={<ExpandMoreIcon />}>
@@ -96,6 +97,11 @@ const SlidingPanel = ({ show }) => {
             </List>
           </AccordionDetails>
         </Accordion>
+        <div className="sliding-panel-algo">
+          The default sorting algorithm may unintentionally create busy times.
+          Drag and drop can be used to adjust the schedule to better fit the
+          needs of the clinic
+        </div>
       </div>
     </Drawer>
   )
