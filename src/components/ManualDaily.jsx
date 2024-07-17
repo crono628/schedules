@@ -128,14 +128,14 @@ const ManualDaily = React.forwardRef((props, ref) => {
                   </div>
                 </strong>
                 <div className="total-appts-div">
-                  Total appointments:{' '}
+                  <span style={{ whiteSpace: 'nowrap' }}>
+                    Total appointments:{' '}
+                  </span>
                   {dailyAppts[roomNumber]?.today.reduce((acc, curr) => {
                     return acc + curr.length
                   }, 0)}
                   <div className="busy-times">
-                    {busyTimes.length > 0 && (
-                      <span className="busy-span">Busy times:</span>
-                    )}
+                    {busyTimes.length > 0 ? 'Busy times: ' : ''}
 
                     {busyTimes
                       .sort((a, b) =>
@@ -143,7 +143,9 @@ const ManualDaily = React.forwardRef((props, ref) => {
                       )
                       .map((dup, index) => (
                         <span key={index}>
-                          {dup.repeats} ({dup.count})
+                          <span style={{ whiteSpace: 'nowrap' }}>
+                            {dup.repeats} ({dup.count})
+                          </span>
                           {index < busyTimes.length - 1 ? ', ' : ''}
                         </span>
                       ))}

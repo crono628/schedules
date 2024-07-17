@@ -21,7 +21,7 @@
   font-size: 75%;
 }
 
-.busy-times * {
+.busy-times > * {
   font-size: 85%;
 }
 
