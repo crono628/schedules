@@ -128,9 +128,7 @@ const ManualDaily = React.forwardRef((props, ref) => {
                   </div>
                 </strong>
                 <div className="total-appts-div">
-                  <span style={{ whiteSpace: 'nowrap' }}>
-                    Total appointments:{' '}
-                  </span>
+                  Total appointments:{' '}
                   {dailyAppts[roomNumber]?.today.reduce((acc, curr) => {
                     return acc + curr.length
                   }, 0)}

@@ -40,7 +40,6 @@ select {
   flex-direction: row;
   overflow-x: hidden;
   overflow-y: auto;
-  /* border: #112e51 solid 15px; */
   border-bottom: 0;
   border-top: 0;
   width: 100vw;
@@ -240,8 +239,7 @@ select {
 .selection-container {
   display: flex;
   flex-direction: column;
-  /* width: 40%; */
-  max-width: 320px;
+  min-width: 270px;
   padding: 0 10px;
   padding-bottom: 30px;
   background-color: rgb(213, 222, 233);
@@ -361,6 +359,11 @@ select {
     width: 220px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .selection-container {
+    min-width: 240px;
+    padding: 0 5px;
   }
 
   .res-checkbox {

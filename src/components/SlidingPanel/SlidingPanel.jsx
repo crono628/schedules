@@ -15,7 +15,7 @@ const SlidingPanel = ({ show, toggleDrawer }) => {
   return (
     <Drawer
       anchor="right"
-      onClick={toggleDrawer}
+      onClose={toggleDrawer}
       open={show}
       sx={{
         zIndex: 0,

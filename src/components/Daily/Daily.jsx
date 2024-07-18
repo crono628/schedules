@@ -39,9 +39,7 @@ const Daily = React.forwardRef((props, ref) => {
                 <div>Group {item.room}</div>
               </strong>
               <div className="total-appts-div">
-                <span style={{ whiteSpace: 'nowrap' }}>
-                  Total appointments: {item.totalAppts}
-                </span>
+                Total appointments: {item.totalAppts}
                 <div className="busy-times">
                   {item.duplicates.length > 0 ? 'Busy times: ' : ''}
                   {item.duplicates
