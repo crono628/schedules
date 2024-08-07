@@ -98,9 +98,14 @@ const SlidingPanel = ({ show, toggleDrawer }) => {
           </AccordionDetails>
         </Accordion>
         <div className="sliding-panel-algo">
-          The default sorting algorithm may unintentionally create busy times.
-          Drag and drop can be used to adjust the schedule to better fit the
-          needs of the clinic
+          <p>
+            Please note: The default sorting algorithm is intended to create
+            balanced groups first which may produce groups with busy times.
+          </p>
+          <p>
+            Drag and drop can be used to adjust the schedule to better fit the
+            needs of the clinic
+          </p>
         </div>
       </div>
     </Drawer>
