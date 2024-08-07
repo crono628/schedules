@@ -24,6 +24,7 @@ export const TEAMS = [
         firm: 2,
         providers: [
           'AIR FORCE',
+          'AZUL',
           'COBALT',
           'CYAN',
           'FLOAT 1',
