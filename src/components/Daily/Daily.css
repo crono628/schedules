@@ -24,6 +24,7 @@
 
 .busy-times > * {
   font-size: 85%;
+  text-wrap: wrap;
 }
 
 .provider-div {

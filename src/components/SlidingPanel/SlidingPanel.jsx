@@ -10,6 +10,12 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import Typography from '@mui/material/Typography'
 import steps from '../instructions'
 import './SlidingPanel.css'
+import { Card } from '@mui/material'
+
+const cardStyle = {
+  padding: '1rem',
+  marginBottom: '1rem'
+}
 
 const SlidingPanel = ({ show, toggleDrawer }) => {
   return (
@@ -98,14 +104,15 @@ const SlidingPanel = ({ show, toggleDrawer }) => {
           </AccordionDetails>
         </Accordion>
         <div className="sliding-panel-algo">
-          <p>
+          <Card variant="outlined" sx={cardStyle}>
             Please note: The default sorting algorithm is intended to create
-            balanced groups first which may produce groups with busy times.
-          </p>
-          <p>
-            Drag and drop can be used to adjust the schedule to better fit the
-            needs of the clinic
-          </p>
+            balanced groups and minimize busy times. This may produce groups
+            with busy times.
+          </Card>
+          <Card variant="outlined" sx={cardStyle}>
+            Drag and drop should be used to adjust the schedule to better fit
+            the needs of the clinic and scheduling
+          </Card>
         </div>
       </div>
     </Drawer>
