@@ -105,13 +105,15 @@ const SlidingPanel = ({ show, toggleDrawer }) => {
         </Accordion>
         <div className="sliding-panel-algo">
           <Card variant="outlined" sx={cardStyle}>
-            Please note: The default sorting algorithm is intended to create
-            balanced groups and minimize busy times. This may produce groups
-            with busy times.
+            The default sorting algorithm is intended to create balanced groups
+            first and minimize busy times second. Drag and drop can be used to
+            adjust the schedule to better fit the needs of the clinic and to
+            further minimize busy times.
           </Card>
           <Card variant="outlined" sx={cardStyle}>
-            Drag and drop should be used to adjust the schedule to better fit
-            the needs of the clinic and scheduling
+            The font-size slider and print options are set up for standard
+            printer paper which is best depicted with a maximized browser
+            window.
           </Card>
         </div>
       </div>
