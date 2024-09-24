@@ -47,10 +47,6 @@ export const data = [
     today: ['13:30', '14:00', '14:30', '15:00'],
     room: null
   },
-  // {
-  //   provider: 'RESIDENT 2',
-  //   today: ['13:30', '14:00', '14:30', '15:00']
-  // },
   {
     provider: 'STEEL RES 3',
     today: ['13:30', '14:00', '14:30', '15:00'],
