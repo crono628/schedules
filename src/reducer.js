@@ -19,7 +19,9 @@ const initialState = {
   manualDaily: [],
   isOpenAll: false,
   dndExplain: false,
-  testDataClicked: false
+  testDataClicked: false,
+  snackbarOpen: false,
+  snackbarMessage: ''
 }
 
 function stateReducer(state, { type, payload }) {

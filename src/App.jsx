@@ -16,10 +16,11 @@ import ManualDaily from './components/ManualDaily'
 import { PrintManualDaily } from './components/PrintSchedules/PrintManualDaily'
 import { PrintDaily } from './components/PrintSchedules/PrintDaily'
 import db from './db'
+import AutohideSnackbar from './components/AutohideSnackbar/AutohideSnackbar'
 
 function App() {
-  const [choice, setChoice] = useState('none')
-  const [dates, setDates] = useState([null, null, null, null, null])
+  const [choice, setChoice] = useState('Monday')
+  const [selectedSlot, setSelectedSlot] = useState(1)
   const { state, dispatch } = useAppContext()
   const {
     data,
@@ -32,7 +33,9 @@ function App() {
     campus,
     manualSelection,
     isOpenAll,
-    testDataClicked
+    testDataClicked,
+    snackbarOpen,
+    snackbarMessage
   } = state
   function handleDispatch(actionPayload) {
     dispatch({ type: 'update', payload: actionPayload })
@@ -70,8 +73,10 @@ function App() {
   const saveState = async (slot) => {
     try {
       await db.saves.put({ id: slot, state: state })
-      setChoice(slot)
-      console.log(`State saved to slot ${slot}`)
+      handleDispatch({
+        snackbarOpen: true,
+        snackbarMessage: `Schedule saved for ${choice}`
+      })
     } catch (error) {
       console.error('Failed to save state:', error)
     }
@@ -82,39 +87,60 @@ function App() {
       const savedState = await db.saves.get(slot)
       if (savedState) {
         dispatch({ type: 'update', payload: savedState.state })
-        setChoice(slot)
-        console.log(`State loaded from slot ${slot}`)
+        handleDispatch({
+          snackbarOpen: true,
+          snackbarMessage: `Schedule loaded for ${choice}`
+        })
       } else {
-        console.log(`No saved state in slot ${slot}`)
+        console.log(`No saved state in slot ${choice}`)
       }
     } catch (error) {
       console.error('Failed to load state:', error)
     }
   }
+  const SaveLoadButtons = () => {
+    const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
 
-  const handleDateChange = (event, index) => {
-    const newDates = [...dates]
-    newDates[index] = event.target.value
-    setDates(newDates)
-  }
-  const SaveLoadButtons = () => (
-    <div className="save-load-buttons">
-      <button onClick={clearState}>Clear State</button>
-      <div>Current Slot: {choice}</div>
-      {[1, 2, 3, 4, 5].map((slot, index) => (
-        <div key={slot}>
-          {/* <input
-            type="date"
-            value={dates[index] || ''}
-            onChange={(event) => handleDateChange(event, index)}
-            placeholder={`Select date for Slot ${slot}`}
-          /> */}
-          <button onClick={() => saveState(slot)}>Save Slot {slot}</button>
-          <button onClick={() => loadState(slot)}>Load Slot {slot}</button>
+    return (
+      <div className="save-load-buttons">
+        <div>
+          Day:
+          <select
+            style={{
+              paddingLeft: '10px',
+              marginLeft: '10px',
+              width: '120px'
+            }}
+            value={selectedSlot}
+            onChange={(e) => {
+              setChoice(daysOfWeek[e.target.value - 1])
+              setSelectedSlot(Number(e.target.value))
+            }}
+          >
+            {daysOfWeek.map((day, index) => {
+              return (
+                <option key={index + 1} value={index + 1}>
+                  {day}
+                </option>
+              )
+            })}
+          </select>
         </div>
-      ))}
-    </div>
-  )
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            marginTop: '10px'
+          }}
+        >
+          <button onClick={() => saveState(selectedSlot)}>Save</button>
+          <button onClick={clearState}>Clear Schedule</button>
+          <button onClick={() => loadState(selectedSlot)}>Load</button>
+        </div>
+      </div>
+    )
+  }
 
   const clearState = () => {
     dispatch({ type: 'clear' })
@@ -122,6 +148,7 @@ function App() {
 
   return (
     <div className="app-wrapper">
+      <AutohideSnackbar message={snackbarMessage} />
       <Header handlePanel={handlePanel} />
       <div className="wrapper">
         {!testDataClicked && (
