@@ -19,7 +19,7 @@ export default function AutohideSnackbar({ message }) {
       <Snackbar
         open={snackbarOpen}
         anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-        autoHideDuration={2000}
+        autoHideDuration={2500}
         onClose={handleClose}
         message={message}
         style={{ marginTop: '50px' }}

@@ -65,34 +65,29 @@ const CollapsibleSchedule = ({ obj }) => {
       onMouseLeave={() => setMouseOver(false)}
     >
       <div className="collapsible" onClick={toggleOpen}>
-        <div>{provider} </div>
-        <span
-          style={{
-            fontSize: '0.7em',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            marginLeft: '0.4rem'
-          }}
-        >
-          ({today.length})
-        </span>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          {provider}
+          <span
+            style={{
+              fontSize: '0.7em',
+              marginLeft: '5px'
+            }}
+          >
+            ({today.length})
+          </span>
+        </div>
+        {isOpen && mouseOver ? (
+          <div data-provider={provider} className="edit-delete-container">
+            <button onClick={handleEdit}>Edit</button>
+            <button onClick={handleDelete}>Delete</button>
+          </div>
+        ) : (
+          <div></div>
+        )}
       </div>
       <Fade in={isOpen} timeout={300}>
         <div className="collapsible-content">
-          {isOpen && (
-            <>
-              {isOpen && mouseOver ? (
-                <div data-provider={provider} className="edit-delete-container">
-                  <button onClick={handleEdit}>Edit</button>
-                  <button onClick={handleDelete}>Delete</button>
-                </div>
-              ) : (
-                <div className="edit-delete-container"></div>
-              )}
-              {' ' + formatAppointmentTimes()}
-            </>
-          )}
+          {isOpen && <>{' ' + formatAppointmentTimes()}</>}
         </div>
       </Fade>
     </div>

@@ -103,6 +103,15 @@ function App() {
 
     return (
       <div className="save-load-buttons">
+        <div
+          style={{
+            width: '150px',
+            fontSize: '0.9rem',
+            margin: '10px 0'
+          }}
+        >
+          Click the info button to learn more about saving schedules
+        </div>
         <div>
           Day:
           <select
@@ -158,13 +167,13 @@ function App() {
         )}
         <SlidingPanel show={show} toggleDrawer={handlePanel} />
         <div className="selection-container">
-          <SaveLoadButtons />
           <div className="dropdown-container">
             <Campus />
             <Firm />
             <Team handleTestData={handleTestData} />
           </div>
           <CheckboxTimes />
+          <SaveLoadButtons />
         </div>
         {manualSelection ? <PrintManualDaily /> : <PrintDaily />}
       </div>
