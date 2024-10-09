@@ -18,9 +18,30 @@ import { PrintDaily } from './components/PrintSchedules/PrintDaily'
 import db from './db'
 import AutohideSnackbar from './components/AutohideSnackbar/AutohideSnackbar'
 
+const days = [
+  'Sunday',
+  'Monday',
+  'Tuesday',
+  'Wednesday',
+  'Thursday',
+  'Friday',
+  'Saturday'
+]
+
 function App() {
-  const [choice, setChoice] = useState('Monday')
-  const [selectedSlot, setSelectedSlot] = useState(1)
+  const getCurrentDayIndex = () => {
+    let currentDayIndex = new Date().getDay()
+    if (currentDayIndex === 0 || currentDayIndex === 6) {
+      currentDayIndex = 1
+    }
+
+    console.log('currentDayIndex', currentDayIndex)
+
+    return currentDayIndex
+  }
+
+  const [choice, setChoice] = useState(days[getCurrentDayIndex()])
+  const [selectedSlot, setSelectedSlot] = useState(getCurrentDayIndex())
   const { state, dispatch } = useAppContext()
   const {
     data,
