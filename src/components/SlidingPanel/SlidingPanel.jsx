@@ -56,6 +56,21 @@ const SlidingPanel = ({ show, toggleDrawer }) => {
 
         <Accordion>
           <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+            <Typography>Saving and Loading</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <List>
+              {steps.saveLoad.map((step, i) => (
+                <ListItem key={i}>
+                  <ListItemText primary={step.action} />
+                </ListItem>
+              ))}
+            </List>
+          </AccordionDetails>
+        </Accordion>
+
+        <Accordion>
+          <AccordionSummary expandIcon={<ExpandMoreIcon />}>
             <Typography>Drag and Drop</Typography>
           </AccordionSummary>
           <AccordionDetails>
@@ -103,6 +118,7 @@ const SlidingPanel = ({ show, toggleDrawer }) => {
             </List>
           </AccordionDetails>
         </Accordion>
+
         <div className="sliding-panel-algo">
           <Card variant="outlined" sx={cardStyle}>
             The default sorting algorithm is intended to create balanced groups
@@ -112,7 +128,7 @@ const SlidingPanel = ({ show, toggleDrawer }) => {
           </Card>
           <Card variant="outlined" sx={cardStyle}>
             The font-size slider and print options are set up for standard
-            printer paper which is best depicted with a maximized browser
+            printer paper which is best visualized with a maximized browser
             window.
           </Card>
         </div>

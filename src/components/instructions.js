@@ -94,6 +94,21 @@ const steps = {
       action:
         "It's best to use drag and drop once the number of rooms is decided and all clinics have been entered."
     }
+  ],
+  saveLoad: [
+    { action: 'Saving and loading is a completely optional feature.' },
+    {
+      action:
+        'Schedules can be saved and loaded by selecting a day of the week and clicking the corresponding button.'
+    },
+    {
+      action: 'The schedules will be saved to your current computer only.'
+    },
+
+    {
+      action:
+        'The "Clear Schedule" button will only remove appointments displayed and will NOT affect the saved schedules until the "Save" button is pressed.'
+    }
   ]
 }
 

@@ -105,12 +105,12 @@ function App() {
       <div className="save-load-buttons">
         <div
           style={{
-            width: '150px',
+            width: '200px',
             fontSize: '0.9rem',
             margin: '10px 0'
           }}
         >
-          Click the info button to learn more about saving schedules
+          Click the info button to learn more about saving and loading schedules
         </div>
         <div>
           Day:
