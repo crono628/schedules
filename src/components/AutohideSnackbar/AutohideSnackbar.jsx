@@ -22,7 +22,7 @@ export default function AutohideSnackbar({ message }) {
         autoHideDuration={2500}
         onClose={handleClose}
         message={message}
-        style={{ marginTop: '50px' }}
+        style={{ marginTop: '200px' }}
         ContentProps={{
           style: { fontSize: '1.5rem' }
         }}

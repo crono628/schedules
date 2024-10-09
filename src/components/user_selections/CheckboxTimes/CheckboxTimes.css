@@ -8,7 +8,6 @@ input[type='checkbox'] {
   display: flex;
   justify-content: center;
   border-bottom: 5px #112e51 solid;
-  margin-bottom: 20px;
   position: relative;
 }
 
