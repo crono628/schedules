@@ -35,8 +35,6 @@ function App() {
       currentDayIndex = 1
     }
 
-    console.log('currentDayIndex', currentDayIndex)
-
     return currentDayIndex
   }
 
@@ -56,7 +54,8 @@ function App() {
     isOpenAll,
     testDataClicked,
     snackbarOpen,
-    snackbarMessage
+    snackbarMessage,
+    saveTime
   } = state
   function handleDispatch(actionPayload) {
     dispatch({ type: 'update', payload: actionPayload })
@@ -73,7 +72,19 @@ function App() {
     if (state.rooms === 1) {
       handleDispatch({ manualSelection: false })
     }
-  }, [rooms, data, algo, firm, busyTimes, manualSelection, isOpenAll])
+  }, [
+    rooms,
+    data,
+    algo,
+    firm,
+    busyTimes,
+    manualSelection,
+    isOpenAll,
+    choice,
+    selectedSlot,
+    snackbarMessage,
+    selectedSlot
+  ])
 
   const handleTestData = () => {
     logEvent(analytics, 'test_data')
@@ -93,10 +104,12 @@ function App() {
 
   const saveState = async (slot) => {
     try {
-      await db.saves.put({ id: slot, state: state })
+      const savedTime = new Date().toLocaleString()
+      await db.saves.put({ id: slot, state: state, saveTime: savedTime })
       handleDispatch({
         snackbarOpen: true,
-        snackbarMessage: `Schedule saved for ${choice}`
+        snackbarMessage: `Schedule saved for ${choice}`,
+        saveTime: savedTime
       })
     } catch (error) {
       console.error('Failed to save state:', error)
@@ -107,10 +120,12 @@ function App() {
     try {
       const savedState = await db.saves.get(slot)
       if (savedState) {
+        console.log('save', savedState.saveTime)
         dispatch({ type: 'update', payload: savedState.state })
         handleDispatch({
           snackbarOpen: true,
-          snackbarMessage: `Schedule loaded for ${choice}`
+          snackbarMessage: `Schedule loaded for ${choice}`,
+          saveTime: savedState.saveTime
         })
       } else {
         console.log(`No saved state in slot ${choice}`)
@@ -131,7 +146,8 @@ function App() {
             margin: '10px 0'
           }}
         >
-          Click the info button to learn more about saving and loading schedules
+          Click the info button in the top right corner to learn more about
+          saving and loading schedules
         </div>
         <div>
           Day:
@@ -143,6 +159,7 @@ function App() {
             }}
             value={selectedSlot}
             onChange={(e) => {
+              dispatch({ type: 'update', payload: { saveTime: '' } })
               setChoice(daysOfWeek[e.target.value - 1])
               setSelectedSlot(Number(e.target.value))
             }}
@@ -155,6 +172,18 @@ function App() {
               )
             })}
           </select>
+        </div>
+        <div>
+          {saveTime && (
+            <div
+              style={{
+                fontSize: '0.9rem',
+                marginTop: '10px'
+              }}
+            >
+              Last saved: {saveTime}
+            </div>
+          )}
         </div>
         <div
           style={{

@@ -21,7 +21,8 @@ const initialState = {
   dndExplain: false,
   testDataClicked: false,
   snackbarOpen: false,
-  snackbarMessage: ''
+  snackbarMessage: '',
+  saveTime: ''
 }
 
 function stateReducer(state, { type, payload }) {

@@ -102,7 +102,11 @@ const steps = {
         'Schedules can be saved and loaded by selecting a day of the week and clicking the corresponding button.'
     },
     {
-      action: 'The schedules will be saved to your current computer only.'
+      action: 'Last saved times will be displayed below the selected day.'
+    },
+    {
+      action:
+        'The schedules will be saved to your current computer only. Clearing your browser cache will remove saved schedules.'
     },
 
     {
