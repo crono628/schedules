@@ -24,7 +24,7 @@ const CheckboxTimes = () => {
   }
 
   return (
-    <div>
+    <div className="checkbox-div-wrapper">
       <div className="checkbox-div">
         {TIMES.map((time) => (
           <div className="checkbox-item" key={time}>

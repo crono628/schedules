@@ -71,6 +71,48 @@ const steps = {
       action:
         'Click the dropdown for "Select Clinic List" and choose your group'
     }
+  ],
+  roomControl: [
+    {
+      action:
+        'Click the plus or minus button to increase or decrease the number of rooms'
+    },
+    {
+      action:
+        'The default sorting algorithm may unintentionally create busy times. Drag and drop can be used to adjust the schedule to better fit the needs of the clinic'
+    }
+  ],
+  dragAndDrop: [
+    {
+      action: 'Disabling drag and drop will reset any changes made using it.'
+    },
+    {
+      action:
+        'Clicking submit or changing the number of rooms will also disable drag and drop, which will need to be reenabled to continue using it.'
+    },
+    {
+      action:
+        "It's best to use drag and drop once the number of rooms is decided and all clinics have been entered."
+    }
+  ],
+  saveLoad: [
+    { action: 'Saving and loading is a completely optional feature.' },
+    {
+      action:
+        'Schedules can be saved and loaded by selecting a day of the week and clicking the corresponding button.'
+    },
+    {
+      action: 'Last saved times will be displayed below the selected day.'
+    },
+    {
+      action:
+        'The schedules will be saved to your current computer only. Clearing your browser cache will remove saved schedules.'
+    },
+
+    {
+      action:
+        'The "Clear Schedule" button will only remove appointments displayed and will NOT affect the saved schedules until the "Save" button is pressed.'
+    }
   ]
 }
 

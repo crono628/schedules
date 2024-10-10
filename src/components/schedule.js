@@ -43,16 +43,12 @@ export const data = [
   },
   { provider: 'STEEL', today: ['09:00', '10:00', '11:00'], room: null },
   {
-    provider: 'STEEL RESIDENT 1',
+    provider: 'STEEL RES 1',
     today: ['13:30', '14:00', '14:30', '15:00'],
     room: null
   },
-  // {
-  //   provider: 'RESIDENT 2',
-  //   today: ['13:30', '14:00', '14:30', '15:00']
-  // },
   {
-    provider: 'STEEL RESIDENT 3',
+    provider: 'STEEL RES 3',
     today: ['13:30', '14:00', '14:30', '15:00'],
     room: null
   },

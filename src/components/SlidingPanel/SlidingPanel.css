@@ -1,4 +1,4 @@
-.sliding-panel {
+/* .sliding-panel {
   position: absolute;
   top: 0;
   right: 0;
@@ -16,5 +16,15 @@
 .sliding-panel.open {
   transform: translateX(0);
   overflow-y: scroll;
-  z-index: 3;
+  z-index: 9;
+} */
+
+.sliding-panel-algo {
+  /* make flexbox */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px;
+  font-size: 1rem;
+  max-width: 230px;
 }

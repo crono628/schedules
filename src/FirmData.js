@@ -88,5 +88,25 @@ export const TEAMS = [
         ]
       }
     ]
+  },
+  {
+    campus: 'New London',
+    firms: [
+      {
+        firm: 'N/A',
+        providers: [
+          'ALPHA',
+          'BRAVO',
+          'CHARLIE',
+          'DELTA',
+          'ECHO',
+          'FOX',
+          'GULL',
+          'HOTEL',
+          'CVT PACT PRO',
+          'SAME DAY ACCESS'
+        ]
+      }
+    ]
   }
 ]

@@ -3,6 +3,7 @@ import { useAppContext } from '../AppContext/AppContext'
 import { logEvent } from '@firebase/analytics'
 import { analytics } from '../../firebase'
 import './CollapsibleSchedule.css'
+import Fade from '@mui/material/Fade'
 
 const CollapsibleSchedule = ({ obj }) => {
   if (!obj) return null
@@ -16,7 +17,7 @@ const CollapsibleSchedule = ({ obj }) => {
 
   const toggleOpen = () => {
     logEvent(analytics, 'toggle_collapsible_schedule')
-    setIsOpen(!isOpen)
+    setIsOpen((prev) => !prev)
   }
 
   const handleEdit = (e) => {
@@ -58,37 +59,37 @@ const CollapsibleSchedule = ({ obj }) => {
   }, [isOpenAll])
 
   return (
-    <div onMouseOver={handleMouseOver} onMouseLeave={() => setMouseOver(false)}>
+    <div
+      className="collapsible-wrapper"
+      onMouseOver={handleMouseOver}
+      onMouseLeave={() => setMouseOver(false)}
+    >
       <div className="collapsible" onClick={toggleOpen}>
-        <div>{provider} </div>
-        <span
-          style={{
-            fontSize: '0.7em',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            marginLeft: '0.4rem'
-          }}
-        >
-          ({today.length})
-        </span>
-      </div>
-      <div className="collapsible-content">
-        {isOpen && (
-          <>
-            {' ' + formatAppointmentTimes()}
-
-            {isOpen && mouseOver ? (
-              <div data-provider={provider} className="edit-delete-container">
-                <button onClick={handleEdit}>Edit</button>
-                <button onClick={handleDelete}>Delete</button>
-              </div>
-            ) : (
-              <div className="edit-delete-container"></div>
-            )}
-          </>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          {provider}
+          <span
+            style={{
+              fontSize: '0.7em',
+              marginLeft: '5px'
+            }}
+          >
+            ({today.length})
+          </span>
+        </div>
+        {isOpen && mouseOver ? (
+          <div data-provider={provider} className="edit-delete-container">
+            <button onClick={handleEdit}>Edit</button>
+            <button onClick={handleDelete}>Delete</button>
+          </div>
+        ) : (
+          <div></div>
         )}
       </div>
+      <Fade in={isOpen} timeout={300}>
+        <div className="collapsible-content">
+          {isOpen && <>{' ' + formatAppointmentTimes()}</>}
+        </div>
+      </Fade>
     </div>
   )
 }

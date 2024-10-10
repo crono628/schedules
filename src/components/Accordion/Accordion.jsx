@@ -12,7 +12,7 @@ const Accordion = ({ title, children }) => {
     if (title === 'Create a Schedule') {
       logEvent(analytics, 'accordion_create_schedule')
     }
-    if (title === 'Setup Intake Group:') {
+    if (title === 'Setup Intake Group') {
       logEvent(analytics, 'accordion_setup_intake_group')
     }
     setShow(!show)

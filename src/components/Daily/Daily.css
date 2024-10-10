@@ -2,24 +2,30 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: 3rem;
+  gap: 1rem;
+  padding: 0 1rem 0 1rem;
+  flex: 1;
 }
 
 .room-div {
   break-inside: avoid;
-  margin: 0.5em;
-  margin-bottom: 1rem;
+  margin: 0.5rem;
+  flex: 1;
+  max-width: 300px;
 }
 
 .total-appts-div {
   border-bottom: black solid 2px;
   max-width: fit-content;
-  margin-bottom: 10px;
-  font-size: 0.85em;
+  min-width: 0;
+  margin: 2px 0px;
+  font-size: 75%;
+  white-space: nowrap;
 }
 
-.busy-times {
-  font-size: 0.8em;
+.busy-times > * {
+  font-size: 85%;
+  text-wrap: wrap;
 }
 
 .provider-div {
@@ -28,5 +34,5 @@
 }
 
 .font-slider {
-  margin: 0.4em;
+  margin: 0.4rem;
 }

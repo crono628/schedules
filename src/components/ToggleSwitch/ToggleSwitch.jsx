@@ -6,8 +6,7 @@ function ToggleSwitch() {
   const { state, dispatch } = useAppContext()
   const { manualSelection, rooms } = state
 
-  const toggleActive = rooms < 2
-
+  const toggleActive = rooms > 1 && state.data.length >= 2
   const handleToggle = () => {
     dispatch({ type: 'update', payload: { manualSelection: !manualSelection } })
   }
@@ -21,7 +20,7 @@ function ToggleSwitch() {
           className="checkbox"
           checked={manualSelection}
           onChange={handleToggle}
-          disabled={toggleActive}
+          disabled={!toggleActive}
         />
         <div className="slider round"></div>
       </label>
