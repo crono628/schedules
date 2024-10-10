@@ -102,16 +102,17 @@ const steps = {
         'Schedules can be saved and loaded by selecting a day of the week and clicking the corresponding button.'
     },
     {
-      action: 'Last saved times will be displayed below the selected day.'
+      action:
+        '"Last saved" times will be displayed below the selected day after saving or loading.'
     },
     {
       action:
-        'The schedules will be saved to your current computer only. Clearing your browser cache will remove saved schedules.'
+        'The schedules will be saved to your current computer and browser only. Clearing your browser cache will remove any saved schedules.'
     },
 
     {
       action:
-        'The "Clear Schedule" button will only remove appointments displayed and will NOT affect the saved schedules until the "Save" button is pressed.'
+        'The "Clear" button will only remove appointments currently displayed and will not affect a saved schedule until the "Save" button is pressed.'
     }
   ]
 }

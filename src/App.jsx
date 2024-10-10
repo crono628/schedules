@@ -17,6 +17,13 @@ import { PrintManualDaily } from './components/PrintSchedules/PrintManualDaily'
 import { PrintDaily } from './components/PrintSchedules/PrintDaily'
 import db from './db'
 import AutohideSnackbar from './components/AutohideSnackbar/AutohideSnackbar'
+import {
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select
+} from '@mui/material'
 
 const days = [
   'Sunday',
@@ -154,40 +161,37 @@ function App() {
           saving and loading schedules
         </div>
         <div>
-          Day:
-          <select
-            style={{
-              paddingLeft: '10px',
-              marginLeft: '10px',
-              width: '120px'
-            }}
-            value={selectedSlot}
-            onChange={(e) => {
-              dispatch({ type: 'update', payload: { saveTime: '' } })
-              setChoice(daysOfWeek[e.target.value - 1])
-              setSelectedSlot(Number(e.target.value))
-            }}
-          >
-            {daysOfWeek.map((day, index) => {
-              return (
-                <option key={index + 1} value={index + 1}>
+          <FormControl variant="outlined" style={{ marginLeft: '10px' }}>
+            <InputLabel id="select-label">Select Day</InputLabel>
+            <Select
+              labelId="select-label"
+              value={selectedSlot}
+              onChange={(e) => {
+                dispatch({ type: 'update', payload: { saveTime: '' } })
+                setChoice(daysOfWeek[e.target.value - 1])
+                setSelectedSlot(Number(e.target.value))
+              }}
+              label="Select Day"
+              style={{ paddingLeft: '10px' }}
+            >
+              {daysOfWeek.map((day, index) => (
+                <MenuItem key={index + 1} value={index + 1}>
                   {day}
-                </option>
-              )
-            })}
-          </select>
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
         </div>
         <div>
-          {saveTime && (
-            <div
-              style={{
-                fontSize: '0.9rem',
-                marginTop: '10px'
-              }}
-            >
-              Last saved: {saveTime}
-            </div>
-          )}
+          <div
+            style={{
+              fontSize: '0.9rem',
+              marginTop: '10px',
+              height: '10px'
+            }}
+          >
+            {saveTime && `Last saved: ${saveTime}`}
+          </div>
         </div>
         <div
           style={{
@@ -197,9 +201,15 @@ function App() {
             marginTop: '10px'
           }}
         >
-          <button onClick={() => saveState(selectedSlot)}>Save</button>
-          <button onClick={clearState}>Clear Schedule</button>
-          <button onClick={() => loadState(selectedSlot)}>Load</button>
+          <Button variant="contained" onClick={() => saveState(selectedSlot)}>
+            Save
+          </Button>
+          <Button variant="contained" onClick={clearState}>
+            Clear
+          </Button>
+          <Button variant="contained" onClick={() => loadState(selectedSlot)}>
+            Load
+          </Button>
         </div>
       </div>
     )
