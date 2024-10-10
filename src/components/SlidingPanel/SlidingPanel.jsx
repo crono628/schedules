@@ -106,7 +106,7 @@ const SlidingPanel = ({ show, toggleDrawer }) => {
 
         <Accordion>
           <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-            <Typography>Setup Intake Group:</Typography>
+            <Typography>Setup Intake Group</Typography>
           </AccordionSummary>
           <AccordionDetails>
             <List>

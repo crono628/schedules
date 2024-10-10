@@ -65,6 +65,9 @@ function App() {
     if (campus === '') {
       handleDispatch({ firm: '', teams: [], firms: [] })
     }
+    if (campus === 'New London') {
+      handleDispatch({ firm: 'N/A' })
+    }
     if (!manualSelection) {
       handleDispatch({ daily: createSchedule(data, rooms, algo, busyTimes) })
     }
@@ -83,7 +86,8 @@ function App() {
     choice,
     selectedSlot,
     snackbarMessage,
-    selectedSlot
+    selectedSlot,
+    campus
   ])
 
   const handleTestData = () => {
