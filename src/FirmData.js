@@ -5,6 +5,7 @@ export const TEAMS = [
       {
         firm: 1,
         providers: [
+          'AQUA',
           'CARDINAL',
           'CARNATION',
           'CERISE',
