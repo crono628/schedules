@@ -14,6 +14,7 @@ export const TEAMS = [
           'FLOAT 1',
           'FLOAT 2',
           'FUCHSIA',
+          'MAGENTA',
           'MAUVE',
           'ORCHID',
           'ROSE',
