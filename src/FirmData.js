@@ -13,7 +13,8 @@ export const TEAMS = [
           'CRIMSON',
           'FLOAT 1',
           'FLOAT 2',
-          'FUCHSIA',
+          'FUCHSIA APRN',
+          'FUCHSIA DO',
           'MAGENTA',
           'MAUVE',
           'ORCHID',
@@ -25,7 +26,6 @@ export const TEAMS = [
       {
         firm: 2,
         providers: [
-          'AIR FORCE',
           'AZUL',
           'COBALT',
           'CYAN',
