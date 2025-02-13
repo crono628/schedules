@@ -18,6 +18,8 @@ export const TEAMS = [
           'MAGENTA',
           'MAUVE',
           'ORCHID',
+          'URGENT APRN',
+          'URGENT MD',
           'ROSE',
           'RUBY',
           'SAME DAY ACCESS'
@@ -33,6 +35,8 @@ export const TEAMS = [
           'FLOAT 2',
           'ICE',
           'NAVY',
+          'URGENT APRN',
+          'URGENT MD',
           'ROYAL',
           'SAME DAY ACCESS',
           'SAPPHIRE',
