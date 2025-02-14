@@ -18,11 +18,11 @@ export const TEAMS = [
           'MAGENTA',
           'MAUVE',
           'ORCHID',
-          'URGENT APRN',
-          'URGENT MD',
           'ROSE',
           'RUBY',
-          'SAME DAY ACCESS'
+          'SAME DAY ACCESS',
+          'URGENT APRN',
+          'URGENT MD'
         ]
       },
       {
@@ -35,15 +35,15 @@ export const TEAMS = [
           'FLOAT 2',
           'ICE',
           'NAVY',
-          'URGENT APRN',
-          'URGENT MD',
           'ROYAL',
           'SAME DAY ACCESS',
           'SAPPHIRE',
           'SKY',
           'SLATE',
           'STEEL',
-          'TURQUOISE'
+          'TURQUOISE',
+          'URGENT APRN',
+          'URGENT MD'
         ]
       }
     ]
