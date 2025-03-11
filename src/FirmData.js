@@ -5,7 +5,6 @@ export const TEAMS = [
       {
         firm: 1,
         providers: [
-          'AQUA',
           'CARDINAL',
           'CARNATION',
           'CERISE',
@@ -28,6 +27,7 @@ export const TEAMS = [
       {
         firm: 2,
         providers: [
+          'AQUA',
           'AZUL',
           'COBALT',
           'CYAN',
