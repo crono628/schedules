@@ -29,7 +29,7 @@ const RoomControl = () => {
   return (
     <div className="btn-wrapper">
       <div className="room-btns">
-        Rooms
+        {/* Rooms */}Groups
         <div className="btn-container">
           <button data-button="minus room" onClick={handleRoomsButton}>
             -
